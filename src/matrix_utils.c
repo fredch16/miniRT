@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
-#include <stdio.h>
 
 // sets 4x4 matrix to identity matrix:
 void	matrix_set(t_matrix *m)
@@ -21,7 +20,6 @@ void	matrix_set(t_matrix *m)
 
 	m->rows = 4;
 	m->columns = 4;
-
 	double values[4][4] = 
 	{
 		{1, 0, 0, 0},

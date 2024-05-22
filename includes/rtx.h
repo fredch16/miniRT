@@ -21,6 +21,7 @@
 # include <math.h>
 # include <errno.h>
 # include <X11/keysym.h>
+#include <stdio.h>
 
 typedef struct s_rgb
 {
@@ -96,5 +97,6 @@ void		matrix_set(t_matrix *m);
 void		matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *result);
 t_3d_vector	matrix_multiply_vector(t_matrix *m, t_3d_vector *vector);
 t_matrix	matrix_multiply_imatrix(t_matrix *m);
-
+//matrix utils 2
+void	matrix_transpose(t_matrix *m);
 #endif

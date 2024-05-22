@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/21 17:35:47 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:23:35 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int	main(void)
 {
 	t_data data;
-	t_3d_vector start;
-	t_3d_vector velocity;
-	t_3d_vector gravity;
 
-	start.x = 1;
-	start.y = 2;
-	start.z = 1;
+	data.velocity.x = 1;
+	data.velocity.y = -1.7;
+	data.velocity.z = 0;
+	data.velocity.w = 1;
 
+	data.velocity = vector_norm(data.velocity);
+	vector_mul(9, &data.velocity);
 	
 	// vector_print(vector_neg(a));
 	// vector_print(vector_neg(b));

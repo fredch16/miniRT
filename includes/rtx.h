@@ -95,5 +95,6 @@ void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity)
 void		print_matrix(t_matrix m);
 void		set_matrix(t_matrix *m);
 void		matrix_multiply(t_matrix *a, t_matrix *b, t_matrix *result);
+t_3d_vector	matrix_multiply_by_vector(t_matrix *m, t_3d_vector *vector);
 
 #endif

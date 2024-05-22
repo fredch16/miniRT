@@ -24,9 +24,9 @@ void	set_matrix(t_matrix *m)
 	double values[4][4] = 
 	{
 		{1, 2, 3, 4},
-		{5, 6, 7, 8},
-		{9, 10, 11, 12},
-		{13, 14, 15, 16}
+		{2, 4, 4, 2},
+		{8, 6, 4, 1},
+		{0, 0, 0, 1}
 	};
 
 	i = 0;
@@ -65,6 +65,29 @@ void	matrix_multiply(t_matrix *a, t_matrix *b, t_matrix *c)
 		}
 		row++;
 	}
+}
+
+t_3d_vector	matrix_multiply_by_vector(t_matrix *m, t_3d_vector *vector)
+{
+	t_3d_vector	ret;
+
+	ret.x = (m->matrix[0][0] * vector->x) \
+	+ (m->matrix[0][1] * vector->y) \
+	+ (m->matrix[0][2] * vector->z) \
+	+ (m->matrix[0][3] * vector->w);
+	ret.y = (m->matrix[1][0] * vector->x) \
+	+ (m->matrix[1][1] * vector->y) \
+	+ (m->matrix[1][2] * vector->z) \
+	+ (m->matrix[1][3] * vector->w);
+	ret.z = (m->matrix[2][0] * vector->x) \
+	+ (m->matrix[2][1] * vector->y) \
+	+ (m->matrix[2][2] * vector->z) \
+	+ (m->matrix[2][3] * vector->w);
+	ret.w = (m->matrix[3][0] * vector->x) \
+	+ (m->matrix[3][1] * vector->y) \
+	+ (m->matrix[3][2] * vector->z) \
+	+ (m->matrix[3][3] * vector->w);
+	return (ret);
 }
 
 void print_matrix(t_matrix m) {

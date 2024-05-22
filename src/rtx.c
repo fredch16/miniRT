@@ -18,7 +18,12 @@ int	main(void)
 	t_matrix matA;
 	t_matrix matB;
 	t_matrix matC;
+	t_3d_vector	vector;
 
+	vector.x = 1;
+	vector.y = 2;
+	vector.z = 3;
+	vector.w = 1;
 	data.velocity.x = 1;
 	data.velocity.y = -1.7;
 	data.velocity.z = 0;
@@ -34,8 +39,10 @@ int	main(void)
 	set_matrix(&matA);
 	set_matrix(&matB);
 	matrix_multiply(&matA, &matB, &matC);
-	print_matrix(matA);
-	print_matrix(matB);
-	print_matrix(matC);
-	init_mlx(&data);
+	vector = matrix_multiply_by_vector(&matA, &vector);
+	vector_print(vector);
+	//print_matrix(matA);
+	//print_matrix(matB);
+	//print_matrix(matC);
+	//init_mlx(&data);
 }

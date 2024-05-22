@@ -6,7 +6,7 @@
 #    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 13:14:19 by fcharbon          #+#    #+#              #
-#    Updated: 2024/05/22 17:18:20 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/05/22 18:01:32 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,16 @@ SRCS := src/rtx.c \
 OBJ := $(SRCS:.c=.o)
 INCLUDE := includes/rtx.h
 
+OBJ_DIR := obj/
+
+$(OBJ_DIR)%.o: src/%.c
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) -Lincludes/libft -Lincludes/mlx_linux -lm -lmlx_Linux -lXext -lX11 -lz

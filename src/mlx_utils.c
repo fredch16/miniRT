@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:49:13 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/21 17:10:38 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:56:41 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "GTX");
 	new_img(WIN_WIDTH, WIN_HEIGHT, data);
+	//draw function
+	draw_projectile(data, 0, 900, data->velocity);
 	mlx_hook(data->win, 17, 0, close_and_destroy, data);
 	mlx_hook(data->win, 2, 1L << 0, keyboard_inputs, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

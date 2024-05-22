@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilities.c                                        :+:      :+:    :+:   */
+/*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:17:41 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/21 15:08:01 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:11:17 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,16 @@ t_3d_vector vector_neg(t_3d_vector a)
 	result.x = -a.x;
 	result.y = -a.y;
 	result.z = -a.z;
-	// result.w = -a.w;
+	result.w = -a.w;
 	return (result);
 }
 
-t_3d_vector vector_mul(double mutliplier, t_3d_vector a) 
+void vector_mul(double mutliplier, t_3d_vector *a) 
 {
-	t_3d_vector	result;
-
-	result.x = mutliplier * a.x;
-	result.y = mutliplier * a.y;
-	result.z = mutliplier * a.z;
-	// result.w = mutliplier * a.w;
-	return (result);
+	a->x = mutliplier * a->x;
+	a->y = mutliplier * a->y;
+	a->z = mutliplier * a->z;
+	a->w = mutliplier * a->w;
 }
 
 double	vector_abs(t_3d_vector v)

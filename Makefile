@@ -6,7 +6,7 @@
 #    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 13:14:19 by fcharbon          #+#    #+#              #
-#    Updated: 2024/05/22 13:38:57 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/05/22 17:18:20 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS := src/rtx.c \
 		src/vector_utils.c \
 		src/colour_utils.c \
 		src/mlx_utils.c \
-		src/drawing.c
+		src/drawing.c \
+		src/matrix_utils.c
 
 OBJ := $(SRCS:.c=.o)
 INCLUDE := includes/rtx.h

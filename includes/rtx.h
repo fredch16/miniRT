@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/22 14:04:42 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:25:27 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ typedef struct s_rgb
 	uint8_t	green;
 	uint8_t	blue;
 }	t_rgb;
+
+typedef struct s_matrix
+{
+	double	matrix[4][4];
+	int	columns;
+	int	rows;
+	int	determinant;
+
+}	t_matrix;
 
 typedef struct s_colour
 {
@@ -81,5 +90,10 @@ void	init_mlx(t_data *data);
 void	draw_circle(t_data *data, int	radius);
 void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity);
 
+//matrix utils
+// void		matrix_print(t_matrix *mat);
+void		print_matrix(t_matrix m);
+void		set_matrix(t_matrix *m);
+void		matrix_multiply(t_matrix *a, t_matrix *b, t_matrix *result);
 
 #endif

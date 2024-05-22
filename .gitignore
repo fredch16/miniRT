@@ -6,6 +6,7 @@ obj
 *.out
 *.exe
 *.a
+gtx1050ti
 
 # Temp files
 *.swp

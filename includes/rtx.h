@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/22 17:25:27 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/22 23:24:55 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,27 @@ typedef struct s_3d_vector
 	int			w;
 }	t_3d_vector;
 
+typedef struct s_ray
+{
+	t_3d_vector	origin;
+	t_3d_vector direction;
+}	t_ray;
+
+typedef struct s_sphere
+{
+	int			id;	
+	double		radius;
+	t_3d_vector	centre;
+}	t_sphere;
+
 typedef struct s_data
 {
 	void	*mlx;
 	void	*img;
 	void	*addr;
 	void	*win;
+	t_sphere	*shapes;
+	t_3d_vector	origin;
 	int		bpp;
 	int		endian;
 	int		line_len;
@@ -86,7 +101,7 @@ t_colour	 colour_mul(t_colour c1, t_colour c2);
 void	put_pixel_img(t_data *data, int x, int y, int colour);
 void	init_mlx(t_data *data);
 
-//drawing
+//drawing utils
 void	draw_circle(t_data *data, int	radius);
 void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity);
 
@@ -95,5 +110,9 @@ void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity)
 void		print_matrix(t_matrix m);
 void		set_matrix(t_matrix *m);
 void		matrix_multiply(t_matrix *a, t_matrix *b, t_matrix *result);
+
+//ray utils
+void		ray_create(t_ray *ray, t_3d_vector origin, t_3d_vector direction);
+t_3d_vector	ray_position(t_ray *ray, double scalar);
 
 #endif

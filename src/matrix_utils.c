@@ -13,7 +13,8 @@
 #include "../includes/rtx.h"
 #include <stdio.h>
 
-void	set_matrix(t_matrix *m)
+// sets 4x4 matrix to identity matrix:
+void	matrix_set(t_matrix *m)
 {
 	int			i;
 	int			j;
@@ -23,9 +24,9 @@ void	set_matrix(t_matrix *m)
 
 	double values[4][4] = 
 	{
-		{1, 2, 3, 4},
-		{2, 4, 4, 2},
-		{8, 6, 4, 1},
+		{1, 0, 0, 0},
+		{0, 1, 0, 0},
+		{0, 0, 1, 0},
 		{0, 0, 0, 1}
 	};
 
@@ -43,7 +44,8 @@ void	set_matrix(t_matrix *m)
 	}
 }
 
-void	matrix_multiply(t_matrix *a, t_matrix *b, t_matrix *c)
+//multiplies matrix a by matrix b and puts the result in matrix c:
+void	matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *c)
 {
 	int			row;
 	int			col;
@@ -67,7 +69,8 @@ void	matrix_multiply(t_matrix *a, t_matrix *b, t_matrix *c)
 	}
 }
 
-t_3d_vector	matrix_multiply_by_vector(t_matrix *m, t_3d_vector *vector)
+//returns matrix multiplied by vector:
+t_3d_vector	matrix_multiply_vector(t_matrix *m, t_3d_vector *vector)
 {
 	t_3d_vector	ret;
 
@@ -90,76 +93,23 @@ t_3d_vector	matrix_multiply_by_vector(t_matrix *m, t_3d_vector *vector)
 	return (ret);
 }
 
-void print_matrix(t_matrix m) {
-    for (int i = 0; i < m.rows; i++) {
-        for (int j = 0; j < m.columns; j++) {
-            printf("%.2f ", m.matrix[i][j]);
-        }
-        printf("\n");
-    }
+//returns given matrix multiplied by identity matrix:
+t_matrix	matrix_multiply_imatrix(t_matrix *m)
+{
+	t_matrix	im;
+	t_matrix	res;
+
+	matrix_set(&im);
+	matrix_multiply_matrix(m, &im, &res);
+	return (res);
 }
 
-// int main() {
-//     t_matrix a = set_matrix();
-// 	t_matrix b = set_matrix();
-// 	t_matrix c = matrix_multiply(&a, &b);
-//     print_matrix(c);
-//     return 0;
-// }
-// void	matrix_print(t_matrix	*mat)
-// {
-// 	int	i;
-// 	int	j;
-//
-// 	i = 0;
-// 	j = 0;
-//
-// 	while (i < 4)
-// 	{
-// 		j = 0;
-// 		while(j < 4)
-// 		{
-// 			printf("%.1f ", mat->M[i][j++]);
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// }
-//
-// void	matrix_create(t_matrix *mat)
-// {
-// 	int	i;
-// 	int	j;
-//
-// 	i = 0;
-// 	j = 0;
-//
-// 	while (i < 4)
-// 	{
-// 		j = 0;
-// 		while(j < 4)
-// 		{
-// 			mat->M[i][j++] = 0;
-// 		}
-// 		i++;
-// 	}
-// }
-//
-// void	matrix_fill(t_matrix *mat, double	*nums)
-// {
-// 	int	i;
-// 	int	j;
-//
-// 	i = 0;
-// 	j = 0;
-//
-// 	while (i < 4)
-// 	{
-// 		j = 0;
-// 		while(j < 4)
-// 		{
-// 			mat->M[i][j++] = nums[k];
-// 		}
-// 		i++;
-// 	}
-// }
+void matrix_print(t_matrix *m)
+{
+	for (int i = 0; i < m->rows; i++) {
+		for (int j = 0; j < m->columns; j++) {
+			printf("%.2f ", m->matrix[i][j]);
+		}
+		printf("\n");
+	}
+}

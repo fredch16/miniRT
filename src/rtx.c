@@ -17,13 +17,13 @@ int	main(void)
 	t_data data;
 	t_matrix matA;
 	t_matrix matB;
-	t_matrix matC;
-	t_3d_vector	vector;
+	//t_matrix matC;
+	//t_3d_vector	vector;
 
-	vector.x = 1;
-	vector.y = 2;
-	vector.z = 3;
-	vector.w = 1;
+	// vector.x = 1;
+	// vector.y = 2;
+	// vector.z = 3;
+	// vector.w = 1;
 	data.velocity.x = 1;
 	data.velocity.y = -1.7;
 	data.velocity.z = 0;
@@ -32,17 +32,22 @@ int	main(void)
 	data.velocity = vector_norm(data.velocity);
 	vector_mul(9, &data.velocity);
 	
+	matrix_set(&matA);
+	matB = matrix_multiply_imatrix(&matA);
+	matrix_print(&matB);
 	// vector_print(vector_neg(a));
 	// vector_print(vector_neg(b));
 	// printf("%.4f\n", vector_abs(a));
 	// printf("%.4f\n", (vector_abs(b)));
-	set_matrix(&matA);
-	set_matrix(&matB);
-	matrix_multiply(&matA, &matB, &matC);
-	vector = matrix_multiply_by_vector(&matA, &vector);
-	vector_print(vector);
-	//print_matrix(matA);
-	//print_matrix(matB);
-	//print_matrix(matC);
+	///////////////////////////////////////////////
+	// matrix_set(&matA);
+	// matrix_set(&matB);
+	// matrix_multiply_matrix(&matA, &matB, &matC);
+	// vector = matrix_multiply_vector(&matA, &vector);
+	// vector_print(vector);
+	/////////////////////////////////////////////////////
+	//matrix_print(matA);
+	//matrix_print(matB);
+	//matrix_print(matC);
 	//init_mlx(&data);
 }

@@ -91,10 +91,10 @@ void	draw_circle(t_data *data, int	radius);
 void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity);
 
 //matrix utils
-// void		matrix_print(t_matrix *mat);
-void		print_matrix(t_matrix m);
-void		set_matrix(t_matrix *m);
-void		matrix_multiply(t_matrix *a, t_matrix *b, t_matrix *result);
-t_3d_vector	matrix_multiply_by_vector(t_matrix *m, t_3d_vector *vector);
+void		matrix_print(t_matrix *mat);
+void		matrix_set(t_matrix *m);
+void		matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *result);
+t_3d_vector	matrix_multiply_vector(t_matrix *m, t_3d_vector *vector);
+t_matrix	matrix_multiply_imatrix(t_matrix *m);
 
 #endif

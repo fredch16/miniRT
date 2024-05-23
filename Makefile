@@ -19,6 +19,7 @@ SRCS := src/rtx.c \
 		src/mlx_utils.c \
 		src/drawing.c \
 		src/matrix_utils.c src/matrix_utils_2.c \
+		src/matrix_multiplication.c \
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

@@ -33,9 +33,9 @@ typedef struct s_rgb
 typedef struct s_matrix
 {
 	double	matrix[4][4];
+	double	determinant;
 	int	columns;
 	int	rows;
-	int	determinant;
 
 }	t_matrix;
 
@@ -84,19 +84,28 @@ t_colour	 colour_sca_mul(double multiplier, t_colour c1);
 t_colour	 colour_mul(t_colour c1, t_colour c2);
 
 //mlx utils
-void	put_pixel_img(t_data *data, int x, int y, int colour);
-void	init_mlx(t_data *data);
+void		put_pixel_img(t_data *data, int x, int y, int colour);
+void		init_mlx(t_data *data);
 
 //drawing
-void	draw_circle(t_data *data, int	radius);
-void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity);
+void		draw_circle(t_data *data, int	radius);
+void		draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity);
 
-//matrix utils
-void		matrix_print(t_matrix *mat);
-void		matrix_set(t_matrix *m);
+//matrix_utils - set identity matrix
+void		matrix_set_4(t_matrix *m);
+void		matrix_set_3(t_matrix *m);
+void		matrix_set_2(t_matrix *m);
+
+//matrix multiplication:
 void		matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *result);
 t_3d_vector	matrix_multiply_vector(t_matrix *m, t_3d_vector *vector);
 t_matrix	matrix_multiply_imatrix(t_matrix *m);
-//matrix utils 2
-void	matrix_transpose(t_matrix *m);
+
+//matrix_utils_2
+void		matrix_print(t_matrix *mat);
+void		matrix_transpose(t_matrix *m);
+void		matrix_det_2(t_matrix *m);
+t_matrix	matrix_sub_of4(t_matrix *m, int row, int col);
+t_matrix	matrix_sub_of3(t_matrix *m, int row, int col);
+
 #endif

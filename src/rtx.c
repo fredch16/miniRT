@@ -16,7 +16,7 @@ int	main(void)
 	{
 //	t_data data;
 	t_matrix matA;
-	t_matrix matB;
+	//t_matrix matB;
 	//t_matrix matC;
 	//t_3d_vector	vector;
 
@@ -25,24 +25,65 @@ int	main(void)
 	// vector.z = 3;
 	// vector.w = 1;
 
-	matrix_set_3(&matA);
-	matA.matrix[0][0] = 1;
-    matA.matrix[0][1] = 5;
-    matA.matrix[0][2] = 0;
+	matrix_set_4(&matA);
+	matA.matrix[0][0] = -2;
+    matA.matrix[0][1] = -8;
+    matA.matrix[0][2] = 3;
+	matA.matrix[0][3] = 5;
 
     matA.matrix[1][0] = -3;
-    matA.matrix[1][1] = 2;
+    matA.matrix[1][1] = 1;
     matA.matrix[1][2] = 7;
+	matA.matrix[1][3] = 3;
 
-    matA.matrix[2][0] = 0;
-    matA.matrix[2][1] = 6;
-    matA.matrix[2][2] = -3;
-	matB = matrix_sub_of3(&matA, 0, 2);
+
+    matA.matrix[2][0] = 1;
+    matA.matrix[2][1] = 2;
+    matA.matrix[2][2] = -9;
+	matA.matrix[2][3] = 6;
+
+    matA.matrix[3][0] = -6;
+    matA.matrix[3][1] = 7;
+    matA.matrix[3][2] = 7;
+	matA.matrix[3][3] = -9;
+
+	double	cofactor;
+	cofactor = matrix_cofactor(&matA, 0, 3);
+	matrix_det_4(&matA);
 	matrix_print(&matA);
-	matrix_print(&matB);
+	printf("determinant = %.2f\ncofactor = %.2f", matA.determinant, cofactor);
 	//init_mlx(&data);
 }
 
+///////////////////OFACTOR
+	// matrix_set_4(&matA);
+	// matA.matrix[0][0] = -2;
+    // matA.matrix[0][1] = -8;
+    // matA.matrix[0][2] = 3;
+	// matA.matrix[0][3] = 5;
+
+    // matA.matrix[1][0] = -3;
+    // matA.matrix[1][1] = 1;
+    // matA.matrix[1][2] = 7;
+	// matA.matrix[1][3] = 3;
+
+
+    // matA.matrix[2][0] = 1;
+    // matA.matrix[2][1] = 2;
+    // matA.matrix[2][2] = -9;
+	// matA.matrix[2][3] = 6;
+
+    // matA.matrix[3][0] = -6;
+    // matA.matrix[3][1] = 7;
+    // matA.matrix[3][2] = 7;
+	// matA.matrix[3][3] = -9;
+
+	// double	cofactor;
+	// cofactor = matrix_cofactor(&matA, 0, 3);
+	// //matrix_det_4(&matA);
+	// matrix_print(&matA);
+	// printf("cofactor = %.2f", cofactor);
+//determinant = %.2f\n
 /// operations tests
 	///////////////////////FIND SUBMATRIX OF 4X4
 	// matrix_set_4(&matA);

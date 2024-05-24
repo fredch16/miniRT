@@ -23,7 +23,7 @@ void	matrix_print(t_matrix *m)
 	}
 }
 
-//transpose a matrix 
+//transpose a matrix // TODO return t_matrix of the tranposed one
 //it turns its rows into columns and its columns into rows
 void	matrix_transpose(t_matrix *m)
 {
@@ -46,92 +46,16 @@ void	matrix_transpose(t_matrix *m)
 	}
 }
 
-/*the determinant of a matrix 
-is a single numerical value 
-which is used when calculating 
-the inverse or when solving systems
- of linear equations.*/
-
-//finding a determinant of 2x2 matrix:
-void	matrix_det_2(t_matrix *m)
-{
-	m->determinant = (m->matrix[0][0] * m->matrix[1][1]) \
-	- (m->matrix[0][1] * m->matrix[1][0]);
-}
-
-t_matrix	matrix_sub_of4(t_matrix *m, int row, int col)
-{
-	t_matrix	s;
-	int			i;
-	int			j;
-	int			si;
-	int			sj;
-
-	i = 0;
-	j = 0;
-	matrix_set_3(&s);
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			if (i != row && j != col)
-			{
-				si = i;
-				sj = j;
-				if (i > row)
-					si--;
-				if (j > col)
-					sj--;
-				s.matrix[si][sj] = m->matrix[i][j];
-			}
-			j++;
-		}
-		i++;	
-	}
-	return (s);
-}
-
-t_matrix	matrix_sub_of3(t_matrix *m, int row, int col)
-{
-	t_matrix	s;
-	int			i;
-	int			j;
-	int			si;
-	int			sj;
-
-	i = 0;
-	j = 0;
-	matrix_set_2(&s);
-	while (i < 3)
-	{
-		j = 0;
-		while (j < 3)
-		{
-			if (i != row && j != col)
-			{
-				si = i;
-				sj = j;
-				if (i > row)
-					si--;
-				if (j > col)
-					sj--;
-				s.matrix[si][sj] = m->matrix[i][j];
-			}
-			j++;
-		}
-		i++;	
-	}
-	return (s);
-}
-
+/*The minor of an element at row i and column j
+is the determinant of the sub-matrix at (i,j). */
 double	matrix_minor(t_matrix *m, int row, int col)
 {
 	t_matrix	sub;
 
 	if (m->rows == 4 && m->columns == 4)
 	{
-		sub = matrix_sub_of4(m, row, col); //TODO детерминант 3
+		sub = matrix_sub_of4(m, row, col);
+		matrix_det_3(&sub);
 	}
 	else if (m->rows == 3 && m->columns == 3)
 	{
@@ -141,14 +65,15 @@ double	matrix_minor(t_matrix *m, int row, int col)
 	return(sub.determinant);
 }
 
+/*They’re minors that have (possibly) had their sign changed.
+if row + column is an odd number, then you negate the minor. 
+Otherwise, you just return theminor as is.*/
 double	matrix_cofactor(t_matrix *m, int row, int col)
 {
 	double	minor;
-	double	sum;
 
-	sum = (double)(row + col);
 	minor = matrix_minor(m, row, col);
-	if (sum % 2 == 0)
+	if ((row + col) % 2 == 0)
 		return(minor);
 	else
 		return(minor * (-1));

@@ -101,11 +101,18 @@ void		matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *result);
 t_3d_vector	matrix_multiply_vector(t_matrix *m, t_3d_vector *vector);
 t_matrix	matrix_multiply_imatrix(t_matrix *m);
 
+// matrix determinant:
+void		matrix_det_2(t_matrix *m);
+void		matrix_det_3(t_matrix *m);
+void		matrix_det_4(t_matrix *m);
+
+//matrix submatrix:
+t_matrix	matrix_sub_of4(t_matrix *m, int row, int col);
+t_matrix	matrix_sub_of3(t_matrix *m, int row, int col);
+
 //matrix_utils_2
 void		matrix_print(t_matrix *mat);
 void		matrix_transpose(t_matrix *m);
-void		matrix_det_2(t_matrix *m);
-t_matrix	matrix_sub_of4(t_matrix *m, int row, int col);
-t_matrix	matrix_sub_of3(t_matrix *m, int row, int col);
+double		matrix_cofactor(t_matrix *m, int row, int col);
 
 #endif

@@ -16,7 +16,7 @@ int	main(void)
 	{
 //	t_data data;
 	t_matrix matA;
-	//t_matrix matB;
+	t_matrix matB;
 	//t_matrix matC;
 	//t_3d_vector	vector;
 
@@ -26,36 +26,37 @@ int	main(void)
 	// vector.w = 1;
 
 	matrix_set_4(&matA);
-	matA.matrix[0][0] = -2;
-    matA.matrix[0][1] = -8;
-    matA.matrix[0][2] = 3;
-	matA.matrix[0][3] = 5;
+    matA.matrix[0][0] = -5;
+    matA.matrix[0][1] = 2;
+    matA.matrix[0][2] = 6;
+    matA.matrix[0][3] = -8;
 
-    matA.matrix[1][0] = -3;
-    matA.matrix[1][1] = 1;
-    matA.matrix[1][2] = 7;
-	matA.matrix[1][3] = 3;
+    matA.matrix[1][0] = 1;
+    matA.matrix[1][1] = -5;
+    matA.matrix[1][2] = 1;
+    matA.matrix[1][3] = 8;
 
+    matA.matrix[2][0] = 7;
+    matA.matrix[2][1] = 7;
+    matA.matrix[2][2] = -6;
+    matA.matrix[2][3] = -7;
 
-    matA.matrix[2][0] = 1;
-    matA.matrix[2][1] = 2;
-    matA.matrix[2][2] = -9;
-	matA.matrix[2][3] = 6;
-
-    matA.matrix[3][0] = -6;
-    matA.matrix[3][1] = 7;
+    matA.matrix[3][0] = 1;
+    matA.matrix[3][1] = -3;
     matA.matrix[3][2] = 7;
-	matA.matrix[3][3] = -9;
+    matA.matrix[3][3] = 4;
 
-	double	cofactor;
-	cofactor = matrix_cofactor(&matA, 0, 3);
+//	double	cofactor;
+	//cofactor = matrix_cofactor(&matA, 0, 3);
 	matrix_det_4(&matA);
 	matrix_print(&matA);
-	printf("determinant = %.2f\ncofactor = %.2f", matA.determinant, cofactor);
+	//printf("determinant = %.2f\ncofactor = %.2f\n", matA.determinant, cofactor);
+	matB = matrix_inverse(&matA);
+	matrix_print(&matB);
 	//init_mlx(&data);
 }
 
-///////////////////OFACTOR
+///////////////////COFACTOR and DETERMINANT
 	// matrix_set_4(&matA);
 	// matA.matrix[0][0] = -2;
     // matA.matrix[0][1] = -8;
@@ -80,9 +81,9 @@ int	main(void)
 
 	// double	cofactor;
 	// cofactor = matrix_cofactor(&matA, 0, 3);
-	// //matrix_det_4(&matA);
+	// matrix_det_4(&matA);
 	// matrix_print(&matA);
-	// printf("cofactor = %.2f", cofactor);
+	// printf("determinant = %.2f\ncofactor = %.2f", matA.determinant, cofactor);
 //determinant = %.2f\n
 /// operations tests
 	///////////////////////FIND SUBMATRIX OF 4X4

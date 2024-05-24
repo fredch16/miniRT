@@ -112,7 +112,9 @@ t_matrix	matrix_sub_of3(t_matrix *m, int row, int col);
 
 //matrix_utils_2
 void		matrix_print(t_matrix *mat);
-void		matrix_transpose(t_matrix *m);
+t_matrix	matrix_transpose(t_matrix *m);
 double		matrix_cofactor(t_matrix *m, int row, int col);
+t_matrix	matrix_div_det(t_matrix *m, double det);
+t_matrix	matrix_inverse(t_matrix *m);
 
 #endif

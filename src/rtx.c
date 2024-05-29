@@ -16,7 +16,7 @@ int	main(void)
 	{
 //	t_data data;
 	t_matrix matA;
-	t_matrix matB;
+	//t_matrix matB;
 //	t_matrix matC;
 //	t_matrix matD;
 //	t_matrix matE;
@@ -26,14 +26,14 @@ int	main(void)
 	tuple.y = 1;
 	tuple.z = 0;
 	tuple.w = 1;
-	matrix_set_rotation(&matA, PI / 4);
+	matrix_set_rotation_z(&matA, PI / 4);
 	matrix_det_4(&matA);
-	matB = matrix_inverse(&matA);
+	//matB = matrix_inverse(&matA);
 	vector_print(tuple);
-	tuple = matrix_multiply_vector(&matB, &tuple);
+	tuple = matrix_multiply_vector(&matA, &tuple);
 	matrix_print(&matA);
-	printf("matB:\n");
-	matrix_print(&matB);
+	//printf("matB:\n");
+	//matrix_print(&matB);
 	vector_print(tuple);
 // 	matrix_set_4(&matC);
 

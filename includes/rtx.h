@@ -92,19 +92,24 @@ void		init_mlx(t_data *data);
 void		draw_circle(t_data *data, int	radius);
 void		draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity);
 
-//matrix_set - set identity matrix
+//matrix_set - set identity matrix; set translation matrix, set scaling matrix
 void		matrix_set_4(t_matrix *m);
 void		matrix_set_3(t_matrix *m);
 void		matrix_set_2(t_matrix *m);
 void		matrix_set_translation(t_matrix *m, double x, double y, double z);
 void		matrix_set_scaling(t_matrix *m, double x, double y, double z);
-void		matrix_set_rotation(t_matrix *m, double r);
+
+//matrix_rotation 
+void		matrix_set_rotation_x(t_matrix *m, double r);
+void		matrix_set_rotation_y(t_matrix *m, double r);
+void		matrix_set_rotation_z(t_matrix *m, double r);
 
 //matrix multiplication:
 void		matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *result);
 t_3d_vector	matrix_multiply_vector(t_matrix *m, t_3d_vector *vector);
 t_matrix	matrix_multiply_imatrix(t_matrix *m);
 t_3d_vector	tuple_mul_transm(t_3d_vector *tuple, t_matrix *tm);
+
 // matrix determinant:
 void		matrix_det_2(t_matrix *m);
 void		matrix_det_3(t_matrix *m);

@@ -118,12 +118,3 @@ void	matrix_set_scaling(t_matrix *m, double x, double y, double z)
 	m->matrix[1][1] = y;
 	m->matrix[2][2] = z;
 }
-
-void	matrix_set_rotation(t_matrix *m, double r)
-{
-	matrix_set_4(m);
-	m->matrix[1][1] = cos(r);
-	m->matrix[1][2] = -sin(r);
-	m->matrix[2][1] = sin(r);
-	m->matrix[2][2] = cos(r);
-}

@@ -103,6 +103,7 @@ void		matrix_set_scaling(t_matrix *m, double x, double y, double z);
 void		matrix_set_rotation_x(t_matrix *m, double r);
 void		matrix_set_rotation_y(t_matrix *m, double r);
 void		matrix_set_rotation_z(t_matrix *m, double r);
+void		matrix_set_shearing(t_matrix *m, double *shearing);
 
 //matrix multiplication:
 void		matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *result);

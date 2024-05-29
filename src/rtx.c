@@ -21,12 +21,13 @@ int	main(void)
 //	t_matrix matD;
 //	t_matrix matE;
 	t_3d_vector	tuple; // w = 1 if point
+	double	shearing[6]= {0, 0, 0, 0, 1, 0};
 
-	tuple.x = 0;
-	tuple.y = 1;
-	tuple.z = 0;
+	tuple.x = 2;
+	tuple.y = 3;
+	tuple.z = 4;
 	tuple.w = 1;
-	matrix_set_rotation_z(&matA, PI / 4);
+	matrix_set_shearing(&matA, shearing);
 	matrix_det_4(&matA);
 	//matB = matrix_inverse(&matA);
 	vector_print(tuple);

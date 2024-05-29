@@ -16,49 +16,34 @@ int	main(void)
 	{
 //	t_data data;
 	t_matrix matA;
-	//t_matrix matB;
-//	t_matrix matC;
+	t_matrix matB;
+	t_matrix matC;
 //	t_matrix matD;
 //	t_matrix matE;
 	t_3d_vector	tuple; // w = 1 if point
-	double	shearing[6]= {0, 0, 0, 0, 1, 0};
+//	double	shearing[6]= {0, 0, 0, 0, 1, 0};
 
-	tuple.x = 2;
-	tuple.y = 3;
-	tuple.z = 4;
+	tuple.x = 1;
+	tuple.y = 0;
+	tuple.z = 1;
 	tuple.w = 1;
-	matrix_set_shearing(&matA, shearing);
+	matrix_set_rotation_x(&matA, PI / 2);
 	matrix_det_4(&matA);
+	matrix_set_scaling(&matB, 5, 5, 5);
+	matrix_det_4(&matB);
+	matrix_set_translation(&matC,10, 5, 7);
+	matrix_det_4(&matC);
 	//matB = matrix_inverse(&matA);
 	vector_print(tuple);
 	tuple = matrix_multiply_vector(&matA, &tuple);
-	matrix_print(&matA);
+	vector_print(tuple);
+	tuple = matrix_multiply_vector(&matB, &tuple);
+	vector_print(tuple);
+	tuple = matrix_multiply_vector(&matC, &tuple);
+	vector_print(tuple);
 	//printf("matB:\n");
 	//matrix_print(&matB);
-	vector_print(tuple);
 // 	matrix_set_4(&matC);
-
-// //	double	cofactor;
-// 	//cofactor = matrix_cofactor(&matA, 0, 3);
-// 	matrix_det_4(&matA);
-// 	matrix_det_4(&matB);
-// 	matrix_set_4(&matD);
-// 	matrix_set_4(&matE);
-// 	matrix_multiply_matrix(&matA, &matB, &matC);
-// 	matE = matrix_inverse(&matB);
-// 	matrix_multiply_matrix(&matC, &matE, &matD);
-// 	matrix_print(&matA);
-// 	matrix_print(&matB);
-// 	matrix_print(&matC);
-// 	matrix_print(&matD);
-// 	matrix_print(&matE);
-	// matrix_det_4(&matB);
-	// matC = matrix_inverse(&matA);
-	// matrix_print(&matA);
-	// matrix_print(&matB);
-	// matrix_print(&matC);
-	// matrix_multiply_matrix(&matA, &matB, &matC);
-	//init_mlx(&data);
 }
 
 //////////////////////////////TRANSLATION MATRIX

@@ -37,7 +37,7 @@ void	matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *c)
 	}
 }
 
-//returns matrix multiplied by vector:
+//returns tuple multiplied by matrix:
 t_3d_vector	matrix_multiply_vector(t_matrix *m, t_3d_vector *vector)
 {
 	t_3d_vector	ret;

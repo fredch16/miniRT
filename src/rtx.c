@@ -17,73 +17,40 @@ int	main(void)
 //	t_data data;
 	t_matrix matA;
 	t_matrix matB;
-	t_matrix matC;
-	t_matrix matD;
-	t_matrix matE;
-	//t_3d_vector	vector;
+//	t_matrix matC;
+//	t_matrix matD;
+//	t_matrix matE;
+	t_3d_vector	tuple; // w = 1 if point
 
-	// vector.x = 1;
-	// vector.y = 2;
-	// vector.z = 3;
-	// vector.w = 1;
-
-	matrix_set_4(&matA);
-matA.matrix[0][0] = 3;
-matA.matrix[0][1] = -9;
-matA.matrix[0][2] = 7;
-matA.matrix[0][3] = 3;
-
-matA.matrix[1][0] = 3;
-matA.matrix[1][1] = -8;
-matA.matrix[1][2] = 2;
-matA.matrix[1][3] = -9;
-
-matA.matrix[2][0] = -4;
-matA.matrix[2][1] = 4;
-matA.matrix[2][2] = 4;
-matA.matrix[2][3] = 1;
-
-matA.matrix[3][0] = -6;
-matA.matrix[3][1] = 5;
-matA.matrix[3][2] = -1;
-matA.matrix[3][3] = 1;
-
-matrix_set_4(&matB);
-matB.matrix[0][0] = 8;
-matB.matrix[0][1] = 2;
-matB.matrix[0][2] = 2;
-matB.matrix[0][3] = 2;
-
-matB.matrix[1][0] = 3;
-matB.matrix[1][1] = -1;
-matB.matrix[1][2] = 7;
-matB.matrix[1][3] = 0;
-
-matB.matrix[2][0] = 7;
-matB.matrix[2][1] = 0;
-matB.matrix[2][2] = 5;
-matB.matrix[2][3] = 4;
-
-matB.matrix[3][0] = 6;
-matB.matrix[3][1] = -2;
-matB.matrix[3][2] = 0;
-matB.matrix[3][3] = 5;
-matrix_set_4(&matC);
-
-//	double	cofactor;
-	//cofactor = matrix_cofactor(&matA, 0, 3);
+	tuple.x = 0;
+	tuple.y = 1;
+	tuple.z = 0;
+	tuple.w = 1;
+	matrix_set_scaling(&matA, -1, 1, 1);
 	matrix_det_4(&matA);
-	matrix_det_4(&matB);
-	matrix_set_4(&matD);
-	matrix_set_4(&matE);
-	matrix_multiply_matrix(&matA, &matB, &matC);
-	matE = matrix_inverse(&matB);
-	matrix_multiply_matrix(&matC, &matE, &matD);
+	matB = matrix_inverse(&matA);
+	vector_print(tuple);
+	tuple = matrix_multiply_vector(&matA, &tuple);
 	matrix_print(&matA);
+	printf("matB:\n");
 	matrix_print(&matB);
-	matrix_print(&matC);
-	matrix_print(&matD);
-	matrix_print(&matE);
+	vector_print(tuple);
+// 	matrix_set_4(&matC);
+
+// //	double	cofactor;
+// 	//cofactor = matrix_cofactor(&matA, 0, 3);
+// 	matrix_det_4(&matA);
+// 	matrix_det_4(&matB);
+// 	matrix_set_4(&matD);
+// 	matrix_set_4(&matE);
+// 	matrix_multiply_matrix(&matA, &matB, &matC);
+// 	matE = matrix_inverse(&matB);
+// 	matrix_multiply_matrix(&matC, &matE, &matD);
+// 	matrix_print(&matA);
+// 	matrix_print(&matB);
+// 	matrix_print(&matC);
+// 	matrix_print(&matD);
+// 	matrix_print(&matE);
 	// matrix_det_4(&matB);
 	// matC = matrix_inverse(&matA);
 	// matrix_print(&matA);
@@ -93,6 +60,27 @@ matrix_set_4(&matC);
 	//init_mlx(&data);
 }
 
+//////////////////////////////TRANSLATION MATRIX
+// 	t_matrix matA;
+// 	t_matrix matB;
+// //	t_matrix matC;
+// //	t_matrix matD;
+// //	t_matrix matE;
+// 	t_3d_vector	tuple;
+
+// 	tuple.x = -3;
+// 	tuple.y = 4;
+// 	tuple.z = 5;
+// 	tuple.w = 0;
+// 	matrix_set_translation(&matA, 5, -3, 2);
+// 	matrix_det_4(&matA);
+// 	matB = matrix_inverse(&matA);
+// 	vector_print(tuple);
+// 	tuple_mul_transm(&tuple, &matB);
+// 	matrix_print(&matA);
+// 	printf("matB:\n");
+// 	matrix_print(&matB);
+// 	vector_print(tuple);
 ///////////////////COFACTOR and DETERMINANT
 	// matrix_set_4(&matA);
 	// matA.matrix[0][0] = -2;

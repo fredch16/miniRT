@@ -74,7 +74,7 @@ double	vector_abs(t_3d_vector v)
 
 void	vector_print(t_3d_vector v)
 {
-	printf("Vector is (%.2f, %.2f, %.2f)\n", v.x, v.y, v.z);
+	printf("Tuple is (%.2f, %.2f, %.2f) w = %i\n", v.x, v.y, v.z, v.w);
 }
 
 t_3d_vector vector_norm(t_3d_vector v)

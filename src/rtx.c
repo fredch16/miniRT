@@ -18,8 +18,8 @@ int	main(void)
 	t_matrix matA;
 	t_matrix matB;
 	t_matrix matC;
-//	t_matrix matD;
-//	t_matrix matE;
+	t_matrix matD;
+	t_matrix matE;
 	t_3d_vector	tuple; // w = 1 if point
 //	double	shearing[6]= {0, 0, 0, 0, 1, 0};
 
@@ -31,15 +31,16 @@ int	main(void)
 	matrix_det_4(&matA);
 	matrix_set_scaling(&matB, 5, 5, 5);
 	matrix_det_4(&matB);
-	matrix_set_translation(&matC,10, 5, 7);
+	matrix_set_translation(&matC, 10, 5, 7);
 	matrix_det_4(&matC);
 	//matB = matrix_inverse(&matA);
 	vector_print(tuple);
-	tuple = matrix_multiply_vector(&matA, &tuple);
-	vector_print(tuple);
-	tuple = matrix_multiply_vector(&matB, &tuple);
-	vector_print(tuple);
-	tuple = matrix_multiply_vector(&matC, &tuple);
+	matrix_multiply_matrix(&matC, &matB, &matD);
+	matrix_det_4(&matD);
+	matrix_multiply_matrix(&matD, &matA, &matE);
+	matrix_det_4(&matE);
+	matrix_print(&matE);
+	tuple = matrix_multiply_vector(&matE, &tuple);
 	vector_print(tuple);
 	//printf("matB:\n");
 	//matrix_print(&matB);

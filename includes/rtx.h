@@ -97,7 +97,8 @@ void		matrix_set_4(t_matrix *m);
 void		matrix_set_3(t_matrix *m);
 void		matrix_set_2(t_matrix *m);
 void		matrix_set_translation(t_matrix *m, double x, double y, double z);
-void	matrix_set_scaling(t_matrix *m, double x, double y, double z);
+void		matrix_set_scaling(t_matrix *m, double x, double y, double z);
+void		matrix_set_rotation(t_matrix *m, double r);
 
 //matrix multiplication:
 void		matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *result);

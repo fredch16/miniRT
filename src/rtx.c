@@ -26,11 +26,11 @@ int	main(void)
 	tuple.y = 1;
 	tuple.z = 0;
 	tuple.w = 1;
-	matrix_set_scaling(&matA, -1, 1, 1);
+	matrix_set_rotation(&matA, PI / 4);
 	matrix_det_4(&matA);
 	matB = matrix_inverse(&matA);
 	vector_print(tuple);
-	tuple = matrix_multiply_vector(&matA, &tuple);
+	tuple = matrix_multiply_vector(&matB, &tuple);
 	matrix_print(&matA);
 	printf("matB:\n");
 	matrix_print(&matB);

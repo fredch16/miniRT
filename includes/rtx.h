@@ -13,8 +13,8 @@
 #ifndef FDF_H
 # define FDF_H
 #include <stdint.h>
-# define WIN_WIDTH 1600 
-# define WIN_HEIGHT	900 
+# define WIN_WIDTH 600
+# define WIN_HEIGHT	600 
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
 # include "../includes/libft/libft.h"
@@ -91,6 +91,7 @@ void		init_mlx(t_data *data);
 //drawing
 void		draw_circle(t_data *data, int	radius);
 void		draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity);
+void		draw_clock(t_data *data);
 
 //matrix_set - set identity matrix; set translation matrix, set scaling matrix
 void		matrix_set_4(t_matrix *m);

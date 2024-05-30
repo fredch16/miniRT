@@ -42,7 +42,9 @@ void	init_mlx(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "GTX");
 	new_img(WIN_WIDTH, WIN_HEIGHT, data);
 	//draw function
-	draw_projectile(data, 0, 900, data->velocity);
+	//draw_projectile(data, 0, 900, data->velocity);
+	//draw_circle(data, 200);
+	draw_clock(data);
 	mlx_hook(data->win, 17, 0, close_and_destroy, data);
 	mlx_hook(data->win, 2, 1L << 0, keyboard_inputs, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
@@ -53,6 +55,8 @@ void	put_pixel_img(t_data *data, int x, int y, int colour)
 {
 	char	*dst;
 
+	x = x + WIN_WIDTH / 2;
+	y = y + WIN_HEIGHT / 2;
 	if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
 	{
 		dst = data->addr + (y * data->line_len + x * (data->bpp / 8));

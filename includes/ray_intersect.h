@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*   ray_intersect.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/22 21:32:22 by fcharbon         ###   ########.fr       */
+/*   Created: 2024/05/24 13:50:14 by fcharbon          #+#    #+#             */
+/*   Updated: 2024/05/24 14:19:55 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtx.h"
+#ifndef RAY_INTERSECT_H
+# define RAY_INTERSECT_H
 
-void	ray_create(t_ray *ray, t_3d_vector origin, t_3d_vector direction)
-{
-	ray->origin = origin;
-	ray->direction = direction;
-}
+# include "minirt_types.h"
 
-t_3d_vector	ray_position(t_ray *ray, double scalar)
-{
-	t_3d_vector	position;
-	t_3d_vector	distance;
+void		ray_create(t_ray *ray, t_tuple origin, t_tuple direction);
+t_tuple		ray_position(t_ray *ray, double scalar);
 
-	distance = ray->direction;
-	vector_mul(scalar, &distance);
-	position = vector_add(ray->origin, distance);
-	return (position);
-}
+#endif

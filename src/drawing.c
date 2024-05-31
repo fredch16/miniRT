@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:48 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/22 14:29:47 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:44:18 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,24 @@ void	draw_circle(t_data *data, int radius)
     }
 }
 
-void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity)
+void	draw_projectile(t_data *data, int startx, int starty, t_tuple velocity)
 {
-	// t_3d_vector start;
-	// t_3d_vector gravity;
+	// t_tuple start;
+	// t_tuple gravity;
 
 	// start.x = startx;
 	// start.y = starty;
 
-	t_3d_vector currentpoint;
+	t_tuple currentpoint;
 	currentpoint.x = startx;
 	currentpoint.y = starty;
 
-	t_3d_vector gravity;
+	t_tuple gravity;
 	gravity.x = 0;
 	gravity.y = 0.05;
 	gravity.z = 0;
 
-	t_3d_vector wind;
+	t_tuple wind;
 	wind.x = -0.04;
 	wind.y = 0;
 	wind.z = 0;
@@ -68,8 +68,8 @@ void	draw_projectile(t_data *data, int startx, int starty, t_3d_vector velocity)
 	while (currentpoint.x <= WIN_WIDTH && currentpoint.y <= WIN_HEIGHT)
 	{
 		put_pixel_img(data, currentpoint.x, currentpoint.y, 0xFF0000);
-		velocity = vector_add(velocity, gravity);
-		velocity = vector_add(velocity, wind);
-		currentpoint = vector_add(currentpoint, velocity);
+		velocity = tuple_add(velocity, gravity);
+		velocity = tuple_add(velocity, wind);
+		currentpoint = tuple_add(currentpoint, velocity);
 	}
 }

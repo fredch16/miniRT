@@ -24,6 +24,19 @@
 # include <X11/keysym.h>
 #include <stdio.h>
 
+typedef struct s_sphere
+{
+	t_3d_vector	center;
+	double		radius;
+	int			id;
+}	t_sphere;
+
+typedef struct s_ray
+{
+	t_3d_vector	origin;
+	t_3d_vector	direction;
+}	t_ray;
+
 typedef struct s_rgb
 {
 	uint8_t	red;
@@ -127,5 +140,8 @@ t_matrix	matrix_transpose(t_matrix *m);
 double		matrix_cofactor(t_matrix *m, int row, int col);
 t_matrix	matrix_div_det(t_matrix *m, double det);
 t_matrix	matrix_inverse(t_matrix *m);
+
+//ray create
+t_ray		ray_create(t_3d_vector point, t_3d_vector vector);
 
 #endif

@@ -20,6 +20,7 @@ SRCS := src/rtx.c \
 		src/drawing.c \
 		src/matrix_utils.c src/matrix_utils_2.c src/matrix_set.c src/matrix_rotation.c\
 		src/matrix_submatrix.c src/matrix_determinant.c src/matrix_multiplication.c \
+		src/ray_create.c \
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

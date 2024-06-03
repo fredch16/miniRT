@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/24 15:07:01 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:07:26 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,20 @@ typedef struct s_colour
 	double	green;
 	double	blue;
 }	t_colour;
+
+typedef struct s_xs
+{
+	int		count;
+	double	*t_vals;
+}	t_xs;
+
+typedef struct s_quadratic
+{
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+}	t_quadratic;
 
 enum e_obj_type
 {

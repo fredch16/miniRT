@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/31 12:21:51 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:13:09 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,23 @@ t_tuple	ray_position(t_ray *ray, double scalar)
 	tuple_mul(scalar, &distance);
 	position = tuple_add(ray->origin, distance);
 	return (position);
+}
+
+double	*get_intersects(t_ray *ray, t_sphere *sphere, t_data *data)
+{
+	t_tuple	sphere_to_ray;
+	t_quadratic	quad;
+
+	sphere_to_ray = tuple_sub(ray->origin, data->origin); 
+	quad.a = tuple_dot(ray->direction, ray->direction);
+	quad.b = 2 * tuple_dot(ray->direction, sphere_to_ray);
+	quad.c = tuple_dot(sphere_to_ray, sphere_to_ray) - 1;
+	quad.discriminant = (quad.b * quad.b) - (4 * quad.a * quad.c);
+
+	if (quad.discriminant < 0)
+		return (0);
+	else
+		return(INTERSECTS)
 }
 
 // t_obj	*obj_create(enum e_obj_type ot)
@@ -55,3 +72,4 @@ t_tuple	ray_position(t_ray *ray, double scalar)
 // 		tmp -> next = n;
 // 	}
 // }
+

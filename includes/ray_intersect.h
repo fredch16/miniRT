@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtx.c                                              :+:      :+:    :+:   */
+/*   ray_intersect.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 14:59:05 by fcharbon         ###   ########.fr       */
+/*   Created: 2024/05/24 13:50:14 by fcharbon          #+#    #+#             */
+/*   Updated: 2024/05/24 14:19:55 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtx.h"
+#ifndef RAY_INTERSECT_H
+# define RAY_INTERSECT_H
 
-int	main(void)
-{
-	t_data data;
-	init_mlx(&data);	
-}
+# include "minirt_types.h"
+
+void		ray_create(t_ray *ray, t_tuple origin, t_tuple direction);
+t_tuple		ray_position(t_ray *ray, double scalar);
+
+#endif

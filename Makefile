@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atyurina <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/05/22 12:10:36 by atyurina         ###   ########.fr        #
+#    Updated: 2024/06/03 14:54:15 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := gtx1050ti
 CC := gcc
 CFLAGS := -Wall -Werror -Wextra
 SRCS := src/rtx.c \
-		src/vector_utils.c \
+		src/tuple_utils.c \
 		src/colour_utils.c \
 		src/mlx_utils.c \
 		src/drawing.c \

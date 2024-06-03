@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
+#    By: atyurina <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/01 13:14:19 by fcharbon          #+#    #+#              #
-#    Updated: 2024/05/22 18:01:32 by fcharbon         ###   ########.fr        #
+#    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
+#    Updated: 2024/05/22 12:10:36 by atyurina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,29 +18,27 @@ SRCS := src/rtx.c \
 		src/colour_utils.c \
 		src/mlx_utils.c \
 		src/drawing.c \
-		src/matrix_utils.c
-
-OBJ := $(SRCS:.c=.o)
-INCLUDE := includes/rtx.h
+		src/matrix_utils.c src/matrix_utils_2.c src/matrix_set.c src/matrix_rotation.c\
+		src/matrix_submatrix.c src/matrix_determinant.c src/matrix_multiplication.c \
+		src/ray_create.c \
 
 OBJ_DIR := obj/
+OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)
+INCLUDE := includes/rtx.h
 
 $(OBJ_DIR)%.o: src/%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-all: $(OBJ_DIR) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) -Lincludes/libft -Lincludes/mlx_linux -lm -lmlx_Linux -lXext -lX11 -lz
 
 clean:
-	/bin/rm -f $(OBJ)
+	/bin/rm -rf $(OBJ_DIR)
 fclean: clean
-	/bin/rm -f $(NAME)
+	/bin/rm -rf $(NAME)
 re: fclean all
 
 .PHONY: all clean fclean re

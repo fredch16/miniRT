@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 14:55:50 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:48:40 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@
 # include "minirt_types.h"
 # include "ray_intersect.h"
 # include "matrix.h"
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*img;
-	void	*addr;
-	void	*win;
-	t_tuple	origin;
-	int		bpp;
-	int		endian;
-	int		line_len;
-	t_tuple velocity;
-}	t_data;
 
 
 //colour utils

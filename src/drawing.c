@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:48 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 15:12:06 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:55:35 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ void	draw_clock(t_data *data)
 	tuple.w = 1;
 
 	put_pixel_img(data,  tuple.x, tuple.y, colour);
-	tuple_print(tuple);
+	// tuple_print(tuple);
 	matrix_set_translation(&matA, 0, -radius, 0);
-	matrix_print(&matA);
+	// matrix_print(&matA);
 	point = matrix_multiply_tuple(&matA, &tuple);
-	tuple_print(point);
+	// tuple_print(point);
 	put_pixel_img(data, point.x, point.y, colour);
 	matrix_set_rotation_z(&matB, PI / 6);
-	matrix_print(&matB);
+	// matrix_print(&matB);
 	int y = 0;
 	while (y < 11)
 	{

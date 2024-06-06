@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 18:48:40 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:56:35 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <math.h>
 # include <errno.h>
 # include <X11/keysym.h>
+# include <float.h>
 # include "tuples.h"
 # include "minirt_types.h"
 # include "ray_intersect.h"

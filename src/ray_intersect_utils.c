@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 18:59:52 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:18:23 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,61 +31,65 @@ t_tuple	ray_position(t_ray *ray, double scalar)
 
 void	solve_quadratic(t_quadratic *quad)
 {
-	quad->t1 = -quad->b - sqrt(quad->discriminant);
+	quad->t1 = -quad->b - sqrt(quad->d);
 	quad->t1 = quad->t1 / (2 * quad->a);
-	quad->t2 = -quad->b + sqrt(quad->discriminant);
+	quad->t2 = -quad->b + sqrt(quad->d);
 	quad->t2 = quad->t2 / (2 * quad->a);
 }
 
-t_xs	get_intersects(t_ray *ray, /* t_obj *obj_sph, */t_data *data)
+t_xsn	*intersect_sp(t_ray ray, t_obj *o)
 {
 	t_tuple	sphere_to_ray;
 	t_quadratic	quad;
-	t_xs		xs;
+	t_xsn		*xs;
 
-	sphere_to_ray = tuple_sub(ray->origin, data->origin); 
-	quad.a = tuple_dot(ray->direction, ray->direction);
-	quad.b = 2 * tuple_dot(ray->direction, sphere_to_ray);
+	sphere_to_ray = tuple_sub(ray.origin, tuple_poi(0, 0, 0)); 
+	quad.a = tuple_dot(ray.direction, ray.direction);
+	quad.b = 2 * tuple_dot(ray.direction, sphere_to_ray);
 	quad.c = tuple_dot(sphere_to_ray, sphere_to_ray) - 1;
-	quad.discriminant = (quad.b * quad.b) - (4 * quad.a * quad.c);
-
-	if (quad.discriminant < 0)
-		xs.count = 0;
-	else 
+	quad.d = (quad.b * quad.b) - (4 * quad.a * quad.c);
+	xs = NULL;
+	if (quad.d >= 0)
 	{
-		xs.count = 2;
-		solve_quadratic(&quad);
-		xs.t_vals[0] = quad.t1;
-		xs.t_vals[1] = quad.t2;
+		xs = x_new(o, ((-quad.b + sqrt(quad.d)) / (2 * quad.a)));
+		if (quad.d > 0)
+			 xadd_back(&xs, x_new(o, ((-quad.b - sqrt(quad.d)) / (2 * quad.a))));
 	}
 	return (xs);
 }
 
-t_obj	*obj_create(enum e_obj_type ot)
+t_xsn	*intersect_world(t_world *w, t_ray r)
 {
-	t_obj	*new;
+	t_obj	*tmp_o;
+	t_xsn	*xs;
 
-	new = calloc(1, sizeof(t_obj));
-	if (!new)
-		return (NULL);
-	new->type = ot;
-	matrix_set_4(&new->transform);
-	return (new);
+	xs = NULL;
+	tmp_o = *w->obj_list;
+	while (tmp_o)
+	{
+		xadd_back(&xs, intersect_sp(r, tmp_o));
+		tmp_o = tmp_o->next;
+	}
+	return (xs);
 }
 
-void	obj_add_back(t_obj	**objlist, t_obj *n)
+t_xsn	*intersect_hit(t_xsn **xslist)
 {
-	t_obj	*tmp;
+	t_xsn	*tmp;
+	t_xsn	*hit;
+	double	lowestnn;
 
-	if (!objlist || !n)
-		return ;
-	if (!*objlist)
-		*objlist = n;
-	else
+	lowestnn = DBL_MAX; 
+	tmp = *xslist;
+	hit	= NULL;
+	while(tmp)
 	{
-		tmp = *objlist;
-		while (tmp -> next)
-			tmp = tmp -> next;
-		tmp -> next = n;
+		if (tmp->x >= 0 && tmp->x < lowestnn)
+		{
+			lowestnn = tmp->x;
+			hit = tmp;
+		}
+		tmp = tmp -> next;
 	}
+	return (hit);
 }

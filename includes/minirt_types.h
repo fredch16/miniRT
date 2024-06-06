@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 18:47:26 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:04:29 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,11 @@ typedef struct s_colour
 
 typedef struct s_quadratic
 {
-	double	a;
-	double	b;
+	double	a; double	b;
 	double	c;
 	double	t1;
 	double	t2;
-	double	discriminant;
+	double	d;
 }	t_quadratic;
 
 enum e_obj_type
@@ -75,14 +74,14 @@ typedef struct s_obj
 	struct s_obj	*next;
 }	t_obj;
 
-typedef struct s_xs
+typedef struct s_xsn
 {
 	int		id;
 	int		count;
-	double	t_vals[2];
+	double	x;
 	t_obj	*xs_obj;
-	struct s_xs	*next;
-}	t_xs;
+	struct s_xsn	*next;
+}	t_xsn;
 
 typedef struct s_data
 {
@@ -96,5 +95,10 @@ typedef struct s_data
 	int		line_len;
 	t_tuple velocity;
 }	t_data;
+
+typedef struct s_world
+{
+	t_obj	**obj_list;
+}	t_world;
 
 #endif

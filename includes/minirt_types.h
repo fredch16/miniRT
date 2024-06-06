@@ -71,14 +71,17 @@ enum e_obj_type
 typedef struct s_obj
 {
 	enum			e_obj_type type;
+	t_matrix		transform;
 	struct s_obj	*next;
 }	t_obj;
 
 typedef struct s_xs
 {
+	int		id;
 	int		count;
 	double	t_vals[2];
 	t_obj	*xs_obj;
+	struct s_xs	*next;
 }	t_xs;
 
 typedef struct s_data

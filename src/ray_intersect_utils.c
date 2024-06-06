@@ -64,10 +64,12 @@ t_xs	get_intersects(t_ray *ray, /* t_obj *obj_sph, */t_data *data)
 t_obj	*obj_create(enum e_obj_type ot)
 {
 	t_obj	*new;
+
 	new = calloc(1, sizeof(t_obj));
 	if (!new)
 		return (NULL);
-	new	-> type = ot;
+	new->type = ot;
+	matrix_set_4(&new->transform);
 	return (new);
 }
 

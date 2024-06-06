@@ -21,4 +21,8 @@ void		obj_add_back(t_obj	**objlist, t_obj *n);
 t_obj		*obj_create(enum e_obj_type ot);
 t_xs		get_intersects(t_ray *ray, t_data *data);
 
+t_ray		ray_translate(t_ray *ray, t_tuple translation);
+t_ray		ray_scale(t_ray *ray, t_tuple scaling);
+void		sphere_transform(t_obj *sphere, t_matrix *changes);
+
 #endif

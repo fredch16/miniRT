@@ -21,6 +21,7 @@ t_ray	ray_translate(t_ray *ray, t_tuple translation)
 
 t_ray	ray_scale(t_ray *ray, t_tuple scaling)
 {
+	
 	ray->origin.x = ray->origin.x * scaling.x;
 	ray->origin.y = ray->origin.x * scaling.y;
 	ray->origin.z = ray->origin.x * scaling.z;
@@ -32,12 +33,24 @@ t_ray	ray_scale(t_ray *ray, t_tuple scaling)
 	return (*ray);
 }
 
-// t_ray	ray_transform(t_ray *ray, t_matrix *transform)
-// {
-// 	ray = matrix_multiply_tuple(transform, &ray->origin);
-// }
-
-void	sphere_transform(t_obj *sphere, t_matrix *changes)
+t_ray	ray_transform(t_ray *ray, t_matrix *transform)
 {
-	sphere->transform = *changes;
+	t_ray		ret;
+
+	ret.origin = matrix_multiply_tuple(transform, &ray->origin);
+	ret.direction = matrix_multiply_tuple(transform, &ray->direction);
+	return (ret);
+}
+
+// set changes
+void	sphere_set_transform(t_obj *sphere, t_matrix *translate, t_matrix *scale)
+{
+	t_matrix	changes;
+	t_matrix	inversed;
+
+	matrix_multiply_matrix(translate, scale, &changes);
+	matrix_det_4(&changes);
+	matrix_det_4(&changes);
+	inversed = matrix_inverse(&changes);
+	sphere->transform = inversed;
 }

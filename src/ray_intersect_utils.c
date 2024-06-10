@@ -18,6 +18,14 @@ void	ray_create(t_ray *ray, t_tuple origin, t_tuple direction)
 	ray->direction = direction;
 }
 
+void	ray_print(t_ray *ray)
+{
+	printf("ray origin:\n");
+	tuple_print(ray->origin);
+	printf("ray direction:\n");
+	tuple_print(ray->direction);
+}
+
 t_tuple	ray_position(t_ray *ray, double scalar)
 {
 	t_tuple	position;
@@ -43,6 +51,7 @@ t_xsn	*intersect_sp(t_ray ray, t_obj *o)
 	t_quadratic	quad;
 	t_xsn		*xs;
 
+	ray = ray_transform(&ray, &o->transform);
 	sphere_to_ray = tuple_sub(ray.origin, tuple_poi(0, 0, 0)); 
 	quad.a = tuple_dot(ray.direction, ray.direction);
 	quad.b = 2 * tuple_dot(ray.direction, sphere_to_ray);

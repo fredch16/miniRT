@@ -22,7 +22,8 @@ SRCS := src/rtx.c \
 		src/matrix_submatrix.c src/matrix_determinant.c src/matrix_multiplication.c \
 		src/ray_intersect_utils.c \
 		src/lists.c \
-		src/ray_transform.c
+		src/ray_transform.c \
+		src/sphere_normal.c
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

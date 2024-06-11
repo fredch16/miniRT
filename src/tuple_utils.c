@@ -74,7 +74,7 @@ double	tuple_abs(t_tuple v)
 
 void	tuple_print(t_tuple v)
 {
-	printf("tuple is (%.2f, %.2f, %.2f)\n", v.x, v.y, v.z);
+	printf("tuple is (%.5f, %.5f, %.5f) w = %i\n", v.x, v.y, v.z, v.w);
 }
 
 t_tuple tuple_norm(t_tuple v)
@@ -84,6 +84,7 @@ t_tuple tuple_norm(t_tuple v)
 	result.x = v.x / tuple_abs(v);
 	result.y = v.y / tuple_abs(v);
 	result.z = v.z / tuple_abs(v);
+	result.w = v.w / tuple_abs(v);
 	return (result);
 }
 

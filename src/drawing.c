@@ -6,43 +6,50 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:48 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 18:55:35 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:32:06 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-void	draw_circle(t_data *data, int radius)
+void	draw_circle(t_data *data, t_world *w)
 {
-	int	x0 = WIN_WIDTH / 2;
-	int y0 = WIN_HEIGHT / 2;
+	t_ray	fake_ray;
+	t_tuple	ray_p;
+	t_tuple	ray_dir;
+	t_xsn	*intersects;
+	t_xsn	*hit;
+	int	x, y = 0;
+	printf("HELLO\n");
 
-	int x = radius;
-	int	y = 0;
-//	int	decisionOver2 = 1 - x;
-	int	colour = 0xFFFFFF;
+	ray_p = tuple_poi(0, 0, -1.5);
+	ray_dir = tuple_vec(-2, 2, 1);
 
-put_pixel_img(data,  x + x0,  y + y0, colour);
-	// while (y <= x)
-	// {
-	// 	// Each point in each octant of the circle
-	// 	put_pixel_img(data,  x + x0,  y + y0, colour);
-	// 	put_pixel_img(data,  y + x0,  x + y0, colour);
-	// 	put_pixel_img(data, -x + x0,  y + y0, colour);
-	// 	put_pixel_img(data, -y + x0,  x + y0, colour);
-	// 	put_pixel_img(data, -x + x0, -y + y0, colour);
-	// 	put_pixel_img(data, -y + x0, -x + y0, colour);
-	// 	put_pixel_img(data,  x + x0, -y + y0, colour);
-	// 	put_pixel_img(data,  y + x0, -x + y0, colour);
+	double xdif, ydif;
 
-	// 	y++;
-	// 	if (decisionOver2 <= 0) {
-	// 		decisionOver2 += 2 * y + 1;  // Change in decision criterion for y -> y+1
-	// 	} else {
-	// 		x--;
-	// 		decisionOver2 += 2 * (y - x) + 1;  // Change for y -> y+1, x -> x-1
-	// 	}
-	// }
+	xdif = 0.005;
+	ydif = 0.005;
+	
+	while (++y < 800)
+	{
+		x = 0;
+		xdif = 0.005;
+		while (++x < 800)
+		{
+			ray_dir = tuple_vec(-2 + xdif, 2 - ydif, 1);
+			ray_create(&fake_ray, ray_p, ray_dir);
+			intersects = intersect_world(w, fake_ray);
+			hit = intersect_hit(&intersects);
+			if (hit)
+			{
+				// tuple_print(ray_dir);
+				// printf("HIT, printing at %d, %d\n", x, y);
+				put_pixel_img(data, x, y, 0xFF0000);
+			}
+			xdif += 0.005;
+		}
+		ydif += 0.005;
+	}
 }
 
 void	draw_projectile(t_data *data, int startx, int starty, t_tuple velocity)

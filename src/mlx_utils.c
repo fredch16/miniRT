@@ -55,8 +55,6 @@ void	put_pixel_img(t_data *data, int x, int y, int colour)
 {
 	char	*dst;
 
-	x = x + WIN_WIDTH / 2;
-	y = y + WIN_HEIGHT / 2;
 	if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
 	{
 		dst = data->addr + (y * data->line_len + x * (data->bpp / 8));

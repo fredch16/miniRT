@@ -13,8 +13,8 @@
 #ifndef FDF_H
 # define FDF_H
 #include <stdint.h>
-# define WIN_WIDTH 1600 
-# define WIN_HEIGHT	900 
+# define WIN_WIDTH 1000 
+# define WIN_HEIGHT	1000 
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
 # include "../includes/libft/libft.h"
@@ -38,6 +38,9 @@ t_colour	 colour_mul(t_colour c1, t_colour c2);
 //mlx utils
 void	put_pixel_img(t_data *data, int x, int y, int colour);
 void	init_mlx(t_data *data);
+void	new_img(int w, int h, t_data *data);
+int		close_and_destroy(t_data *data);
+int 	keyboard_inputs(int keysym, t_data *data);
 
 //drawing utils
 void	draw_circle(t_data *data, int	radius);

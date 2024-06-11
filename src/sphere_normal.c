@@ -37,8 +37,8 @@ t_tuple	reflect(t_tuple *in, t_tuple *normal)
 	t_tuple	res;
 
 	dot = tuple_dot(*in, *normal);
-	tuple_mul(2, &normal);
-	tuple_mul(dot, &normal);
+	tuple_mul(2, normal);
+	tuple_mul(dot, normal);
 	res = tuple_sub(*in, *normal);
 	return (res);
 }

@@ -37,5 +37,6 @@ void		xadd_back(t_xsn	**xslist, t_xsn *n);
 //LIGHT HEADER:
 //sphere_normal:
 t_tuple	sphere_normal_at(t_obj *s, t_tuple *w_point);
+t_tuple	reflect(t_tuple *in, t_tuple *normal);
 
 #endif

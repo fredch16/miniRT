@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:49:13 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 18:56:16 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:31:43 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ int	keyboard_inputs(int keysym, t_data *data)
 	return (0);
 }
 
-void	init_mlx(t_data *data)
+void	init_mlx(t_data *data, t_world *w)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "GTX");
 	new_img(WIN_WIDTH, WIN_HEIGHT, data);
-	//draw function
-	//draw_projectile(data, 0, 900, data->velocity);
-	//draw_circle(data, 200);
-	// draw_clock(data);
+	draw_circle(data, w);
 	mlx_hook(data->win, 17, 0, close_and_destroy, data);
 	mlx_hook(data->win, 2, 1L << 0, keyboard_inputs, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:17:41 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 14:59:18 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:07:51 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,27 @@ t_tuple	tuple_cro(t_tuple a, t_tuple b)
 	result.x = (a.y * b.z) - (a.z * b.y);
 	result.y = (a.z * b.x) - (a.x * b.z);
 	result.x = (a.x * b.y) - (a.y * b.x);
+	return (result);
+}
+
+t_tuple	tuple_poi(double x, double y, double z)
+{
+	t_tuple result;
+
+	result.x = x;
+	result.y = y;
+	result.z = z;
+	result.w = 1;
+	return (result);
+}
+
+t_tuple	tuple_vec(double x, double y, double z)
+{
+	t_tuple result;
+
+	result.x = x;
+	result.y = y;
+	result.z = z;
+	result.w = 0;
 	return (result);
 }

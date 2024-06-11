@@ -6,13 +6,14 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:18:43 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/03 15:10:17 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:31:47 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
 //multiplies matrix a by matrix b and puts the result in matrix c:
+
 void	matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *c)
 {
 	int			row;

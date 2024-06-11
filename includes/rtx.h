@@ -6,15 +6,15 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/03 14:55:50 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:56:35 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 #include <stdint.h>
-# define WIN_WIDTH 1600 
-# define WIN_HEIGHT	900 
+# define WIN_WIDTH 1000 
+# define WIN_HEIGHT	1000 
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
 # include "../includes/libft/libft.h"
@@ -22,23 +22,11 @@
 # include <math.h>
 # include <errno.h>
 # include <X11/keysym.h>
+# include <float.h>
 # include "tuples.h"
 # include "minirt_types.h"
 # include "ray_intersect.h"
 # include "matrix.h"
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*img;
-	void	*addr;
-	void	*win;
-	t_tuple	origin;
-	int		bpp;
-	int		endian;
-	int		line_len;
-	t_tuple velocity;
-}	t_data;
 
 
 //colour utils
@@ -50,6 +38,9 @@ t_colour	 colour_mul(t_colour c1, t_colour c2);
 //mlx utils
 void	put_pixel_img(t_data *data, int x, int y, int colour);
 void	init_mlx(t_data *data);
+void	new_img(int w, int h, t_data *data);
+int		close_and_destroy(t_data *data);
+int 	keyboard_inputs(int keysym, t_data *data);
 
 //drawing utils
 void	draw_circle(t_data *data, int	radius);

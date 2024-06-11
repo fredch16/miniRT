@@ -6,13 +6,13 @@
 #    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/06/03 15:22:16 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/06/06 20:05:47 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := gtx1050ti
 CC := gcc
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra -g
 SRCS := src/rtx.c \
 		src/tuple_utils.c \
 		src/colour_utils.c \
@@ -21,6 +21,8 @@ SRCS := src/rtx.c \
 		src/matrix_utils.c src/matrix_utils_2.c src/matrix_set.c src/matrix_rotation.c\
 		src/matrix_submatrix.c src/matrix_determinant.c src/matrix_multiplication.c \
 		src/ray_intersect_utils.c \
+		src/lists.c \
+		src/ray_transform.c
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

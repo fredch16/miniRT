@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:46:11 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/05/24 13:56:36 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:08:03 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void		tuple_mul(double mutliplier, t_tuple *a);
 double		tuple_abs(t_tuple v);
 void		tuple_print(t_tuple v);
 t_tuple		tuple_norm(t_tuple v);
+t_tuple		tuple_poi(double x, double y, double z);
+t_tuple		tuple_vec(double x, double y, double z);
 double		tuple_dot(t_tuple a, t_tuple b);
 
 #endif

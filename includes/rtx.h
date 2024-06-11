@@ -27,6 +27,7 @@
 # include "minirt_types.h"
 # include "ray_intersect.h"
 # include "matrix.h"
+# include "lighting.h"
 
 
 //colour utils

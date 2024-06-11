@@ -21,8 +21,8 @@ int	main(void)
 	t_tuple		v;
 	t_tuple		ref;
 
-	v = tuple_vec(1, -1, 0);
-	n = tuple_vec(0, 1, 0);
+	v = tuple_vec(0, -1, 0);
+	n = tuple_vec((sqrt(2)) / 2, (sqrt(2)) / 2, 0);
 	obj_list = NULL;
 	obj = obj_create(OT_SPHERE);
 	obj_add_back(&obj_list, obj);

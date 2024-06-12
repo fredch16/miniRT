@@ -23,7 +23,8 @@ SRCS := src/rtx.c \
 		src/ray_intersect_utils.c \
 		src/lists.c \
 		src/ray_transform.c \
-		src/sphere_normal.c
+		src/sphere_normal.c \
+		src/lighting.c 
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

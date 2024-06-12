@@ -137,7 +137,8 @@ typedef struct s_data
 
 typedef struct s_world
 {
-	t_obj	**obj_list;
+	t_obj		**obj_list;
+	t_point_light	point;
 }	t_world;
 
 #endif

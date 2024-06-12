@@ -21,5 +21,8 @@ t_tuple		reflect(t_tuple *in, t_tuple *normal);
 t_material	material_set_default(void);
 
 //lighting:
+t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *latr);
+t_tuple	position_of_hit(t_ray *ray, double t);
+u_int32_t	col_to_rgb(t_colour col);
 
 #endif

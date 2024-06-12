@@ -12,11 +12,12 @@
 
 #include "../includes/rtx.h"
 
-t_lighting	lighting(t_material *material, t_point_light *light, t_lighting_atr *latr)
+t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *latr)
 {
 	double		light_dot_normal;
 	double		reflect_dot_eye;
 	double		factor;
+	t_colour	res;
 	t_tuple		lightv;
 	t_tuple		lightv_neg;
 	t_tuple		reflectv;
@@ -59,5 +60,42 @@ t_lighting	lighting(t_material *material, t_point_light *light, t_lighting_atr *
 			colour_sca_mul(material->specular, light->intensity));
 		}
 	}
-	return (l);
+	res = colour_add(l.ambient, l.diffuse);
+	res = colour_add(res, l.specular);
+	return (res);
+}
+
+t_tuple	position_of_hit(t_ray *ray, double t)
+{
+	t_tuple	res;
+	t_tuple	dir;
+
+	dir = ray->direction;
+	tuple_mul(t, &dir);
+	res = tuple_add(ray->origin, dir);
+	return (res);
+}
+
+u_int32_t	col_to_rgb(t_colour col)
+{
+	t_rgb out_col;
+	uint32_t rgb_code;
+
+	rgb_code = 0;
+	if (col.r > 1)
+		out_col.r = 255;
+	else
+		out_col.r = col.r * 255;
+	if (col.g > 1)
+		out_col.g = 255;
+	else
+		out_col.g = col.g * 255;
+	if (col.b > 1)
+		out_col.b = 255;
+	else
+		out_col.b = col.b * 255;
+	rgb_code |= (out_col.r << 16);
+    rgb_code |= (out_col.g << 8);
+    rgb_code |= out_col.b;
+	return (rgb_code);
 }

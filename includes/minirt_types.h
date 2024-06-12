@@ -15,28 +15,6 @@
 
 #include <stdint.h>
 
-typedef struct s_point_light
-{
-	t_tuple		position;
-	t_colour	intensity;
-}	t_point_light;
-
-/* Phong reflection model: ambient, diffuse, specular, and shininess
-Each should accept a nonnegative floating point number. 
-For ambient, diffuse, and specular, the typical values are between 0 and 1. 
-For shininess, values between 10 (very large highlight)
-and 200 (very small highlight) seem to work best,
-though there is no actual upper bound.*/
-typedef struct s_material
-{
-	t_colour	colour;
-	double		ambient;
-	double		diffuse;
-	double		specular;
-	double		shininess;
-}	t_material;
-
-
 typedef struct s_tuple
 {
 	double		x;
@@ -44,6 +22,13 @@ typedef struct s_tuple
 	double		z;
 	int			w;
 }	t_tuple;
+
+typedef struct s_lighting_atr
+{
+	t_tuple point;
+	t_tuple eyev;
+	t_tuple normalv;
+}	t_lighting_atr;
 
 typedef struct s_ray
 {
@@ -88,6 +73,37 @@ enum e_obj_type
 	OT_PLANE,
 	OT_CYLINDER
 };
+
+/*a point light — a light source with no size, existing
+at a single point in space*/
+typedef struct s_point_light
+{
+	t_tuple		position;
+	t_colour	intensity;
+}	t_point_light;
+
+/* material is a property of the sphere
+the surface colour + Phong reflection model: ambient, diffuse, specular, and shininess
+Each should accept a nonnegative floating point number. 
+For ambient, diffuse, and specular, the typical values are between 0 and 1. 
+For shininess, values between 10 (very large highlight)
+and 200 (very small highlight) seem to work best,
+though there is no actual upper bound.*/
+typedef struct s_material
+{
+	t_colour	colour;
+	double		ambient;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+}	t_material;
+
+typedef struct s_lighting
+{
+	t_colour	ambient;
+	t_colour	diffuse;
+	t_colour	specular;
+}	t_lighting;
 
 typedef struct s_obj
 {

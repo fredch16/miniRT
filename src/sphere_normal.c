@@ -43,7 +43,18 @@ t_tuple	reflect(t_tuple *in, t_tuple *normal)
 	return (res);
 }
 
-t_material	material_default(void)
+// create point_light by setting intensity and position:
+t_point_light	point_light_set(t_colour *intensity, t_tuple	*position)
+{
+	t_point_light	pl;
+
+	pl.intensity = *intensity;
+	pl.position = *position;
+	return (pl);
+}
+
+// set material structure to default:
+t_material	material_set_default(void)
 {
 	t_material	m;
 

@@ -21,6 +21,7 @@ t_obj	*obj_create(enum e_obj_type ot)
 		return (NULL);
 	new->type = ot;
 	matrix_set_4(&new->transform);
+	new->material = material_set_default();
 	return (new);
 }
 

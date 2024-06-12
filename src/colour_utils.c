@@ -16,9 +16,9 @@ t_colour colour_add(t_colour c1, t_colour c2)
 {
 	t_colour	result;
 
-	result.red = c1.red + c2.red;
-	result.blue = c1.blue + c2.blue;
-	result.green = c1.green + c2.green;
+	result.r = c1.r + c2.r;
+	result.b = c1.b + c2.b;
+	result.g = c1.g + c2.g;
 	return (result);
 }
 
@@ -26,9 +26,9 @@ t_colour colour_sub(t_colour c1, t_colour c2)
 {
 	t_colour	result;
 
-	result.red = c1.red - c2.red;
-	result.blue = c1.blue - c2.blue;
-	result.green = c1.green - c2.green;
+	result.r = c1.r - c2.r;
+	result.b = c1.b - c2.b;
+	result.g = c1.g - c2.g;
 	return (result);
 }
 
@@ -36,9 +36,9 @@ t_colour colour_sca_mul(double multiplier, t_colour c1)
 {
 	t_colour	result;
 
-	result.red = c1.red * multiplier;
-	result.blue = c1.blue * multiplier;
-	result.green = c1.green * multiplier;
+	result.r = c1.r * multiplier;
+	result.b = c1.b * multiplier;
+	result.g = c1.g * multiplier;
 	return (result);
 }
 
@@ -46,8 +46,18 @@ t_colour colour_mul(t_colour c1, t_colour c2)
 {
 	t_colour	result;
 
-	result.red = c1.red * c2.red;
-	result.blue = c1.blue * c2.blue;
-	result.green = c1.green * c2.green;
+	result.r = c1.r * c2.r;
+	result.b = c1.b * c2.b;
+	result.g = c1.g * c2.g;
 	return (result);
+}
+
+t_colour	colour_set(double r, double g, double b)
+{
+	t_colour	colour;
+
+	colour.r = r;
+	colour.g = g;
+	colour.b = b;
+	return (colour);
 }

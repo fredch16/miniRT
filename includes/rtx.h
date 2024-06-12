@@ -27,6 +27,7 @@
 # include "minirt_types.h"
 # include "ray_intersect.h"
 # include "matrix.h"
+# include "lighting.h"
 
 
 //colour utils
@@ -34,6 +35,7 @@ t_colour	colour_add(t_colour c1, t_colour c2);
 t_colour	 colour_sub(t_colour c1, t_colour c2);
 t_colour	 colour_sca_mul(double multiplier, t_colour c1);
 t_colour	 colour_mul(t_colour c1, t_colour c2);
+t_colour	colour_set(double r, double g, double b);
 
 //mlx utils
 void	put_pixel_img(t_data *data, int x, int y, int colour);

@@ -15,6 +15,28 @@
 
 #include <stdint.h>
 
+typedef struct s_point_light
+{
+	t_tuple		position;
+	t_colour	intensity;
+}	t_point_light;
+
+/* Phong reflection model: ambient, diffuse, specular, and shininess
+Each should accept a nonnegative floating point number. 
+For ambient, diffuse, and specular, the typical values are between 0 and 1. 
+For shininess, values between 10 (very large highlight)
+and 200 (very small highlight) seem to work best,
+though there is no actual upper bound.*/
+typedef struct s_material
+{
+	t_colour	colour;
+	double		ambient;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+}	t_material;
+
+
 typedef struct s_tuple
 {
 	double		x;
@@ -39,16 +61,16 @@ typedef struct s_matrix
 
 typedef struct s_rgb
 {
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
 }	t_rgb;
 
 typedef struct s_colour
 {
-	double	red;
-	double	green;
-	double	blue;
+	double	r;
+	double	g;
+	double	b;
 }	t_colour;
 
 typedef struct s_quadratic
@@ -71,6 +93,7 @@ typedef struct s_obj
 {
 	enum			e_obj_type type;
 	t_matrix		transform;
+	t_material		material;
 	struct s_obj	*next;
 }	t_obj;
 

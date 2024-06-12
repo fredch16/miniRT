@@ -42,3 +42,17 @@ t_tuple	reflect(t_tuple *in, t_tuple *normal)
 	res = tuple_sub(*in, *normal);
 	return (res);
 }
+
+t_material	material_default(void)
+{
+	t_material	m;
+
+	m.colour.r = 1;
+	m.colour.g = 1;
+	m.colour.b = 1;
+	m.ambient = 0.1;
+	m.diffuse = 0.9;
+	m.specular = 0.9;
+	m.shininess = 200.0;
+	return (m);
+}

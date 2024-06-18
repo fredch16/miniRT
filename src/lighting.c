@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:05:00 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/12 14:05:01 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:58:14 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *la
 	return (res);
 }
 
-t_tuple	position_of_hit(t_ray *ray, double t)
+t_tuple	position_on_ray(t_ray *ray, double t)
 {
 	t_tuple	res;
 	t_tuple	dir;

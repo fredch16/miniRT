@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:48 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/11 16:32:06 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:58:15 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_circle(t_data *data, t_world *w)
 	t_lighting_atr	l_atr;
 	obj = *w->obj_list;
 	int	x, y = 0;
-	printf("HELLO\n");
+	printf("Drawing circle...\n");
 
 	ray_p = tuple_poi(0, 0, -1.5);
 	ray_dir = tuple_norm(tuple_vec(-2, 2, 1));
@@ -46,7 +46,7 @@ void	draw_circle(t_data *data, t_world *w)
 			if (hit)
 			{
 				t_tuple	pos;
-				pos = position_of_hit(&fake_ray, hit->x);
+				pos = position_on_ray(&fake_ray, hit->x);
 				t_tuple	norm;
 				norm = sphere_normal_at(obj, &pos);
 				t_tuple	eye;
@@ -55,7 +55,7 @@ void	draw_circle(t_data *data, t_world *w)
 				l_atr.point = pos;
 				l_atr.eyev = eye;
 				l_atr.normalv = norm;
-				colour = lighting(&obj->material, &w->point, &l_atr);
+				colour = lighting(&obj->material, &w->point_light, &l_atr);
 				// tuple_print(ray_dir);
 				// printf("HIT, printing at %d, %d\n", x, y);
 				u_int32_t col_code;

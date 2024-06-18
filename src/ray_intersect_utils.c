@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/06 20:18:23 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:58:09 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,46 @@ t_xsn	*intersect_hit(t_xsn **xslist)
 		tmp = tmp -> next;
 	}
 	return (hit);
+}
+
+t_comps	prep_comps(t_xsn *x, t_ray ray)
+{
+	t_comps	comps;
+
+	comps.inside = 0;
+	comps.t = x->x;
+	comps.obj = x->xs_obj;
+	comps.point = position_on_ray(&ray, comps.t);
+	comps.eyev = tuple_neg(ray.direction);
+	comps.normalv = sphere_normal_at(comps.obj, &comps.point);
+	if (tuple_dot(comps.normalv, comps.eyev) < 0)
+	{
+		comps.inside = 1;
+		comps.normalv = tuple_neg(comps.normalv);
+	}
+	return (comps);
+}
+
+t_colour shade_hit(t_world *w, t_comps comps)
+{
+	t_lighting_atr	latr;
+	latr.point = comps.point;
+	latr.normalv = comps.normalv;
+	latr.eyev = comps.eyev;
+	return (lighting(&comps.obj->material, &w->point_light, &latr));
+}
+
+t_colour colour_at(t_world *w, t_ray r)
+{
+	t_xsn		*x;	
+	t_comps		comps;
+	t_colour	col;
+
+	x = intersect_world(w, r);
+	if (!x)
+		return (colour_set(0, 0, 0));
+	x = intersect_hit(&x);
+	comps = prep_comps(x, r);
+	col = shade_hit(w, comps);
+	return (col);
 }

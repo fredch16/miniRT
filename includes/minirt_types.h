@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/06 20:04:29 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:58:10 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,17 @@ typedef struct s_data
 typedef struct s_world
 {
 	t_obj		**obj_list;
-	t_point_light	point;
+	t_point_light	point_light;
 }	t_world;
+
+typedef struct s_comps
+{
+	double	t;
+	t_obj	*obj;
+	t_tuple	point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+	int		inside;
+}	t_comps;
 
 #endif

@@ -6,11 +6,11 @@
 #    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/06/06 20:05:47 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/06/18 22:04:31 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := gtx1050ti
+NAME := rtx2050
 CC := gcc
 CFLAGS := -Wall -Werror -Wextra -g
 SRCS := src/rtx.c \

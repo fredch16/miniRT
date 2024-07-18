@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 13:55:22 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:27:30 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,17 @@ int	main(void)
 	// tuple_print(w.point_light.position);
 	// printf("world light intensity:\n");
 	// printf("R: %.5f, G: %.5f, B: %.5f\n", w.point_light.intensity.r, w.point_light.intensity.g, w.point_light.intensity.b);
-	t_xsn *a = intersect_world(&w, ray);
-	if (a != NULL)
-		printf("not NULL");
 	//printf("xs[0] = %.2f", a->x);
 	//intersects_print(a);
-	
+
+	//test test
+
+
+	t_tuple	from = tuple_poi(0, 0, 8);
+	t_tuple	to = tuple_poi(0, 0, 0);
+	t_tuple	up = tuple_vec(0, 1, 0);
+	t_matrix	view = view_transform(from, to, up);
+	matrix_print(&view);
 	printf("R: %.5f, G: %.5f, B: %.5f\n", col.r, col.g, col.b);
 
 	init_mlx(&data, &w);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 21:40:35 by atyurina          #+#    #+#             */
-/*   Updated: 2024/05/22 21:40:36 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:46:27 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	matrix_print(t_matrix *m)
 {
 	for (int i = 0; i < m->rows; i++) {
 		for (int j = 0; j < m->columns; j++) {
-			printf("%.2f ", m->matrix[i][j]);
+			printf("%.5f ", m->matrix[i][j]);
 		}
 		printf("\n");
 	}

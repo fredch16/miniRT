@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/18 23:58:19 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:55:22 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	main(void)
 	matrix_set_scaling(&scale_sp, 0.5, 0.5, 0.5);
 	// matrix_set_4(&scale_sp);
 
-	p = tuple_poi(5, 0, -5);
+	p = tuple_poi(0, 0, -5);
 	d = tuple_vec(0, 0, 1);
+	// p = tuple_poi(10, 10, -5);
+	// d = tuple_vec(1, 1, 0);
 	ray_create(&ray, p, d);
 	
 	w.obj_list = &obj;
@@ -69,6 +71,17 @@ int	main(void)
 	// 	printf("\n\n");
 	// }
 	t_colour col = colour_at(&w, ray);
+	// ray_print(&ray);
+	// printf("world light position:\n");
+	// tuple_print(w.point_light.position);
+	// printf("world light intensity:\n");
+	// printf("R: %.5f, G: %.5f, B: %.5f\n", w.point_light.intensity.r, w.point_light.intensity.g, w.point_light.intensity.b);
+	t_xsn *a = intersect_world(&w, ray);
+	if (a != NULL)
+		printf("not NULL");
+	//printf("xs[0] = %.2f", a->x);
+	//intersects_print(a);
+	
 	printf("R: %.5f, G: %.5f, B: %.5f\n", col.r, col.g, col.b);
 
 	init_mlx(&data, &w);

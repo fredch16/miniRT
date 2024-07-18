@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:33:10 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/18 18:35:36 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:28:15 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	pixel_size(t_camera *c)
 	}
 	else
 	{
-		c->half_width = half_view * aspect;
-		c->half_height = half_view;
+		c->half_width = half_view * aspect; c->half_height = half_view;
 	}
 	c->pixel_size = (c->half_width * 2) / c->hsize;
 }
@@ -69,4 +68,28 @@ t_ray	ray_for_pixel(t_camera c, double px, double py)
 	ray.origin = matrix_multiply_tuple(&inversed, &point);
 	ray.direction = tuple_norm(tuple_sub(pixel, ray.origin));
 	return (ray);
+}
+
+void render(t_camera c, t_world *w, t_data *data)
+{
+	int			x;
+	int			y;
+	t_ray		ray;
+	t_colour	col;
+
+	x = 0;
+	y = 0;
+	while (x++ < c.vsize - 1)
+	{
+		while (y++ < c.hsize - 1)
+		{
+			ray = ray_for_pixel(c, x, y);
+			col = colour_at(w, ray);
+			// printf("colour at (%d, %d) is %.3f, %.3f, %.3f\n", x, y, col.r, col.g, col.b);
+			u_int32_t col_code;
+			col_code = col_to_rgb(col);
+			put_pixel_img(data,  x, y, col_code);
+		}
+		y = 0;
+	}
 }

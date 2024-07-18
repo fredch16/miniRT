@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 16:27:30 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:38:43 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	t_data	data;
+	// t_data	data;
 	t_obj	*obj;
 	t_obj	*obj2;
 	t_obj	*obj_list;
@@ -80,14 +80,19 @@ int	main(void)
 	//intersects_print(a);
 
 	//test test
+	t_camera	c = camera_construct(201, 101, PI / 2);
+	pixel_size(&c);
+	t_ray	ray_pix = ray_for_pixel(c, 0, 0);
+	ray_print(&ray_pix);
+	//printf("c.pixel_size = %.3f\n\n", c.pixel_size);
 
 
-	t_tuple	from = tuple_poi(0, 0, 8);
-	t_tuple	to = tuple_poi(0, 0, 0);
-	t_tuple	up = tuple_vec(0, 1, 0);
-	t_matrix	view = view_transform(from, to, up);
-	matrix_print(&view);
+	// t_tuple	from = tuple_poi(1, 3, 2);
+	// t_tuple	to = tuple_poi(4, -2, 8);
+	// t_tuple	up = tuple_vec(1, 1, 0);
+	// t_matrix	view = view_transform(from, to, up);
+	// matrix_print(&view);
 	printf("R: %.5f, G: %.5f, B: %.5f\n", col.r, col.g, col.b);
 
-	init_mlx(&data, &w);
+	// init_mlx(&data, &w);
 }

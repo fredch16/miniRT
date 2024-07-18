@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 16:15:41 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:03:48 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	true_up = tuple_cro(left, forward);
 	matrix_set_4(&orientation);
 	orientation.matrix[0][0] = left.x;
-	printf("\n\n%.5f\n\n", left.x);
 	orientation.matrix[0][1] = left.y;
 	orientation.matrix[0][2] = left.z;
 	orientation.matrix[1][0] = true_up.x;
@@ -173,11 +172,6 @@ t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	orientation.matrix[2][2] = -forward.z;
 	matrix_set_4(&translation);
 	matrix_set_translation(&translation, -from.x, -from.y, -from.z);
-	printf("tanslation matrix:\n");
-	matrix_print(&translation);
-	printf("orientation matrix:\n");
-	matrix_print(&orientation);
 	matrix_multiply_matrix(&orientation, &translation, &result);
-	printf("result of multiplication orientation * translation:\n");
 	return (result);
 }

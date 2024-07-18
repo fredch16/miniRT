@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/18 23:58:16 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:08:09 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,10 @@ void	draw_clock(t_data *data);
 
 //matrix utils
 // void		matrix_print(t_matrix *mat);
+
+//camera utils
+t_camera	camera_construct(double h, double v, double view);
+void		pixel_size(t_camera *c);
+t_ray		ray_for_pixel(t_camera c, double px, double py);
 
 #endif

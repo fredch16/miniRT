@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
+#    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/06/18 22:04:31 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/07/18 17:54:04 by atyurina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS := src/rtx.c \
 		src/lists.c \
 		src/ray_transform.c \
 		src/sphere_normal.c \
-		src/lighting.c 
+		src/lighting.c \
+		src/camera.c
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

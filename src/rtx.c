@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 18:38:43 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:46:51 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,15 @@ int	main(void)
 	//test test
 	t_camera	c = camera_construct(201, 101, PI / 2);
 	pixel_size(&c);
-	t_ray	ray_pix = ray_for_pixel(c, 0, 0);
+
+	t_matrix	rotate;
+	t_matrix	translate;
+	matrix_set_rotation_y(&rotate, PI / 4);
+	matrix_set_translation(&translate, 0, -2, 5);
+	matrix_multiply_matrix(&rotate, &translate, &c.transform);
+	t_ray	ray_pix = ray_for_pixel(c, 100, 50);
 	ray_print(&ray_pix);
+	/// (root2)/2 = 0.70711...
 	//printf("c.pixel_size = %.3f\n\n", c.pixel_size);
 
 

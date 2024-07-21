@@ -45,13 +45,13 @@ t_ray	ray_transform(t_ray *ray, t_matrix *transform)
 // set changes
 void	sphere_set_transform(t_obj *sphere, t_matrix *translate, t_matrix *scale)
 {
-	t_matrix	changes;
+	// t_matrix	changes;
 	t_matrix	inversed;
 
-	matrix_multiply_matrix(translate, scale, &changes);
+	// matrix_multiply_matrix(scale, translate, &changes);
+	scale += 0;
 	
-	matrix_det_4(&changes);
-	matrix_det_4(&changes);
-	inversed = matrix_inverse(&changes);
+	matrix_det_4(translate);
+	inversed = matrix_inverse(translate);
 	sphere->transform = inversed;
 }

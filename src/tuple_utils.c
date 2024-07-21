@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tuple_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:17:41 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/06 20:07:51 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:25:46 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ t_tuple	tuple_cro(t_tuple a, t_tuple b)
 
 	result.x = (a.y * b.z) - (a.z * b.y);
 	result.y = (a.z * b.x) - (a.x * b.z);
-	result.x = (a.x * b.y) - (a.y * b.x);
+	result.z = (a.x * b.y) - (a.y * b.x);
+	result.w = 0;
 	return (result);
 }
 

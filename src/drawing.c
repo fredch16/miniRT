@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:48 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/11 16:32:06 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:58:15 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	draw_circle(t_data *data, t_world *w)
 	t_tuple	ray_dir;
 	t_xsn	*intersects;
 	t_xsn	*hit;
+	t_obj	*obj;
+	t_lighting_atr	l_atr;
+	obj = *w->obj_list;
 	int	x, y = 0;
-	printf("HELLO\n");
+	printf("Drawing circle...\n");
 
 	ray_p = tuple_poi(0, 0, -1.5);
-	ray_dir = tuple_vec(-2, 2, 1);
+	ray_dir = tuple_norm(tuple_vec(-2, 2, 1));
 
 	double xdif, ydif;
 
@@ -36,15 +39,28 @@ void	draw_circle(t_data *data, t_world *w)
 		xdif = 0.005;
 		while (++x < 800)
 		{
-			ray_dir = tuple_vec(-2 + xdif, 2 - ydif, 1);
+			ray_dir = tuple_norm(tuple_vec(-2 + xdif, 2 - ydif, 1));
 			ray_create(&fake_ray, ray_p, ray_dir);
 			intersects = intersect_world(w, fake_ray);
 			hit = intersect_hit(&intersects);
 			if (hit)
 			{
+				t_tuple	pos;
+				pos = position_on_ray(&fake_ray, hit->x);
+				t_tuple	norm;
+				norm = sphere_normal_at(obj, &pos);
+				t_tuple	eye;
+				eye = tuple_neg(fake_ray.direction);
+				t_colour	colour;
+				l_atr.point = pos;
+				l_atr.eyev = eye;
+				l_atr.normalv = norm;
+				colour = lighting(&obj->material, &w->point_light, &l_atr);
 				// tuple_print(ray_dir);
 				// printf("HIT, printing at %d, %d\n", x, y);
-				put_pixel_img(data, x, y, 0xFF0000);
+				u_int32_t col_code;
+				col_code = col_to_rgb(colour);
+				put_pixel_img(data, x, y, col_code);
 			}
 			xdif += 0.005;
 		}

@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:25:35 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/06 21:18:38 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:58:11 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	sphere_set_transform(t_obj *sphere, t_matrix *translate, t_matrix *scale)
 	t_matrix	inversed;
 
 	matrix_multiply_matrix(translate, scale, &changes);
+	
 	matrix_det_4(&changes);
 	matrix_det_4(&changes);
 	inversed = matrix_inverse(&changes);

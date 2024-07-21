@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
+#    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/06/06 20:05:47 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/07/18 17:54:04 by atyurina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := gtx1050ti
+NAME := rtx2050
 CC := gcc
 CFLAGS := -Wall -Werror -Wextra -g
 SRCS := src/rtx.c \
@@ -23,7 +23,9 @@ SRCS := src/rtx.c \
 		src/ray_intersect_utils.c \
 		src/lists.c \
 		src/ray_transform.c \
-		src/sphere_normal.c
+		src/sphere_normal.c \
+		src/lighting.c \
+		src/camera.c
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/06 20:04:29 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:18:16 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,29 @@ typedef struct s_data
 
 typedef struct s_world
 {
-	t_obj	**obj_list;
+	t_obj		**obj_list;
+	t_point_light	point_light;
 }	t_world;
+
+typedef struct s_comps
+{
+	double	t;
+	t_obj	*obj;
+	t_tuple	point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+	int		inside;
+}	t_comps;
+
+typedef struct s_camera
+{
+	double	hsize;
+	double	vsize;
+	double	field_of_view;
+	t_matrix	transform; //how the world should be oriented relative to the camera.
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
+}	t_camera;
 
 #endif

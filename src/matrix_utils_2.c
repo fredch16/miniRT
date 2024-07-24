@@ -137,6 +137,7 @@ t_matrix	matrix_inverse(t_matrix *m)
 {
 	t_matrix	im;
 
+	// matrix_det_4(m);
 	if (m->determinant == 0)
 		return(*m);
 	im = matrix_cofactor_matrix(m);

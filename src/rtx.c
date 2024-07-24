@@ -91,8 +91,6 @@ int	main(void)
 	t_colour col = colour_at(&w, ray);
 
 	//test test
-	t_camera	c = camera_construct(800, 800, PI / 4);
-	pixel_size(&c);
 
 	// t_matrix	rotate;
 	// t_matrix	translate;
@@ -105,10 +103,14 @@ int	main(void)
 	//printf("c.pixel_size = %.3f\n\n", c.pixel_size);
 
 
+	t_camera	c = camera_construct(800, 800, PI / 4);
+	pixel_size(&c);
 	t_tuple	from = tuple_poi(0, 0, -5);
 	t_tuple	to = tuple_poi(0, 0, 0);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	c.transform = view_transform(from, to, up);
+	// matrix_det_4(&c.transform);
+	// c.trans_inverse = matrix_inverse(&c.transform);
 	// matrix_print(&view);
 	printf("R: %.5f, G: %.5f, B: %.5f\n", col.r, col.g, col.b);
 

@@ -157,6 +157,7 @@ typedef struct s_camera
 	double	vsize;
 	double	field_of_view;
 	t_matrix	transform; //how the world should be oriented relative to the camera.
+	t_matrix	trans_inverse;
 	double	half_width;
 	double	half_height;
 	double	pixel_size;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 19:54:11 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:48:36 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,15 @@ int	main(void)
 	obj3->material.shininess = 200;
 	obj3->material.specular = 0.2;
 	t_matrix rotate_sp;
-	matrix_set_scaling(&scale_sp, 0.75, 0.35, 0.35);
-	matrix_set_translation(&translate_sp, -3, 3, 9);
-	matrix_set_rotation_z(&rotate_sp, -PI / 4);
+	matrix_set_scaling(&scale_sp, 10, 0.01, 10);
+	// matrix_set_translation(&translate_sp, -3, 3, 9);
+	// matrix_set_rotation_z(&rotate_sp, -PI / 4);
 	matrix_print(&rotate_sp);
-	t_matrix temp_transform;
-	matrix_multiply_matrix(&rotate_sp, &scale_sp, &temp_transform);
-	t_matrix final_transform;
-	matrix_multiply_matrix(&translate_sp, &temp_transform, &final_transform);
-	sphere_set_transform(obj3, &final_transform, &translate_sp);
+	// t_matrix temp_transform;
+	// matrix_multiply_matrix(&rotate_sp, &scale_sp, &temp_transform);
+	// t_matrix final_transform;
+	// matrix_multiply_matrix(&translate_sp, &temp_transform, &final_transform);
+	sphere_set_transform(obj3, &scale_sp, &translate_sp);
 
 	w.point_light.position = tuple_poi(-10, 10, -10);
 	w.point_light.intensity = colour_set(1, 1, 1);
@@ -109,8 +109,8 @@ int	main(void)
 	t_tuple	to = tuple_poi(0, 0, 0);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	c.transform = view_transform(from, to, up);
-	// matrix_det_4(&c.transform);
-	// c.trans_inverse = matrix_inverse(&c.transform);
+	matrix_det_4(&c.transform);
+	c.trans_inverse = matrix_inverse(&c.transform);
 	// matrix_print(&view);
 	printf("R: %.5f, G: %.5f, B: %.5f\n", col.r, col.g, col.b);
 

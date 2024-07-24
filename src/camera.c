@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:33:10 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/18 19:28:15 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:44:12 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_ray	ray_for_pixel(t_camera c, double px, double py)
 	double		world_y;
 	t_tuple		pixel;
 	t_tuple		point;
-	t_matrix	inversed;
+//	t_matrix	inversed;
 	t_ray	ray;
 
 	xoffset = (px + 0.5) * c.pixel_size;
@@ -61,11 +61,11 @@ t_ray	ray_for_pixel(t_camera c, double px, double py)
 	world_y = c.half_height - yoffset;
 
 	point = tuple_poi(world_x, world_y, -1);
-	inversed = matrix_inverse(&c.transform);
-	pixel = matrix_multiply_tuple(&inversed, &point);
+	//inversed = matrix_inverse(&c.transform);
+	pixel = matrix_multiply_tuple(&c.trans_inverse, &point);
 
 	point = tuple_poi(0, 0, 0);
-	ray.origin = matrix_multiply_tuple(&inversed, &point);
+	ray.origin = matrix_multiply_tuple(&c.trans_inverse, &point);
 	ray.direction = tuple_norm(tuple_sub(pixel, ray.origin));
 	return (ray);
 }

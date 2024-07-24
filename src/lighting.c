@@ -6,13 +6,14 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:05:00 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/18 23:58:14 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:22:46 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
+#include <stdbool.h>
 
-t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *latr)
+t_colour	lighting(t_material *material, t_point_light *light, bool shadow)
 {
 	double		light_dot_normal;
 	double		reflect_dot_eye;
@@ -24,16 +25,10 @@ t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *la
 	t_colour	effective_colour;
 	t_lighting	l;
 
-	//combine the surface color with the light's color/intensity
 	effective_colour = colour_mul(material->colour, light->intensity);
-	//find the direction to the light source
-	lightv = tuple_norm(tuple_sub(light->position, latr->point));
-	//compute the ambient contribution
+	lightv = tuple_norm(tuple_sub(light->position, light->latr->point));
 	l.ambient = colour_sca_mul(material->ambient, effective_colour);
-	/*light_dot_normal represents the cosine of the angle between the
-	light vector and the normal vector. A negative number means the
-	light is on the other side of the surface*/
-	light_dot_normal = tuple_dot(lightv, latr->normalv);
+	light_dot_normal = tuple_dot(lightv, light->latr->normalv);
 	if (light_dot_normal < 0)
 	{
 		l.diffuse = colour_set(0, 0, 0);
@@ -48,8 +43,8 @@ t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *la
 		reflection vector and the eye vector. A negative number means the
 		light reflects away from the eye.*/
 		lightv_neg = tuple_neg(lightv);
-		reflectv = reflect(&lightv_neg, &latr->normalv);
-		reflect_dot_eye = tuple_dot(reflectv, latr->eyev);
+		reflectv = reflect(&lightv_neg, &light->latr->normalv);
+		reflect_dot_eye = tuple_dot(reflectv, light->latr->eyev);
 		if (reflect_dot_eye <= 0)
 			l.specular = colour_set(0, 0, 0);
 		else
@@ -60,8 +55,10 @@ t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *la
 			colour_sca_mul(material->specular, light->intensity));
 		}
 	}
-	res = colour_add(l.ambient, l.diffuse);
-	res = colour_add(res, l.specular);
+	res = colour_set(0, 0, 0);
+	if (shadow == false)
+		res = colour_add(l.specular, l.diffuse);
+	res = colour_add(res, l.ambient);
 	return (res);
 }
 
@@ -98,4 +95,27 @@ u_int32_t	col_to_rgb(t_colour col)
     rgb_code |= (out_col.g << 8);
     rgb_code |= out_col.b;
 	return (rgb_code);
+}
+
+bool	in_shadow(t_world *w, t_tuple point)
+{
+	t_tuple	v;
+	t_tuple	direction;
+	double	distance;
+	t_ray	r;
+	t_xsn	*x;
+	t_xsn	*xhit;
+
+	v = tuple_sub(w->point_light.position, point);
+	distance = tuple_abs(v);
+	direction = tuple_norm(v);
+	ray_create(&r, point, direction);
+	
+	x = intersect_world(w, r);
+	if (!x)
+		return (free_xs(&x), false);
+	xhit = intersect_hit(&x);
+	if (xhit && xhit->x < distance)
+		return (free_xs(&x), true);
+	return(free_xs(&x), false);
 }

@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:25:35 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/18 23:58:11 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:22:12 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ t_ray	ray_transform(t_ray *ray, t_matrix *transform)
 	t_ray		ret;
 
 	ret.origin = matrix_multiply_tuple(transform, &ray->origin);
+	ret.origin.w = 1;
 	ret.direction = matrix_multiply_tuple(transform, &ray->direction);
+	ret.direction.w = 0;
 	return (ret);
 }
 

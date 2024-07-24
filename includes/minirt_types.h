@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 16:28:08 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:03:07 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ enum e_obj_type
 at a single point in space*/
 typedef struct s_point_light
 {
-	t_tuple		position;
-	t_colour	intensity;
+	t_tuple			position;
+	t_colour		intensity;
+	t_lighting_atr	*latr;
 }	t_point_light;
 
 /* material is a property of the sphere

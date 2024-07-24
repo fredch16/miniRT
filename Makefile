@@ -6,7 +6,7 @@
 #    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/07/24 16:18:49 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/07/24 19:07:10 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRCS := src/rtx.c \
 		src/tuple_utils.c \
 		src/colour_utils.c \
 		src/mlx_utils.c \
-		src/drawing.c \
 		src/matrix_utils.c src/matrix_utils_2.c src/matrix_set.c src/matrix_rotation.c\
 		src/matrix_submatrix.c src/matrix_determinant.c src/matrix_multiplication.c \
 		src/ray_intersect_utils.c \

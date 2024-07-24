@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 17:25:03 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:44:12 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,17 @@ int	main(void)
 {
 	t_data	data;
 	t_obj	*obj_list;
-	t_tuple		p;
-	t_tuple		d;
-	t_ray		ray;
 	t_world		w;
 	t_matrix	translate_sp;
 	t_matrix	scale_sp;
 
 	data.w = &w;
+	// (void)data;
 	obj_list = NULL;
 
 	matrix_set_4(&translate_sp);
 	matrix_set_4(&scale_sp);
 
-	p = tuple_poi(0, 0, -5);
-	d = tuple_vec(0, 0, 1);
-	// p = tuple_poi(10, 10, -5);
-	// d = tuple_vec(1, 1, 0);
-	ray_create(&ray, p, d);
 	
 	//green
 	t_obj	*obj;
@@ -115,8 +108,15 @@ int	main(void)
 	obj6->material.specular = 0.3;
 	sphere_set_transform(obj6, &endlime, &scale_sp);
 
+
+	//TEST ENV
+
 	w.point_light.position = tuple_poi(-10, 10, -10);
 	w.point_light.intensity = colour_set(1, 1, 1);
+	// t_material mat;
+	// mat = material_set_default();
+	// t_colour res = lighting(&mat, &w.point_light, true);
+	// printf("Colour is %.2f, %.2f, %.2f\n", res.r, res.g, res.b);
 
 	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, PI / 3);
 	pixel_size(&c);

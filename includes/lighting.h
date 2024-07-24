@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:37:57 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/18 19:15:19 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:53:41 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ t_tuple		reflect(t_tuple *in, t_tuple *normal);
 t_material	material_set_default(void);
 
 //lighting:
-t_colour	lighting(t_material *material, t_point_light *light, t_lighting_atr *latr);
-t_tuple	position_on_ray(t_ray *ray, double t);
+t_colour	lighting(t_material *material, t_point_light *light, bool shadow);
+t_tuple		position_on_ray(t_ray *ray, double t);
 u_int32_t	col_to_rgb(t_colour col);
+bool		in_shadow(t_world *w, t_tuple point);
 
 #endif

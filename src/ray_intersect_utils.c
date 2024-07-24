@@ -6,11 +6,12 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 16:41:11 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:43:49 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
+#include <stdbool.h>
 
 void	ray_create(t_ray *ray, t_tuple origin, t_tuple direction)
 {
@@ -106,6 +107,7 @@ t_xsn	*intersect_hit(t_xsn **xslist)
 t_comps	prep_comps(t_xsn *x, t_ray ray)
 {
 	t_comps	comps;
+	t_tuple	shadow_offset;
 
 	comps.inside = 0;
 	comps.t = x->x;
@@ -118,16 +120,24 @@ t_comps	prep_comps(t_xsn *x, t_ray ray)
 		comps.inside = 1;
 		comps.normalv = tuple_neg(comps.normalv);
 	}
+	shadow_offset = comps.normalv;
+	tuple_mul(EPSILON, &shadow_offset);
+	comps.point = tuple_add(comps.point, shadow_offset);
 	return (comps);
 }
 
 t_colour shade_hit(t_world *w, t_comps comps)
 {
+
 	t_lighting_atr	latr;
+	bool			shadow;
+
+	shadow = in_shadow(w, comps.point);
+	w->point_light.latr = &latr;
 	latr.point = comps.point;
 	latr.normalv = comps.normalv;
 	latr.eyev = comps.eyev;
-	return (lighting(&comps.obj->material, &w->point_light, &latr));
+	return (lighting(&comps.obj->material, &w->point_light, shadow));
 }
 
 t_colour colour_at(t_world *w, t_ray r)
@@ -159,7 +169,6 @@ t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
 
 	forward = tuple_norm(tuple_sub(to, from));
 	upn = tuple_norm(up);
-	tuple_print(upn);
 	left = tuple_cro(forward, upn);
 	true_up = tuple_cro(left, forward);
 	matrix_set_4(&orientation);

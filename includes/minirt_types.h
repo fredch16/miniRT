@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 18:18:16 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:28:08 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,12 @@ typedef struct s_xsn
 	struct s_xsn	*next;
 }	t_xsn;
 
+typedef struct s_world
+{
+	t_obj		**obj_list;
+	t_point_light	point_light;
+}	t_world;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -133,13 +139,8 @@ typedef struct s_data
 	int		endian;
 	int		line_len;
 	t_tuple velocity;
+	t_world	*w;
 }	t_data;
-
-typedef struct s_world
-{
-	t_obj		**obj_list;
-	t_point_light	point_light;
-}	t_world;
 
 typedef struct s_comps
 {

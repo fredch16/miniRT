@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_intersect.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:50:14 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 14:20:45 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:31:25 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_xsn		*intersect_hit(t_xsn **xslist);
 t_xsn		*intersect_sp(t_ray ray, t_obj *o);
 t_xsn		*x_new(t_obj *o, double x);
 void		xadd_back(t_xsn	**xslist, t_xsn *n);
+void		free_xs(t_xsn **xslist);
+void		free_obj(t_obj **objlist);
 
 t_comps		prep_comps(t_xsn *x, t_ray ray);
 t_colour	shade_hit(t_world *w, t_comps comps);

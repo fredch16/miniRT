@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:33:10 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/24 12:44:12 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:50:33 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void render(t_camera c, t_world *w, t_data *data)
 
 	x = 0;
 	y = 0;
-	while (x++ < c.vsize - 1)
+	while (y++ < c.vsize - 1)
 	{
-		while (y++ < c.hsize - 1)
+		while (x++ < c.hsize - 1)
 		{
 			ray = ray_for_pixel(c, x, y);
 			col = colour_at(w, ray);
@@ -90,6 +90,6 @@ void render(t_camera c, t_world *w, t_data *data)
 			col_code = col_to_rgb(col);
 			put_pixel_img(data,  x, y, col_code);
 		}
-		y = 0;
+		x = 0;
 	}
 }

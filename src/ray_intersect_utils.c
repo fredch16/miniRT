@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_intersect_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 18:03:48 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:41:11 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,16 +133,18 @@ t_colour shade_hit(t_world *w, t_comps comps)
 t_colour colour_at(t_world *w, t_ray r)
 {
 	t_xsn		*x;	
+	t_xsn		*xhit;	
 	t_comps		comps;
 	t_colour	col;
 
 	x = intersect_world(w, r);
 	if (!x)
-		return (colour_set(0, 0, 0));
-	x = intersect_hit(&x);
-	comps = prep_comps(x, r);
+		return (free_xs(&x), colour_set(0, 0, 0));
+	xhit = intersect_hit(&x);
+	if (xhit)
+		comps = prep_comps(xhit, r);
 	col = shade_hit(w, comps);
-	return (col);
+	return (free_xs(&x), col);
 }
 
 t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)

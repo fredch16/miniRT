@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
+#    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/07/18 17:54:04 by atyurina         ###   ########.fr        #
+#    Updated: 2024/07/24 16:18:49 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(OBJ_DIR)%.o: src/%.c
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) -Lincludes/libft -Lincludes/mlx_linux -lm -lmlx_Linux -lXext -lX11 -lz
+	$(CC) $(OBJ) -o $(NAME) -lft -Lincludes/libft -Lincludes/mlx_linux -lm -lmlx_Linux -lXext -lX11 -lz
 
 clean:
 	/bin/rm -rf $(OBJ_DIR)

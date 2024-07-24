@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 19:14:45 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:56:40 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 #include <stdint.h>
 # define WIN_WIDTH 800 
-# define WIN_HEIGHT	800 
+# define WIN_HEIGHT	400 
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
 # include "../includes/libft/libft.h"

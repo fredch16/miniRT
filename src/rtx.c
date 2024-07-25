@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 20:44:12 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:11:14 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	main(void)
 
 
 	//TEST ENV
+	
 
 	w.point_light.position = tuple_poi(-10, 10, -10);
 	w.point_light.intensity = colour_set(1, 1, 1);
@@ -125,6 +126,34 @@ int	main(void)
 	// t_colour res = lighting(&mat, &w.point_light, true);
 	// printf("Colour is %.2f, %.2f, %.2f\n", res.r, res.g, res.b);
 
+	// t_ray ray;
+	// ray_create(&ray, tuple_poi(0, -1, 0), tuple_vec(0, 1, 0));
+	// t_xsn *xs;
+	// xs = intersect_pl(ray, obj3);
+	// if (xs == NULL)
+	// 	printf("No intersect!\n");
+	// else
+	// {
+	// 	printf("Intesect! Found at: t = %.3f\n", xs->x);
+	// }
+
+	t_tuple	n1;
+	t_tuple	n2;
+	t_tuple	n3;
+
+	t_tuple	p1;
+	t_tuple	p2;
+	t_tuple	p3;
+
+	p1 = tuple_poi(0, 0, 0);
+	p2 = tuple_poi(10, 0, -18);
+	p3 = tuple_poi(-35, 0, 65);
+	n1 = plane_normal_at(obj3, &p1);
+	n2 = plane_normal_at(obj3, &p2);
+	n3 = plane_normal_at(obj3, &p3);
+	tuple_print(n1);
+	tuple_print(n2);
+	tuple_print(n3);
 	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, PI / 3);
 	pixel_size(&c);
 	t_tuple	from = tuple_poi(0, 1.5, -10);

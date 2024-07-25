@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:50:14 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 16:31:25 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:38:53 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		sphere_set_transform(t_obj *sphere, t_matrix *translate, t_matrix *scale);
 t_xsn		*intersect_world(t_world *w, t_ray r);
 t_xsn		*intersect_hit(t_xsn **xslist);
 t_xsn		*intersect_sp(t_ray ray, t_obj *o);
+t_xsn		*intersect_pl(t_ray ray, t_obj *o);
 t_xsn		*x_new(t_obj *o, double x);
 void		xadd_back(t_xsn	**xslist, t_xsn *n);
 void		free_xs(t_xsn **xslist);

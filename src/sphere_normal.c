@@ -6,24 +6,21 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:38 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/18 23:58:17 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:26:11 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-t_tuple	sphere_normal_at(t_obj *s, t_tuple *w_point)
+t_tuple	sphere_normal_at(t_obj *s, t_tuple *o_point)
 {
-	t_tuple		obj_point;
 	t_tuple		obj_normal;
 	t_tuple		w_normal;
 	t_matrix	t_m;
 	t_tuple		point;
 
 	point = tuple_poi(0, 0, 0);
-	matrix_det_4(&s->transform);
-	obj_point = matrix_multiply_tuple(&s->transform, w_point);
-	obj_normal = tuple_sub(obj_point, point);
+	obj_normal = tuple_sub(*o_point, point);
 	obj_normal.w = 0;
 	t_m = matrix_transpose(&s->transform);
 	w_normal = matrix_multiply_tuple(&t_m, &obj_normal);
@@ -37,11 +34,39 @@ t_tuple	plane_normal_at(t_obj *pl, t_tuple *w_point)
 	t_tuple		obj_normal;
 	t_tuple		w_normal;
 
+	(void)w_point;
 	obj_normal = tuple_vec(0, 1, 0);
 
-	t_m = matrix_transpose(&p->transform);
+	t_m = matrix_transpose(&pl->transform);
 	w_normal = matrix_multiply_tuple(&t_m, &obj_normal);
 	w_normal.w = 0;
+	return (tuple_norm(w_normal));
+}
+
+t_tuple	obj_normal(t_obj *o, t_tuple *w_point)
+{
+	t_tuple o_point;
+
+	matrix_det_4(&o->transform);
+	o_point = matrix_multiply_tuple(&o->transform, w_point);
+	if (o->type == OT_PLANE)
+		return(plane_normal_at(o, &o_point));
+	else
+		return(sphere_normal_at(o, &o_point));
+}
+
+t_tuple	world_normal_at(t_obj *o, t_tuple *w_point)
+{
+	t_tuple		o_normal;
+	t_tuple		w_normal;
+	t_matrix	t_m;
+
+	o_normal = tuple_norm(obj_normal(o, w_point));
+
+	t_m = matrix_transpose(&o->transform);
+	w_normal = matrix_multiply_tuple(&t_m, &o_normal);
+	w_normal.w = 0;
+	return (tuple_norm(w_normal));
 }
 
 t_tuple	reflect(t_tuple *in, t_tuple *normal)

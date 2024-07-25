@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 20:43:49 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:09:02 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ t_comps	prep_comps(t_xsn *x, t_ray ray)
 	comps.obj = x->xs_obj;
 	comps.point = position_on_ray(&ray, comps.t);
 	comps.eyev = tuple_neg(ray.direction);
-	comps.normalv = sphere_normal_at(comps.obj, &comps.point);
+	comps.normalv = world_normal_at(comps.obj, &comps.point);
 	if (tuple_dot(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = 1;

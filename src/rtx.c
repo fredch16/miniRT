@@ -53,48 +53,55 @@ int	main(void)
 	sphere_set_transform(obj2, &endlime, &scale_sp);
 
 	//gray floor
+	// t_obj *obj3;
+	// obj3 = obj_create(OT_SPHERE);
+	// obj_add_back(&obj_list, obj3);
+	// obj3->material.colour = colour_set(1, 0.9, 0.9);
+	// obj3->material.specular = 0;
+	// matrix_set_scaling(&scale_sp, 10, 0.01, 10);
+	// sphere_set_transform(obj3, &scale_sp, &translate_sp);
+
+	//gray floor but as plane
 	t_obj *obj3;
-	obj3 = obj_create(OT_SPHERE);
+	obj3 = obj_create(OT_PLANE);
 	obj_add_back(&obj_list, obj3);
 	obj3->material.colour = colour_set(1, 0.9, 0.9);
 	obj3->material.specular = 0;
-	matrix_set_scaling(&scale_sp, 10, 0.01, 10);
-	sphere_set_transform(obj3, &scale_sp, &translate_sp);
+	
+	//beige right wall
+	// t_obj *obj4;
+	// t_matrix yrota;
+	// t_matrix xrota;
+	// t_matrix out1;
+	// t_matrix out2;
+	// t_matrix out3;
+	// obj4 = obj_create(OT_SPHERE);
+	// obj_add_back(&obj_list, obj4);
+	// obj4->material.colour = colour_set(1, 0.9, 0.9);
+	// obj4->material.specular = 0;
+	// matrix_set_scaling(&scale_sp, 10, 0.01, 10);
+	// matrix_set_translation(&translate_sp, 0, 0, 5);
+	// matrix_set_rotation_y(&yrota, PI / 4);
+	// matrix_set_rotation_x(&xrota, PI / 2);
+	// matrix_multiply_matrix(&translate_sp, &yrota, &out1);
+	// matrix_multiply_matrix(&out1, &xrota, &out2);
+	// matrix_multiply_matrix(&out2, &scale_sp, &out3);
+	// sphere_set_transform(obj4, &out3, &translate_sp);
 
 	//beige right wall
-	t_obj *obj4;
-	t_matrix yrota;
-	t_matrix xrota;
-	t_matrix out1;
-	t_matrix out2;
-	t_matrix out3;
-	obj4 = obj_create(OT_SPHERE);
-	obj_add_back(&obj_list, obj4);
-	obj4->material.colour = colour_set(1, 0.9, 0.9);
-	obj4->material.specular = 0;
-	matrix_set_scaling(&scale_sp, 10, 0.01, 10);
-	matrix_set_translation(&translate_sp, 0, 0, 5);
-	matrix_set_rotation_y(&yrota, PI / 4);
-	matrix_set_rotation_x(&xrota, PI / 2);
-	matrix_multiply_matrix(&translate_sp, &yrota, &out1);
-	matrix_multiply_matrix(&out1, &xrota, &out2);
-	matrix_multiply_matrix(&out2, &scale_sp, &out3);
-	sphere_set_transform(obj4, &out3, &translate_sp);
-
-	//beige right wall
-	t_obj *obj5;
-	obj5 = obj_create(OT_SPHERE);
-	obj_add_back(&obj_list, obj5);
-	obj5->material.colour = colour_set(1, 0.9, 0.9);
-	obj5->material.specular = 0;
-	matrix_set_scaling(&scale_sp, 10, 0.01, 10);
-	matrix_set_translation(&translate_sp, 0, 0, 5);
-	matrix_set_rotation_y(&yrota, -PI / 4);
-	matrix_set_rotation_x(&xrota, PI / 2);
-	matrix_multiply_matrix(&translate_sp, &yrota, &out1);
-	matrix_multiply_matrix(&out1, &xrota, &out2);
-	matrix_multiply_matrix(&out2, &scale_sp, &out3);
-	sphere_set_transform(obj5, &out3, &translate_sp);
+	// t_obj *obj5;
+	// obj5 = obj_create(OT_SPHERE);
+	// obj_add_back(&obj_list, obj5);
+	// obj5->material.colour = colour_set(1, 0.9, 0.9);
+	// obj5->material.specular = 0;
+	// matrix_set_scaling(&scale_sp, 10, 0.01, 10);
+	// matrix_set_translation(&translate_sp, 0, 0, 5);
+	// matrix_set_rotation_y(&yrota, -PI / 4);
+	// matrix_set_rotation_x(&xrota, PI / 2);
+	// matrix_multiply_matrix(&translate_sp, &yrota, &out1);
+	// matrix_multiply_matrix(&out1, &xrota, &out2);
+	// matrix_multiply_matrix(&out2, &scale_sp, &out3);
+	// sphere_set_transform(obj5, &out3, &translate_sp);
 
 	//yellow
 	t_obj	*obj6;
@@ -120,7 +127,7 @@ int	main(void)
 
 	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, PI / 3);
 	pixel_size(&c);
-	t_tuple	from = tuple_poi(0, 1.5, -5);
+	t_tuple	from = tuple_poi(0, 1.5, -10);
 	t_tuple	to = tuple_poi(0, 1, 0);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	c.transform = view_transform(from, to, up);

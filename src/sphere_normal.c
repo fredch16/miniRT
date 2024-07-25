@@ -31,6 +31,19 @@ t_tuple	sphere_normal_at(t_obj *s, t_tuple *w_point)
 	return (tuple_norm(w_normal));
 }
 
+t_tuple	plane_normal_at(t_obj *pl, t_tuple *w_point)
+{
+	t_matrix	t_m;
+	t_tuple		obj_normal;
+	t_tuple		w_normal;
+
+	obj_normal = tuple_vec(0, 1, 0);
+
+	t_m = matrix_transpose(&p->transform);
+	w_normal = matrix_multiply_tuple(&t_m, &obj_normal);
+	w_normal.w = 0;
+}
+
 t_tuple	reflect(t_tuple *in, t_tuple *normal)
 {
 	double	dot;

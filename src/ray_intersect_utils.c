@@ -68,6 +68,18 @@ t_xsn	*intersect_sp(t_ray ray, t_obj *o)
 	return (xs);
 }
 
+t_xsn	*intersect_pl(t_ray ray, t_obj *o)
+{
+	double	t;
+	ray = ray_transform(&ray, &o->transform);
+	if (fabs(ray.direction.y) < EPSILON)
+		return (NULL);
+	t = -ray.origin.y / ray.direction.y;
+	if (t >= EPSILON)
+		return (x_new(o, t));
+	return (NULL);
+}
+
 t_xsn	*intersect_world(t_world *w, t_ray r)
 {
 	t_obj	*tmp_o;
@@ -77,7 +89,10 @@ t_xsn	*intersect_world(t_world *w, t_ray r)
 	tmp_o = *w->obj_list;
 	while (tmp_o)
 	{
-		xadd_back(&xs, intersect_sp(r, tmp_o));
+		if (tmp_o->type ==OT_SPHERE)
+			xadd_back(&xs, intersect_sp(r, tmp_o));
+		if (tmp_o->type ==OT_PLANE)
+			xadd_back(&xs, intersect_pl(r, tmp_o));
 		tmp_o = tmp_o->next;
 	}
 	return (xs);

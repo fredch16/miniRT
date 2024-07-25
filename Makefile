@@ -6,7 +6,7 @@
 #    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/07/18 17:54:04 by atyurina         ###   ########.fr        #
+#    Updated: 2024/07/24 16:50:56 by atyurina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS := src/rtx.c \
 		src/ray_transform.c \
 		src/sphere_normal.c \
 		src/lighting.c \
-		src/camera.c
+		src/camera.c \
+		src/parser_read.c src/parser_check.c
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)
@@ -38,7 +39,7 @@ $(OBJ_DIR)%.o: src/%.c
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) -Lincludes/libft -Lincludes/mlx_linux -lm -lmlx_Linux -lXext -lX11 -lz
+	$(CC) $(OBJ) -o $(NAME) -lft -Lincludes/libft -Lincludes/mlx_linux -lm -lmlx_Linux -lXext -lX11 -lz
 
 clean:
 	/bin/rm -rf $(OBJ_DIR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 19:14:45 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:46:46 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@
 # include <errno.h>
 # include <X11/keysym.h>
 # include <float.h>
+# include <stdbool.h>
 # include "tuples.h"
 # include "minirt_types.h"
 # include "ray_intersect.h"
 # include "matrix.h"
 # include "lighting.h"
+# include "parser.h"
 
 
 //colour utils

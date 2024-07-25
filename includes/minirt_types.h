@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 18:18:16 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:30:51 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_xsn
 typedef struct s_data
 {
 	void	*mlx;
+	char	**scene;
 	void	*img;
 	void	*addr;
 	void	*win;

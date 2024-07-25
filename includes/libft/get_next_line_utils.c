@@ -3,102 +3,98 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.c      +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 21:16:42 by fcharbon          #+#    #+#             */
-/*   Updated: 2023/11/29 22:08:34 by fcharbon         ###   ########.fr       */
+/*   Created: 2023/11/17 12:51:12 by atyurina          #+#    #+#             */
+/*   Updated: 2024/07/24 16:54:27 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*free_line(char **line)
+char	*dop_func(char *tail, char *temp_buffer)
 {
-	if (*line)
-		free(*line);
-	return (NULL);
+	char	*old_tail;
+
+	old_tail = tail;
+	tail = ft_strjoin(old_tail, temp_buffer);
+	free(old_tail);
+	return (tail);
 }
 
-int	line_updater(char **line, char buffer[])
-{
-	char	*join;
-	int		i;
+// char	*ft_strdup(const char *s)
+// {
+// 	char	*dup;
+// 	int		i;
+// 	int		len;
 
-	join = ft_strjoinm(*line, buffer);
-	free(*line);
-	if (join == NULL)
-		return (-1);
-	*line = join;
-	i = 0;
-	while ((*line)[i] != '\0')
-	{
-		if ((*line)[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	len = ft_strlen(s);
+// 	dup = malloc((len + 1) * sizeof(char));
+// 	if (dup == 0)
+// 		return (0);
+// 	while (s[i])
+// 	{
+// 		dup[i] = s[i];
+// 		i++;
+// 	}
+// 	dup[i] = '\0';
+// 	return (dup);
+// }
 
-int	ft_strlenm(char const *s1)
-{
-	int	i;
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	int	i;
 
-	if (s1 == NULL)
-		return (0);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (s1[i] == '\n')
-			return (i + 1);
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		if (s[i] == (char)c)
+// 			return ((char *)s + i);
+// 		i++;
+// 	}
+// 	if (s[i] == c)
+// 		return ((char *)s + i);
+// 	return (0);
+// }
 
-char	*ft_strjoinm(char const *s1, char const *s2)
-{
-	char	*s3;
-	int		j;
-	int		i;
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	n;
 
-	s3 = (char *)malloc(ft_strlenm(s1) + ft_strlenm(s2) + 1);
-	if (!s3)
-		return (s3);
-	j = 0;
-	i = 0;
-	while (s1 != NULL && s1[i] != '\0')
-		s3[j++] = s1[i++];
-	i = 0;
-	while (s2 != NULL && s2[i] != '\0')
-	{
-		s3[j++] = s2[i++];
-		if (s2[i - 1] == '\n')
-			break ;
-	}
-	s3[j] = '\0';
-	return (s3);
-}
+// 	if (!str)
+// 		return (0);
+// 	n = 0;
+// 	while (str[n])
+// 		n++;
+// 	return (n);
+// }
 
-void	buffer_clear(char *buffer)
-{
-	int	buffer_len;
-	int	nr_cases;
-	int	i;
+// char	*ft_substr(char const *s, unsigned int start, size_t len)
+// {
+// 	size_t	i;
+// 	char	*sub;
+// 	size_t	slen;
 
-	buffer_len = 0;
-	while (buffer[buffer_len] != '\0')
-		buffer_len++;
-	nr_cases = ft_strlenm(buffer);
-	i = 0;
-	while (i < buffer_len)
-	{
-		if (nr_cases + i < buffer_len)
-		{
-			buffer[i] = buffer[nr_cases + i];
-			buffer[nr_cases + i] = '\0';
-		}
-		else
-			buffer[i] = '\0';
-		i++;
-	}
-}
+// 	i = 0;
+// 	slen = ft_strlen(s);
+// 	if (!s)
+// 		return (0);
+// 	if (slen < start)
+// 		len = 0;
+// 	if (len > slen)
+// 		len = slen;
+// 	else if (len > (slen - start))
+// 		len = slen - start;
+// 	sub = (char *)malloc((len + 1) * sizeof(char));
+// 	if (!sub)
+// 		return (0);
+// 	while (i < len && i < slen)
+// 	{
+// 		sub[i] = s[start];
+// 		i++;
+// 		start++;
+// 	}
+// 	sub[i] = '\0';
+// 	return (sub);
+// }

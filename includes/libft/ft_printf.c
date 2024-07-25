@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.c      +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:52:03 by fcharbon          #+#    #+#             */
-/*   Updated: 2023/12/07 18:05:04 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:14:48 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 #include "ft_printf.h"
 #include <string.h>
 
-char	*ft_strchr(const char *s, int c)
-{
-	if (c < 0 || c > 255)
-		return ((char *)s);
-	while (*s)
-	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
-	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
-}
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	if (c < 0 || c > 255)
+// 		return ((char *)s);
+// 	while (*s)
+// 	{
+// 		if (*s == c)
+// 			return ((char *)s);
+// 		s++;
+// 	}
+// 	if (c == '\0')
+// 		return ((char *)s);
+// 	return (NULL);
+// }
 
 int	ft_format(const	char *str, va_list ap)
 {

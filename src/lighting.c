@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:05:00 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/24 20:22:46 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:28:17 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,45 @@ t_colour	lighting(t_material *material, t_point_light *light, bool shadow)
 
 	effective_colour = colour_mul(material->colour, light->intensity);
 	lightv = tuple_norm(tuple_sub(light->position, light->latr->point));
+	//printer
+	// tuple_print(light->latr->point);
 	l.ambient = colour_sca_mul(material->ambient, effective_colour);
+	//printer
+	// tuple_print(lightv);
+	// tuple_print(light->latr->normalv);
 	light_dot_normal = tuple_dot(lightv, light->latr->normalv);
 	if (light_dot_normal < 0)
 	{
+		// printf("TRIGGER\n");
 		l.diffuse = colour_set(0, 0, 0);
 		l.specular = colour_set(0, 0, 0);
 	}
 	else
 	{
-		//compute the diffuse contribution
-		l.diffuse = colour_sca_mul(light_dot_normal, \
-		colour_sca_mul(material->diffuse, effective_colour));
-		/*reflect_dot_eye represents the cosine of the angle between the
-		reflection vector and the eye vector. A negative number means the
-		light reflects away from the eye.*/
+		l.diffuse = colour_sca_mul(light_dot_normal, 
+							 colour_sca_mul(material->diffuse, effective_colour));
+		//print diffuse
+		// printf("colour at is %.3f, %.3f, %.3f\n",  l.diffuse.r, l.diffuse.g, l.diffuse.b);
 		lightv_neg = tuple_neg(lightv);
 		reflectv = reflect(&lightv_neg, &light->latr->normalv);
 		reflect_dot_eye = tuple_dot(reflectv, light->latr->eyev);
-		if (reflect_dot_eye <= 0)
+		if (reflect_dot_eye <= 0){
+			// printf("TRIGGER DOT EYE REFLECT\n");
 			l.specular = colour_set(0, 0, 0);
+		}
 		else
 		{
-			//compute the specular contribution
 			factor = pow(reflect_dot_eye, material->shininess);
-			l.specular = colour_sca_mul(factor, \
-			colour_sca_mul(material->specular, light->intensity));
+			l.specular = colour_sca_mul(factor, 
+							   colour_sca_mul(material->specular, light->intensity));
+			// printf("DOT EYE GREATER THAN ZERO\n");
 		}
 	}
 	res = colour_set(0, 0, 0);
 	if (shadow == false)
+	{
 		res = colour_add(l.specular, l.diffuse);
+	}
 	res = colour_add(res, l.ambient);
 	return (res);
 }

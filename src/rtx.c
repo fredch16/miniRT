@@ -6,11 +6,12 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/25 15:11:14 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:44:16 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
+#include <stdbool.h>
 
 int	main(void)
 {
@@ -67,7 +68,40 @@ int	main(void)
 	obj_add_back(&obj_list, obj3);
 	obj3->material.colour = colour_set(1, 0.9, 0.9);
 	obj3->material.specular = 0;
+
+	//red right wall
+	t_obj *obj4;
+	obj4 = obj_create(OT_PLANE);
+	obj_add_back(&obj_list, obj4);
+	obj4->material.colour = colour_set(1, 0, 0);
+	obj4->material.specular = 0;
+	t_matrix rotate_pl;
+	matrix_set_translation(&translate_sp, 2, 0, 2);
+	matrix_set_rotation_z(&rotate_pl, PI / 4);
+	matrix_multiply_matrix(&translate_sp, &rotate_pl, &endlime);
+	sphere_set_transform(obj4, &endlime, &scale_sp);
 	
+	//back red wall
+	t_obj *obj5;
+	obj5 = obj_create(OT_PLANE);
+	obj_add_back(&obj_list, obj5);
+	obj5->material.colour = colour_set(1, 0, 0);
+	obj5->material.diffuse = 0.7;
+	obj5->material.specular = 0.3;
+	obj5->material.ambient = 0.1;
+	matrix_set_translation(&translate_sp, 0, 0, 5);
+	matrix_set_rotation_x(&rotate_pl, -PI / 4);
+	matrix_multiply_matrix(&translate_sp, &rotate_pl, &endlime);
+	sphere_set_transform(obj5, &endlime, &scale_sp);
+
+	// t_obj *obj7;
+	// obj7 = obj_create(OT_PLANE);
+	// obj_add_back(&obj_list, obj7);
+	// obj7->material.colour = colour_set(0, 1, 0);
+	// obj7->material.specular = 0;
+	// matrix_set_translation(&translate_sp, 0, 11, 0);
+	// sphere_set_transform(obj7, &translate_sp, &scale_sp);
+
 	//beige right wall
 	// t_obj *obj4;
 	// t_matrix yrota;
@@ -115,49 +149,33 @@ int	main(void)
 	obj6->material.specular = 0.3;
 	sphere_set_transform(obj6, &endlime, &scale_sp);
 
+	//yellow test point sphere
+	// t_obj	*obj6;
+	// obj6 = obj_create(OT_SPHERE);
+	// obj_add_back(&obj_list, obj6);
+	// matrix_set_translation(&translate_sp, 4, 3.5, 5);
+	// matrix_set_scaling(&scale_sp, 1, 1, 1);
+	// matrix_multiply_matrix(&translate_sp, &scale_sp, &endlime);
+	// obj6->material.colour = colour_set(1, 0.8, 0.1);
+	// obj6->material.diffuse = 0.7;
+	// obj6->material.specular = 0.3;
+	// sphere_set_transform(obj6, &endlime, &scale_sp);
 
-	//TEST ENV
-	
 
-	w.point_light.position = tuple_poi(-10, 10, -10);
+	w.point_light.position = tuple_poi(3, 10, 6);
 	w.point_light.intensity = colour_set(1, 1, 1);
-	// t_material mat;
-	// mat = material_set_default();
-	// t_colour res = lighting(&mat, &w.point_light, true);
-	// printf("Colour is %.2f, %.2f, %.2f\n", res.r, res.g, res.b);
 
-	// t_ray ray;
-	// ray_create(&ray, tuple_poi(0, -1, 0), tuple_vec(0, 1, 0));
-	// t_xsn *xs;
-	// xs = intersect_pl(ray, obj3);
-	// if (xs == NULL)
-	// 	printf("No intersect!\n");
-	// else
-	// {
-	// 	printf("Intesect! Found at: t = %.3f\n", xs->x);
-	// }
+	bool	shaded;
+	shaded = in_shadow(&w, tuple_poi(4, 4.5, 0));
+	if (shaded == true)
+		printf("im in a shadow\n");
+	else
+		printf("im not in a shadow, im just dark\n");
 
-	t_tuple	n1;
-	t_tuple	n2;
-	t_tuple	n3;
-
-	t_tuple	p1;
-	t_tuple	p2;
-	t_tuple	p3;
-
-	p1 = tuple_poi(0, 0, 0);
-	p2 = tuple_poi(10, 0, -18);
-	p3 = tuple_poi(-35, 0, 65);
-	n1 = plane_normal_at(obj3, &p1);
-	n2 = plane_normal_at(obj3, &p2);
-	n3 = plane_normal_at(obj3, &p3);
-	tuple_print(n1);
-	tuple_print(n2);
-	tuple_print(n3);
-	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, PI / 3);
+	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, PI / 2);
 	pixel_size(&c);
-	t_tuple	from = tuple_poi(0, 1.5, -10);
-	t_tuple	to = tuple_poi(0, 1, 0);
+	t_tuple	from = tuple_poi(0, 3.5, -62);
+	t_tuple	to = tuple_poi(0, 2, 0);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	c.transform = view_transform(from, to, up);
 	matrix_det_4(&c.transform);

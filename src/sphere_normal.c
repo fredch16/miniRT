@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:38 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/25 15:26:11 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:21:44 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_tuple	world_normal_at(t_obj *o, t_tuple *w_point)
 	t_tuple		w_normal;
 	t_matrix	t_m;
 
-	o_normal = tuple_norm(obj_normal(o, w_point));
+	o_normal = obj_normal(o, w_point);
 
 	t_m = matrix_transpose(&o->transform);
 	w_normal = matrix_multiply_tuple(&t_m, &o_normal);

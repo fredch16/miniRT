@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:33:10 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/24 20:15:24 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:26:12 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_ray	ray_for_pixel(t_camera c, double px, double py)
 	double		world_y;
 	t_tuple		pixel;
 	t_tuple		point;
-//	t_matrix	inversed;
 	t_ray	ray;
 
 	xoffset = (px + 0.5) * c.pixel_size;
@@ -61,7 +60,6 @@ t_ray	ray_for_pixel(t_camera c, double px, double py)
 	world_y = c.half_height - yoffset;
 
 	point = tuple_poi(world_x, world_y, -1);
-	//inversed = matrix_inverse(&c.transform);
 	pixel = matrix_multiply_tuple(&c.trans_inverse, &point);
 
 	point = tuple_poi(0, 0, 0);
@@ -85,9 +83,12 @@ void render(t_camera c, t_world *w, t_data *data)
 		{
 			ray = ray_for_pixel(c, x, y);
 			col = colour_at(w, ray);
-			// printf("colour at (%d, %d) is %.3f, %.3f, %.3f\n", x, y, col.r, col.g, col.b);
+			// if (x == 1)
+			// 	printf("colour at (%d, %d) is %.3f, %.3f, %.3f\n", x, y, col.r, col.g, col.b);
 			u_int32_t col_code;
 			col_code = col_to_rgb(col);
+			// if (x == 1)
+			// 	printf("colour at (%d, %d) is %x\n", x, y, col_code);
 			put_pixel_img(data,  x, y, col_code);
 		}
 		x = 0;

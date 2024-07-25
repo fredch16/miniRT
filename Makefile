@@ -6,7 +6,7 @@
 #    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/07/24 16:50:56 by atyurina         ###   ########.fr        #
+#    Updated: 2024/07/25 13:45:41 by atyurina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS := src/rtx.c \
 		src/sphere_normal.c \
 		src/lighting.c \
 		src/camera.c \
-		src/parser_read.c src/parser_check.c
+		src/parser_read.c src/parser_check.c src/parser_check_element.c
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

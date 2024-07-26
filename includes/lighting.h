@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:37:57 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/25 15:09:35 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:45:56 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include <sys/types.h>
 
 //sphere_normal:
-t_tuple		sphere_normal_at(t_obj *s, t_tuple *w_point);
-t_tuple		plane_normal_at(t_obj *pl, t_tuple *w_point);
+t_tuple		sphere_normal_at(t_obj *s, t_tuple *o_point);
+t_tuple		plane_normal_at(t_obj *pl, t_tuple *o_point);
 t_tuple		reflect(t_tuple *in, t_tuple *normal);
 t_material	material_set_default(void);
 t_tuple		world_normal_at(t_obj *o, t_tuple *w_point);

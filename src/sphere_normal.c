@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:38 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/25 21:21:44 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:51:08 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ t_tuple	sphere_normal_at(t_obj *s, t_tuple *o_point)
 	return (tuple_norm(w_normal));
 }
 
-t_tuple	plane_normal_at(t_obj *pl, t_tuple *w_point)
+t_tuple	plane_normal_at(t_obj *pl, t_tuple *o_point)
 {
 	t_matrix	t_m;
 	t_tuple		obj_normal;
 	t_tuple		w_normal;
 
-	(void)w_point;
+	(void)o_point;
 	obj_normal = tuple_vec(0, 1, 0);
 
 	t_m = matrix_transpose(&pl->transform);
@@ -57,15 +57,9 @@ t_tuple	obj_normal(t_obj *o, t_tuple *w_point)
 
 t_tuple	world_normal_at(t_obj *o, t_tuple *w_point)
 {
-	t_tuple		o_normal;
 	t_tuple		w_normal;
-	t_matrix	t_m;
 
-	o_normal = obj_normal(o, w_point);
-
-	t_m = matrix_transpose(&o->transform);
-	w_normal = matrix_multiply_tuple(&t_m, &o_normal);
-	w_normal.w = 0;
+	w_normal = obj_normal(o, w_point);
 	return (tuple_norm(w_normal));
 }
 

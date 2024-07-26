@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/25 21:44:16 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:49:51 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ int	main(void)
 	obj3->material.colour = colour_set(1, 0.9, 0.9);
 	obj3->material.specular = 0;
 
+	t_matrix rotate_pl;
 	//red right wall
 	t_obj *obj4;
 	obj4 = obj_create(OT_PLANE);
 	obj_add_back(&obj_list, obj4);
 	obj4->material.colour = colour_set(1, 0, 0);
 	obj4->material.specular = 0;
-	t_matrix rotate_pl;
 	matrix_set_translation(&translate_sp, 2, 0, 2);
-	matrix_set_rotation_z(&rotate_pl, PI / 4);
+	matrix_set_rotation_z(&rotate_pl, PI / 2);
 	matrix_multiply_matrix(&translate_sp, &rotate_pl, &endlime);
 	sphere_set_transform(obj4, &endlime, &scale_sp);
 	
@@ -86,11 +86,9 @@ int	main(void)
 	obj5 = obj_create(OT_PLANE);
 	obj_add_back(&obj_list, obj5);
 	obj5->material.colour = colour_set(1, 0, 0);
-	obj5->material.diffuse = 0.7;
-	obj5->material.specular = 0.3;
-	obj5->material.ambient = 0.1;
+	obj5->material.specular = 0;
 	matrix_set_translation(&translate_sp, 0, 0, 5);
-	matrix_set_rotation_x(&rotate_pl, -PI / 4);
+	matrix_set_rotation_x(&rotate_pl, PI / 2);
 	matrix_multiply_matrix(&translate_sp, &rotate_pl, &endlime);
 	sphere_set_transform(obj5, &endlime, &scale_sp);
 
@@ -162,7 +160,7 @@ int	main(void)
 	// sphere_set_transform(obj6, &endlime, &scale_sp);
 
 
-	w.point_light.position = tuple_poi(3, 10, 6);
+	w.point_light.position = tuple_poi(-10, 10, -10);
 	w.point_light.intensity = colour_set(1, 1, 1);
 
 	bool	shaded;
@@ -174,7 +172,7 @@ int	main(void)
 
 	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, PI / 2);
 	pixel_size(&c);
-	t_tuple	from = tuple_poi(0, 3.5, -62);
+	t_tuple	from = tuple_poi(0, 3.5, -44);
 	t_tuple	to = tuple_poi(0, 2, 0);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	c.transform = view_transform(from, to, up);

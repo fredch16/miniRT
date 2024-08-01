@@ -36,7 +36,7 @@ void		xadd_back(t_xsn	**xslist, t_xsn *n);
 void		free_xs(t_xsn **xslist);
 void		free_obj(t_obj **objlist);
 
-t_comps		prep_comps(t_xsn *x, t_ray ray);
+t_comps		prep_comps(t_xsn *x, t_ray ray, t_world *w);
 t_colour	shade_hit(t_world *w, t_comps comps);
 t_colour	colour_at(t_world *w, t_ray r);
 t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up);

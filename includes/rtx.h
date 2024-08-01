@@ -15,7 +15,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 # define WIN_WIDTH 800
-# define WIN_HEIGHT	1400
+# define WIN_HEIGHT	800
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
 # include "../includes/libft/libft.h"

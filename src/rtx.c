@@ -76,8 +76,8 @@ int	main(void)
 	obj_add_back(&obj_list, obj4);
 	obj4->material.colour = colour_set(1, 0, 0);
 	obj4->material.specular = 0;
-	matrix_set_translation(&translate_sp, 2, 0, 2);
-	matrix_set_rotation_z(&rotate_pl, PI / 2);
+	matrix_set_translation(&translate_sp, 5, 0, 3);
+	matrix_set_rotation_z(&rotate_pl, -PI / 2);
 	matrix_multiply_matrix(&translate_sp, &rotate_pl, &endlime);
 	sphere_set_transform(obj4, &endlime, &scale_sp);
 	
@@ -88,7 +88,7 @@ int	main(void)
 	obj5->material.colour = colour_set(1, 0, 0);
 	obj5->material.specular = 0;
 	matrix_set_translation(&translate_sp, 0, 0, 5);
-	matrix_set_rotation_x(&rotate_pl, PI / 2);
+	matrix_set_rotation_x(&rotate_pl, -PI / 2);
 	matrix_multiply_matrix(&translate_sp, &rotate_pl, &endlime);
 	sphere_set_transform(obj5, &endlime, &scale_sp);
 
@@ -160,24 +160,34 @@ int	main(void)
 	// sphere_set_transform(obj6, &endlime, &scale_sp);
 
 
-	w.point_light.position = tuple_poi(-10, 10, -10);
+	w.point_light.position = tuple_poi(-10, 10, 0);
 	w.point_light.intensity = colour_set(1, 1, 1);
 
 	bool	shaded;
-	shaded = in_shadow(&w, tuple_poi(4, 4.5, 0));
+	shaded = in_shadow(&w, tuple_poi(5, 4.5, -2), obj5);
 	if (shaded == true)
 		printf("im in a shadow\n");
 	else
 		printf("im not in a shadow, im just dark\n");
 
+	t_ray		ray;
+	t_tuple	p;
+	t_tuple	d;
+	p = tuple_poi(0, 0, -5);
+	d = tuple_vec(0, 0, 1);
+	ray_create(&ray, p, d);
+	t_colour res = colour_at(&w, ray);
+	printf("Colour is %.2f, %.2f, %.2f\n", res.r, res.g, res.b);
+
 	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, PI / 2);
 	pixel_size(&c);
-	t_tuple	from = tuple_poi(0, 3.5, -44);
+	t_tuple	from = tuple_poi(0, 3.5, -60);
 	t_tuple	to = tuple_poi(0, 2, 0);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	c.transform = view_transform(from, to, up);
 	matrix_det_4(&c.transform);
 	c.trans_inverse = matrix_inverse(&c.transform);
+	w.c = c;
 	// matrix_print(&view);
 
 	init_mlx(&data, c, &w);

@@ -28,7 +28,7 @@ t_tuple	sphere_normal_at(t_obj *s, t_tuple *o_point)
 	return (tuple_norm(w_normal));
 }
 
-t_tuple	plane_normal_at(t_obj *pl, t_tuple *o_point)
+t_tuple	plane_normal_at(t_obj *pl, t_tuple *o_point, t_tuple eyev, t_tuple lightv)
 {
 	t_matrix	t_m;
 	t_tuple		obj_normal;
@@ -40,26 +40,44 @@ t_tuple	plane_normal_at(t_obj *pl, t_tuple *o_point)
 	t_m = matrix_transpose(&pl->transform);
 	w_normal = matrix_multiply_tuple(&t_m, &obj_normal);
 	w_normal.w = 0;
+	double		doteye;
+	double		dotlight;	
+
+	doteye = tuple_dot(w_normal, eyev);
+	dotlight = tuple_dot(w_normal, lightv);
+	if ((doteye * dotlight) > 0)
+	{
+		// CONFIRMS LIGHT AND EYES ARE ON SAME SIDE OF PLANE 
+		if (doteye < 0 && dotlight < 0)
+		{
+			// CONFIRMS LOOKING AT BACK OF PLANE
+			// FLIP THAT BITCH
+			w_normal = tuple_neg(w_normal);
+		}
+	}
 	return (tuple_norm(w_normal));
 }
 
-t_tuple	obj_normal(t_obj *o, t_tuple *w_point)
-{
-	t_tuple o_point;
+t_tuple	obj_normal(t_obj *o, t_tuple *w_point, t_tuple eyev, t_world *w)
+{ 
+	t_tuple o_point; 
+	t_tuple	lightv;
 
 	matrix_det_4(&o->transform);
+
+	lightv = tuple_sub(w->point_light.position, *w_point);
 	o_point = matrix_multiply_tuple(&o->transform, w_point);
 	if (o->type == OT_PLANE)
-		return(plane_normal_at(o, &o_point));
+		return(plane_normal_at(o, &o_point, eyev, lightv));
 	else
 		return(sphere_normal_at(o, &o_point));
 }
 
-t_tuple	world_normal_at(t_obj *o, t_tuple *w_point)
+t_tuple	world_normal_at(t_obj *o, t_tuple *w_point, t_tuple eyev, t_world *w)
 {
 	t_tuple		w_normal;
 
-	w_normal = obj_normal(o, w_point);
+	w_normal = obj_normal(o, w_point, eyev, w);
 	return (tuple_norm(w_normal));
 }
 

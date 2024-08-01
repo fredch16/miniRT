@@ -123,10 +123,23 @@ typedef struct s_xsn
 	struct s_xsn	*next;
 }	t_xsn;
 
+typedef struct s_camera
+{
+	double	hsize;
+	double	vsize;
+	double	field_of_view;
+	t_matrix	transform; //how the world should be oriented relative to the camera.
+	t_matrix	trans_inverse;
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
+}	t_camera;
+
 typedef struct s_world
 {
-	t_obj		**obj_list;
+	t_obj			**obj_list;
 	t_point_light	point_light;
+	t_camera		c;
 }	t_world;
 
 typedef struct s_data
@@ -153,16 +166,5 @@ typedef struct s_comps
 	int		inside;
 }	t_comps;
 
-typedef struct s_camera
-{
-	double	hsize;
-	double	vsize;
-	double	field_of_view;
-	t_matrix	transform; //how the world should be oriented relative to the camera.
-	t_matrix	trans_inverse;
-	double	half_width;
-	double	half_height;
-	double	pixel_size;
-}	t_camera;
 
 #endif

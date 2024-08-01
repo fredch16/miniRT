@@ -34,9 +34,9 @@ t_colour	lighting(t_material *material, t_point_light *light, bool shadow)
 	// tuple_print(lightv);
 	// tuple_print(light->latr->normalv);
 	light_dot_normal = tuple_dot(lightv, light->latr->normalv);
+	// tuple_print(light->latr->normalv);
 	if (light_dot_normal < 0)
 	{
-		// printf("TRIGGER\n");
 		l.diffuse = colour_set(0, 0, 0);
 		l.specular = colour_set(0, 0, 0);
 	}
@@ -105,7 +105,7 @@ u_int32_t	col_to_rgb(t_colour col)
 	return (rgb_code);
 }
 
-bool	in_shadow(t_world *w, t_tuple point)
+bool	in_shadow(t_world *w, t_tuple point, t_obj *obj)
 {
 	t_tuple	v;
 	t_tuple	direction;
@@ -114,6 +114,7 @@ bool	in_shadow(t_world *w, t_tuple point)
 	t_xsn	*x;
 	t_xsn	*xhit;
 
+	obj += 0;
 	v = tuple_sub(w->point_light.position, point);
 	distance = tuple_abs(v);
 	direction = tuple_norm(v);
@@ -123,7 +124,7 @@ bool	in_shadow(t_world *w, t_tuple point)
 	if (!x)
 		return (free_xs(&x), false);
 	xhit = intersect_hit(&x);
-	if (xhit && xhit->x < distance)
+	if ((xhit && xhit->x < distance) && (xhit->xs_obj != obj))
 		return (free_xs(&x), true);
 	return(free_xs(&x), false);
 }

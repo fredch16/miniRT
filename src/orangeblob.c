@@ -22,7 +22,6 @@ int	main(void)
 	// t_xsn	*xs_list;
 	t_tuple		p;
 	t_tuple		d;
-	t_ray		ray;
 	// t_comps		comps;
 	t_world		w;
 	t_matrix	translate_sp;
@@ -35,10 +34,9 @@ int	main(void)
 	matrix_set_scaling(&scale_sp, 0.5, 0.5, 0.5);
 	// matrix_set_4(&scale_sp);
 
+	t_ray		ray;
 	p = tuple_poi(0, 0, -5);
 	d = tuple_vec(0, 0, 1);
-	// p = tuple_poi(10, 10, -5);
-	// d = tuple_vec(1, 1, 0);
 	ray_create(&ray, p, d);
 	
 	//earth

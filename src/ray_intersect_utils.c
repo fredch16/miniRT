@@ -71,6 +71,7 @@ t_xsn	*intersect_sp(t_ray ray, t_obj *o)
 t_xsn	*intersect_pl(t_ray ray, t_obj *o)
 {
 	double	t;
+
 	ray = ray_transform(&ray, &o->transform);
 	if (fabs(ray.direction.y) < EPSILON)
 		return (NULL);
@@ -89,10 +90,10 @@ t_xsn	*intersect_world(t_world *w, t_ray r)
 	tmp_o = *w->obj_list;
 	while (tmp_o)
 	{
-		if (tmp_o->type ==OT_SPHERE)
-			xadd_back(&xs, intersect_sp(r, tmp_o));
 		if (tmp_o->type ==OT_PLANE)
 			xadd_back(&xs, intersect_pl(r, tmp_o));
+		else
+			xadd_back(&xs, intersect_sp(r, tmp_o));
 		tmp_o = tmp_o->next;
 	}
 	return (xs);
@@ -119,7 +120,7 @@ t_xsn	*intersect_hit(t_xsn **xslist)
 	return (hit);
 }
 
-t_comps	prep_comps(t_xsn *x, t_ray ray)
+t_comps	prep_comps(t_xsn *x, t_ray ray, t_world *w)
 {
 	t_comps	comps;
 	t_tuple	shadow_offset;
@@ -129,8 +130,8 @@ t_comps	prep_comps(t_xsn *x, t_ray ray)
 	comps.obj = x->xs_obj;
 	comps.point = position_on_ray(&ray, comps.t);
 	comps.eyev = tuple_neg(ray.direction);
-	comps.normalv = world_normal_at(comps.obj, &comps.point);
-	if ((tuple_dot(comps.normalv, comps.eyev) < 0) && comps.obj->type != OT_PLANE)
+	comps.normalv = world_normal_at(comps.obj, &comps.point, comps.eyev, w);
+	if ((tuple_dot(comps.normalv, comps.eyev) < -1) && comps.obj->type != OT_PLANE)
 	{
 		printf("       YO WE INSIDE");
 		comps.inside = 1;
@@ -148,7 +149,7 @@ t_colour shade_hit(t_world *w, t_comps comps)
 	t_lighting_atr	latr;
 	bool			shadow;
 
-	shadow = in_shadow(w, comps.point);
+	shadow = in_shadow(w, comps.point, comps.obj);
 	w->point_light.latr = &latr;
 	latr.point = comps.point;
 	latr.normalv = comps.normalv;
@@ -168,7 +169,7 @@ t_colour colour_at(t_world *w, t_ray r)
 		return (free_xs(&x), colour_set(0, 0, 0));
 	xhit = intersect_hit(&x);
 	if (xhit)
-		comps = prep_comps(xhit, r);
+		comps = prep_comps(xhit, r, w);
 	col = shade_hit(w, comps);
 	return (free_xs(&x), col);
 }

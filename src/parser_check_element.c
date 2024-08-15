@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:37:12 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/25 13:45:46 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:44:28 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ bool	file_check_capital(char **text)
 	l = times_met(text, 'L');
 	if (a != 1 || c != 1 || l != 1)
 	{
-		ft_putstr_fd("Error\nElements which are defined by a capital letter have to be declared once in the scene.\n", 2);
+		ft_putstr_fd("Error\nElements which are defined by a capital", 2);
+		ft_putstr_fd(" letter have to be declared once in the scene.\n", 2);
 		return (false);
 	}
 	else
@@ -75,7 +76,7 @@ bool	file_check_line(char **line)
         */
 		i++;
 	}
-	
+	return (true);
 }
 
 int	is_space(int c)

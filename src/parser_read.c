@@ -6,12 +6,11 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:39:53 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/24 17:16:47 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:15:28 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
-
 #include <fcntl.h>
 
 void	ft_message_error(char *str)

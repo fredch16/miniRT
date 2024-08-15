@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:44:14 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/25 13:44:36 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:07:48 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,13 @@ int		is_space(int c);
 
 //parser_check
 bool	file_check_error(char **scene);
+bool	file_wrong_element(char **text);
+bool	find_needle(char *line);
+void	free_text(char **text);
+
+//parser_set_data
+bool	set_data(char **scene, t_parser *parser);
+
+//parset_set_obj
 
 #endif

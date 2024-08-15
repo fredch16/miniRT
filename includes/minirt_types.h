@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 14:30:51 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:32:42 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,67 @@ typedef struct s_camera
 	double	half_height;
 	double	pixel_size;
 }	t_camera;
+
+//Parser structures:
+typedef struct s_A
+{
+	double		val;
+	t_colour	col;
+}	t_A;
+
+typedef struct s_C
+{
+	t_tuple		view_point;
+	t_tuple		orientation_vector;
+	t_colour	col;
+}	t_C;
+
+typedef struct s_L
+{
+	t_tuple	light_point;
+	double	brightness;
+	//RGB is unused in mandatory part
+}	t_L;
+
+/*forward declaration*/
+typedef struct s_sp t_sp;
+typedef struct s_pl t_pl;
+typedef struct s_cy t_cy;
+
+typedef struct s_sp
+{
+	t_tuple		center;
+	double		diameter;
+	t_colour	col;
+	t_sp		*next;
+}	t_sp;
+
+typedef struct s_pl
+{
+	t_tuple		point;
+	t_tuple		normal_vec;
+	t_colour	col;
+	t_pl		*next;
+}	t_pl;
+
+typedef struct s_cy
+{
+	t_tuple		center;
+	t_tuple		normal_vec;
+	double		diameter;
+	double		height;
+	t_colour	col;
+	t_cy		*next;
+}	t_cy;
+
+typedef struct s_parser
+{
+	t_A		ambient;
+	t_C		camera;
+	t_L		light;
+	t_sp	*sphere;
+	t_pl	*plane;
+	t_cy	*cylinder;
+}	t_parser;
 
 #endif

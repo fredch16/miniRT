@@ -20,6 +20,12 @@ t_obj	*obj_create(enum e_obj_type ot)
 	if (!new)
 		return (NULL);
 	new->type = ot;
+	if (ot == OT_CYLINDER)
+	{
+		new->max = DBL_MAX;
+		new->min = DBL_MIN;
+		new->capped = true;
+	}
 	matrix_set_4(&new->transform);
 	new->material = material_set_default();
 	return (new);

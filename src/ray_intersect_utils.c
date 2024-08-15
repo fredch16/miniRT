@@ -81,6 +81,41 @@ t_xsn	*intersect_pl(t_ray ray, t_obj *o)
 	return (NULL);
 }
 
+t_xsn	*intersect_cy(t_ray ray, t_obj *cy)
+{
+	t_quadratic	quad;
+	t_xsn		*xs;
+	double		t;
+	double		y;
+
+	xs = NULL;
+	ray = ray_transform(&ray, &cy->transform);
+	quad.a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);
+
+	if (quad.a < EPSILON)
+		return (add_caps_cy(cy, ray, &xs));
+
+	quad.b = 2 * ray.origin.x * ray.direction.x + 2 * ray.origin.z * ray.direction.z;
+	quad.c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1;
+	quad.d = pow(quad.b, 2) - (4 * quad.a * quad.c);
+
+	if (quad.d >= 0)
+	{
+		t = (-quad.b + sqrt(quad.d)) / (2 * quad.a);
+		y = ray.origin.y + t * ray.direction.y;
+		if ((cy->min < y) && (y < cy->max))
+			xs = x_new(cy, t);
+		if (quad.d > 0)
+		{
+			t = (-quad.b - sqrt(quad.d)) / (2 * quad.a);
+			y = ray.origin.y + t * ray.direction.y;
+			if ((cy->min < y) && (y < cy->max))
+				xadd_back(&xs, x_new(cy, t));
+		}
+	}
+	return (add_caps_cy(cy, ray, &xs));
+}
+
 t_xsn	*intersect_world(t_world *w, t_ray r)
 {
 	t_obj	*tmp_o;
@@ -90,8 +125,10 @@ t_xsn	*intersect_world(t_world *w, t_ray r)
 	tmp_o = *w->obj_list;
 	while (tmp_o)
 	{
-		if (tmp_o->type ==OT_PLANE)
+		if (tmp_o->type == OT_PLANE)
 			xadd_back(&xs, intersect_pl(r, tmp_o));
+		if (tmp_o->type == OT_CYLINDER)
+			xadd_back(&xs, intersect_cy(r, tmp_o));
 		else
 			xadd_back(&xs, intersect_sp(r, tmp_o));
 		tmp_o = tmp_o->next;

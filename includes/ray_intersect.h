@@ -31,6 +31,8 @@ t_xsn		*intersect_world(t_world *w, t_ray r);
 t_xsn		*intersect_hit(t_xsn **xslist);
 t_xsn		*intersect_sp(t_ray ray, t_obj *o);
 t_xsn		*intersect_pl(t_ray ray, t_obj *o);
+t_xsn		*intersect_cy(t_ray ray, t_obj *o);
+t_xsn		*add_caps_cy(t_obj *cy, t_ray ray, t_xsn **xs);
 t_xsn		*x_new(t_obj *o, double x);
 void		xadd_back(t_xsn	**xslist, t_xsn *n);
 void		free_xs(t_xsn **xslist);

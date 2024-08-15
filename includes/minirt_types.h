@@ -111,6 +111,9 @@ typedef struct s_obj
 	enum			e_obj_type type;
 	t_matrix		transform;
 	t_material		material;
+	double			min;
+	double			max;
+	bool			capped;
 	struct s_obj	*next;
 }	t_obj;
 

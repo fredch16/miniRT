@@ -17,8 +17,9 @@
 #include <sys/types.h>
 
 //sphere_normal:
-t_tuple		sphere_normal_at(t_obj *s, t_tuple *o_point);
-t_tuple		plane_normal_at(t_obj *pl, t_tuple *o_point, t_tuple eyev, t_tuple lightv);
+t_tuple		normal_at_sp(t_obj *s, t_tuple *o_point);
+t_tuple		normal_at_pl(t_obj *pl, t_tuple *o_point, t_tuple eyev, t_tuple lightv);
+t_tuple		normal_at_cy(t_obj *cy, t_tuple *o_point);
 t_tuple		reflect(t_tuple *in, t_tuple *normal);
 t_material	material_set_default(void);
 t_tuple		world_normal_at(t_obj *o, t_tuple *w_point, t_tuple eyev, t_world *w);

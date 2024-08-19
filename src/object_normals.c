@@ -101,7 +101,7 @@ t_tuple	obj_normal(t_obj *o, t_tuple *w_point, t_tuple eyev, t_world *w)
 	o_point = matrix_multiply_tuple(&o->transform, w_point);
 	if (o->type == OT_PLANE)
 		return(normal_at_pl(o, &o_point, eyev, lightv));
-	if (o->type == OT_CYLINDER)
+	else if (o->type == OT_CYLINDER)
 		return(normal_at_cy(o, &o_point));
 	else
 		return(normal_at_sp(o, &o_point));

@@ -127,7 +127,7 @@ t_xsn	*intersect_world(t_world *w, t_ray r)
 	{
 		if (tmp_o->type == OT_PLANE)
 			xadd_back(&xs, intersect_pl(r, tmp_o));
-		if (tmp_o->type == OT_CYLINDER)
+		else if (tmp_o->type == OT_CYLINDER)
 			xadd_back(&xs, intersect_cy(r, tmp_o));
 		else
 			xadd_back(&xs, intersect_sp(r, tmp_o));

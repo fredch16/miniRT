@@ -31,7 +31,7 @@ int	main(void)
 	//cylinder green
 	t_obj		*obj;
 	w.obj_list = &obj;
-	obj = obj_create(OT_SPHERE);
+	obj = obj_create(OT_CYLINDER);
 	obj_add_back(&obj_list, obj);
 	obj->material.colour = colour_set(0.1, 1, 0.5);
 	obj->material.diffuse = 0.7;
@@ -39,9 +39,12 @@ int	main(void)
 	obj->min = 0;
 	obj->max = 2;
 	t_matrix bigger;
-	// matrix_set_scaling(&bigger, 2, 0.7, 2);
-	matrix_set_translation(&bigger, 9, 0, 0);
-	sphere_set_transform(obj, &bigger, &bigger);
+	t_matrix longer;
+	t_matrix better;
+	matrix_set_scaling(&bigger, 2, 0.7, 2);
+	matrix_set_translation(&longer, 3, 0, 0);
+	matrix_multiply_matrix(&bigger, &longer, &better);
+	sphere_set_transform(obj, &better, &bigger);
 	// obj->capped = false;
 
 	//green

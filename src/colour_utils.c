@@ -6,13 +6,13 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:12:27 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/18 23:58:18 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:08:56 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-t_colour colour_add(t_colour c1, t_colour c2)
+t_colour	colour_add(t_colour c1, t_colour c2)
 {
 	t_colour	result;
 
@@ -22,7 +22,7 @@ t_colour colour_add(t_colour c1, t_colour c2)
 	return (result);
 }
 
-t_colour colour_sub(t_colour c1, t_colour c2)
+t_colour	colour_sub(t_colour c1, t_colour c2)
 {
 	t_colour	result;
 
@@ -32,7 +32,7 @@ t_colour colour_sub(t_colour c1, t_colour c2)
 	return (result);
 }
 
-t_colour colour_sca_mul(double multiplier, t_colour c1)
+t_colour	colour_sca_mul(double multiplier, t_colour c1)
 {
 	t_colour	result;
 
@@ -42,7 +42,7 @@ t_colour colour_sca_mul(double multiplier, t_colour c1)
 	return (result);
 }
 
-t_colour colour_mul(t_colour c1, t_colour c2)
+t_colour	colour_mul(t_colour c1, t_colour c2)
 {
 	t_colour	result;
 

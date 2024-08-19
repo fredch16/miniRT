@@ -6,32 +6,28 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:08:51 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/19 21:45:01 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:38:36 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtx.h"
+#include "../../includes/rtx.h"
 
+// sets 4x4 identity matrix:
 void	matrix_set_4(t_matrix *m)
 {
 	int			i;
 	int			j;
-	double		values[4][4];
 
-	i = -1;
-	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-		{
-			if (i == j)
-				values[i][j] = 1.0;
-			else
-				values[i][j] = 0.0;
-		}
-	}
 	m->rows = 4;
 	m->columns = 4;
+	double values[4][4] = 
+	{
+		{1, 0, 0, 0},
+		{0, 1, 0, 0},
+		{0, 0, 1, 0},
+		{0, 0, 0, 1}
+	};
+
 	i = 0;
 	j = 0;
 	while (i < 4)
@@ -46,6 +42,7 @@ void	matrix_set_4(t_matrix *m)
 	}
 }
 
+// sets 3x3 identity matrix:
 void	matrix_set_3(t_matrix *m)
 {
 	int			i;
@@ -60,6 +57,7 @@ void	matrix_set_3(t_matrix *m)
 		{0, 0, 1}
 
 	};
+
 	i = 0;
 	j = 0;
 	while (i < 3)
@@ -74,6 +72,7 @@ void	matrix_set_3(t_matrix *m)
 	}
 }
 
+// sets 2x2 identity matrix:
 void	matrix_set_2(t_matrix *m)
 {
 	int			i;
@@ -86,6 +85,7 @@ void	matrix_set_2(t_matrix *m)
 		{1, 0},
 		{0, 1}
 	};
+
 	i = 0;
 	j = 0;
 	while (i < 2)
@@ -100,6 +100,7 @@ void	matrix_set_2(t_matrix *m)
 	}
 }
 
+// translation matrix is used to move a point (by adding to it)
 void	matrix_set_translation(t_matrix *m, double x, double y, double z)
 {
 	matrix_set_4(m);
@@ -108,6 +109,8 @@ void	matrix_set_translation(t_matrix *m, double x, double y, double z)
 	m->matrix[2][3] = z;
 }
 
+// scaling matrix is used to scale all points on the object 
+//making it larger or smaller (by multiplication)
 void	matrix_set_scaling(t_matrix *m, double x, double y, double z)
 {
 	matrix_set_4(m);

@@ -6,11 +6,11 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 14:41:49 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/19 18:05:52 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:39:00 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtx.h"
+#include "../../includes/rtx.h"
 
 void	matrix_set_rotation_x(t_matrix *m, double r)
 {

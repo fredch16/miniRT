@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:05:00 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/25 21:28:17 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:05:07 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,8 @@ t_colour	lighting(t_material *material, t_point_light *light, bool shadow)
 
 	effective_colour = colour_mul(material->colour, light->intensity);
 	lightv = tuple_norm(tuple_sub(light->position, light->latr->point));
-	//printer
-	// tuple_print(light->latr->point);
 	l.ambient = colour_sca_mul(material->ambient, effective_colour);
-	//printer
-	// tuple_print(lightv);
-	// tuple_print(light->latr->normalv);
 	light_dot_normal = tuple_dot(lightv, light->latr->normalv);
-	// tuple_print(light->latr->normalv);
 	if (light_dot_normal < 0)
 	{
 		l.diffuse = colour_set(0, 0, 0);
@@ -42,30 +36,23 @@ t_colour	lighting(t_material *material, t_point_light *light, bool shadow)
 	}
 	else
 	{
-		l.diffuse = colour_sca_mul(light_dot_normal, 
-							 colour_sca_mul(material->diffuse, effective_colour));
-		//print diffuse
-		// printf("colour at is %.3f, %.3f, %.3f\n",  l.diffuse.r, l.diffuse.g, l.diffuse.b);
+		l.diffuse = colour_sca_mul(light_dot_normal,
+				colour_sca_mul(material->diffuse, effective_colour));
 		lightv_neg = tuple_neg(lightv);
 		reflectv = reflect(&lightv_neg, &light->latr->normalv);
 		reflect_dot_eye = tuple_dot(reflectv, light->latr->eyev);
-		if (reflect_dot_eye <= 0){
-			// printf("TRIGGER DOT EYE REFLECT\n");
+		if (reflect_dot_eye <= 0)
 			l.specular = colour_set(0, 0, 0);
-		}
 		else
 		{
 			factor = pow(reflect_dot_eye, material->shininess);
-			l.specular = colour_sca_mul(factor, 
-							   colour_sca_mul(material->specular, light->intensity));
-			// printf("DOT EYE GREATER THAN ZERO\n");
+			l.specular = colour_sca_mul(factor,
+					colour_sca_mul(material->specular, light->intensity));
 		}
 	}
 	res = colour_set(0, 0, 0);
 	if (shadow == false)
-	{
 		res = colour_add(l.specular, l.diffuse);
-	}
 	res = colour_add(res, l.ambient);
 	return (res);
 }
@@ -83,8 +70,8 @@ t_tuple	position_on_ray(t_ray *ray, double t)
 
 u_int32_t	col_to_rgb(t_colour col)
 {
-	t_rgb out_col;
-	uint32_t rgb_code;
+	t_rgb		out_col;
+	uint32_t	rgb_code;
 
 	rgb_code = 0;
 	if (col.r > 1)
@@ -100,8 +87,8 @@ u_int32_t	col_to_rgb(t_colour col)
 	else
 		out_col.b = col.b * 255;
 	rgb_code |= (out_col.r << 16);
-    rgb_code |= (out_col.g << 8);
-    rgb_code |= out_col.b;
+	rgb_code |= (out_col.g << 8);
+	rgb_code |= out_col.b;
 	return (rgb_code);
 }
 
@@ -119,12 +106,11 @@ bool	in_shadow(t_world *w, t_tuple point, t_obj *obj)
 	distance = tuple_abs(v);
 	direction = tuple_norm(v);
 	ray_create(&r, point, direction);
-	
 	x = intersect_world(w, r);
 	if (!x)
 		return (free_xs(&x), false);
 	xhit = intersect_hit(&x);
 	if ((xhit && xhit->x < distance) && (xhit->xs_obj != obj))
 		return (free_xs(&x), true);
-	return(free_xs(&x), false);
+	return (free_xs(&x), false);
 }

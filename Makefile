@@ -6,7 +6,7 @@
 #    By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/07/24 19:07:10 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/08/19 20:27:06 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ CC := gcc
 CFLAGS := -Wall -Werror -Wextra -g
 SRCS := src/rtx.c \
 		src/tuple_utils.c \
+		src/tuple_utils2.c \
+		src/tuple_utils3.c \
 		src/colour_utils.c \
 		src/mlx_utils.c \
 		src/matrix_utils.c src/matrix_utils_2.c src/matrix_set.c src/matrix_rotation.c\

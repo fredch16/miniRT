@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/08/15 17:08:51 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/22 19:51:53 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		file_check_error(scene);
-		if (set_data(scene, &parser) == true)
-			execute_rt(parser);
+		set_data(scene, &parser);
+		// if (set_data(scene, &parser) == true)
+		// 	execute_rt(parser);
 		free_text(scene);
 	}
 	return (1);

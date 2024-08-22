@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:39:53 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/15 12:15:28 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/22 19:51:50 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_message_error(char *str)
 {
-	ft_printf("%s", str);
+	ft_putstr_fd(str, 2);
 	exit(2);
 }
 

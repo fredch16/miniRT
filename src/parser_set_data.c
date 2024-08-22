@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:00:47 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/15 18:10:49 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/22 19:53:25 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,40 @@ int	set_ambient(char *line, t_parser *parser)
 {
 	int		i;
 	int		j;
-	char	*dbl;
 
 	i = 2; //start after "A ";
-	while (is_space(line[i]) && line[i] != '\0')
+	while (is_space(line[i]) && line[i] != '\0')//i is beginning, j is end
 		i++;
 	j = i;
 	while (!is_space(line[j]) && line[j] != '\0')
 		j++;
-	if (i - j != 0)
-	{
-		dbl = (char *)malloc((j - i) * sizeof(char));
-		strncpy(dbl, i, j);
-		//parser->ambient.val = ft_atof
-	}
-	else
-		return (0); ///ERRORRRRR MESSAGEEEE
-	return (1);
+	if (i == j || set_dbl(line, i, j, &parser->ambient.val) == false)
+		return (0);
+	if (parser->ambient.val < 0.0 || parser->ambient.val > 1)
+		{
+			ft_putstr_fd("Ambient lighting ratio is out of range\n", 2);
+			return (0);
+		}
+	while (is_space(line[j]) && line[j] != '\0') ///j is beginning, i is end
+		j++;
+	i = j;
+	while (!is_space(line[i]) && line[i] != '\0')
+		i++;
+	if (i != j && set_rgb(line, i, j, &parser->ambient.col))
+		return (1);
+	return (0);
 }
 
-int	set_camera(char *line, t_parser *parser)
-{
+// int	set_camera(char *line, t_parser *parser)
+// {
 
-}
+// }
 
-int	set_light(char *line, t_parser *parser)
-{
+// int	set_light(char *line, t_parser *parser)
+// {
 
-	return(1); //if everything is okay
-}
+// 	return(1); //if everything is okay
+// }
 
 bool	set_data(char **scene, t_parser *parser)
 {
@@ -87,45 +92,25 @@ bool	set_data(char **scene, t_parser *parser)
 
 	i = 0;
 	count = 0;
-	while (scene[i] != NULL)
+	while (scene[i] != NULL && i == 0)
 	{
 		if (ft_strncmp(scene[i], "A ", 2) == 0)
 			count += set_ambient(scene[i], parser);
-		else if (ft_strncmp(scene[i], "C ", 2) == 0)
-			count += set_camera(scene[i], parser);
-		else if (ft_strncmp(scene[i], "L ", 2) == 0)
-			count += set_light(scene[i], parser);
-		else if(ft_strncmp(scene[i], "sp ", 3) == 0)
-			count += set_sphere(scene[i], parser);
-		else if (ft_strncmp(scene[i], "pl ", 3) == 0)
-			count += set_plane(scene[i], parser);
-		else if (ft_strncmp(scene[i], "cy ", 3) == 0)
-			count += set_cylinder(scene[i], parser);
+		printf("count = %i", count);
+		printf("ambient val = %f. r = %f, g = %f, b = %f", parser->ambient.val, parser->ambient.col.r, parser->ambient.col.g, parser->ambient.col.b);
+		// else if (ft_strncmp(scene[i], "C ", 2) == 0)
+		// 	count += set_camera(scene[i], parser);
+		// else if (ft_strncmp(scene[i], "L ", 2) == 0)
+		// 	count += set_light(scene[i], parser);
+		// else if(ft_strncmp(scene[i], "sp ", 3) == 0)
+		// 	count += set_sphere(scene[i], parser);
+		// else if (ft_strncmp(scene[i], "pl ", 3) == 0)
+		// 	count += set_plane(scene[i], parser);
+		// else if (ft_strncmp(scene[i], "cy ", 3) == 0)
+		// 	count += set_cylinder(scene[i], parser);
+		i++;
+		if (count != i)
+			return (false);
 	}
-	if (count != i)
-		return (false);
 	return (true);
-}
-
-//converts the beginning of string to double
-double	ft_atof(const char *str)
-{
-	double	res;
-	double	res2;
-	char	*c;
-	int		len;
-
-	c = (char *)str;
-	res = (double)ft_atoi(c);
-	while (*c && *c != '.')
-		c++;
-	if (*c == '.')
-		c++;
-	res2 = (double)ft_atoi(c);
-	len = ft_strlen(c);
-	res2 /= pow(10, len);
-	if (res >= 0)
-		return (res + res2);
-	else
-		return (res + -res2);
 }

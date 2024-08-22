@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:44:14 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/15 17:07:48 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/22 19:22:40 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,16 @@ void	free_text(char **text);
 bool	set_data(char **scene, t_parser *parser);
 
 //parset_set_obj
+
+//parser_check_dbl
+bool	check_dbl(const char *dbl);
+double	ft_atof(const char *str);
+bool	set_dbl(const char *line, int i, int j, double *dbl_ptr);
+
+//parser_check_rgb
+bool	set_rgb(char *line, int e, int s, t_colour *col);
+void	free_double_array(char **array);
+bool	is_rgb(char *line);
+bool	check_rbg_format(char *line);
 
 #endif

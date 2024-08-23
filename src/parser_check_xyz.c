@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 17:02:41 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/23 17:23:25 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:27:28 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ bool	set_coord(const char *line, int i, int j, t_tuple *point)
 		return (false);
 	}
 	a = ft_split(coord, ',');
-	*point = tuple_poi(ft_atoi(a[0]), ft_atoi(a[1]), ft_atoi(a[2]));
+	*point = tuple_poi(ft_atof(a[0]), ft_atof(a[1]), ft_atof(a[2]));
 	free_double_array(a);
 	free(coord);
 	return (true);
 }
 
-//check if line is rgb
+//check if line contains x,y,z coordinates
 bool	is_coord(char *line)
 {
 	char	**coord;

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:44:14 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/22 19:22:40 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:20:42 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	set_data(char **scene, t_parser *parser);
 //parset_set_obj
 
 //parser_check_dbl
-bool	check_dbl(const char *dbl);
+bool	is_dbl(const char *dbl);
 double	ft_atof(const char *str);
 bool	set_dbl(const char *line, int i, int j, double *dbl_ptr);
 
@@ -47,5 +47,9 @@ bool	set_rgb(char *line, int e, int s, t_colour *col);
 void	free_double_array(char **array);
 bool	is_rgb(char *line);
 bool	check_rbg_format(char *line);
+
+//parser_get_idx
+int	get_start(char *line, int i);
+int	get_end(char *line, int start);
 
 #endif

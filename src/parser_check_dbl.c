@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:02:57 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/22 19:51:48 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:20:36 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	set_dbl(const char *line, int i, int j, double *dbl_ptr)
 
 	dbl = (char *)malloc((j - i + 1) * sizeof(char));
 	ft_strlcpy(dbl, line + i, j - i + 1);
-	if (check_dbl(dbl) == true)
+	if (is_dbl(dbl) == true)
 		*dbl_ptr = ft_atof(dbl);
 	else
 	{
@@ -31,7 +31,7 @@ bool	set_dbl(const char *line, int i, int j, double *dbl_ptr)
 }
 
 //checks if a string is a double/int
-bool	check_dbl(const char *dbl)
+bool	is_dbl(const char *dbl)
 {
 	int	i;
 

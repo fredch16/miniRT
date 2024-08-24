@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:00:47 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/23 16:50:19 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/24 16:51:34 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,21 +96,60 @@ int	set_ambient(char *line, t_parser *parser)
 		return (1);
 	return (0);
 }
-// int	set_camera(char *line, t_parser *parser)
-// {
 
-// }
+int	set_camera(char *line, t_parser *parser)
+{
+	int	s;
+	int	e;
 
-// int	set_light(char *line, t_parser *parser)
-// {
+	s = get_start(line, 2);
+	e = get_end(line, s);
+	if (s == e || !set_coord(line, s, e, parser->camera.view_point))
+		return (0);
+	s = get_start(line, e);
+	e = get_end(line, s);
+	if (s == e || !set_vec(line, s, e, parser->camera.orientation_vector))
+		return (0);
+	s = get_start(line, e);
+	e = get_end(line, s);
+	if (s == e || !set_dbl(line, s, e, parser->camera.fov))
+		return (0)
+	if (parser->camera.fov < 0 || parser->camera.fov > 180)
+	{
+		ft_putstr_fd("Camera FOV (field of view) is out of range [0,180]\n", 2);
+		return (0)
+	}
+	return(1);
+}
 
-// 	return(1); //if everything is okay
-// }
+int	set_light(char *line, t_parser *parser)
+{
+	int	s;
+	int	e;
 
-/**
- * теперь нужно сделать остальные... так же как и ambient 
- * не забываем про норминет!
- */
+	s = get_start(line, 2);
+	e = get_end(line, s);
+	if (s == e || !set_coord(line, s, e, parser->light.light_point))
+		return (0);
+	s = get_start(line, e);
+	e = get_end(line, s);
+	if (s == e || !set_dbl(line, s, e, parser->light.brightness))
+		return (0)
+	if (parser->light.brightness < 0 || parser->light.brightness > 1)
+	{
+		ft_putstr_fd("Light brightness ratio is out of range [0.0,1.0]\n", 2);
+		return (0)
+	}
+	return(1);
+}
+
+void	set_next_null(t_parser *parser)
+{
+	parser->sphere->next = NULL;
+	parser->plane->next = NULL;
+	parser->cylinder->next = NULL;
+}
+
 bool	set_data(char **scene, t_parser *parser)
 {
 	int	i;
@@ -118,16 +157,17 @@ bool	set_data(char **scene, t_parser *parser)
 
 	i = 0;
 	count = 0;
+	set_next_null(parser);
 	while (scene[i] != NULL && i == 0)
 	{
 		if (ft_strncmp(scene[i], "A ", 2) == 0)
 			count += set_ambient(scene[i], parser);
-		printf("count = %i", count);
-		printf("ambient val = %f. r = %f, g = %f, b = %f", parser->ambient.val, parser->ambient.col.r, parser->ambient.col.g, parser->ambient.col.b);
-		// else if (ft_strncmp(scene[i], "C ", 2) == 0)
-		// 	count += set_camera(scene[i], parser);
-		// else if (ft_strncmp(scene[i], "L ", 2) == 0)
-		// 	count += set_light(scene[i], parser);
+		// printf("count = %i", count);
+		// printf("ambient val = %f. r = %f, g = %f, b = %f", parser->ambient.val, parser->ambient.col.r, parser->ambient.col.g, parser->ambient.col.b);
+		else if (ft_strncmp(scene[i], "C ", 2) == 0)
+			count += set_camera(scene[i], parser);
+		else if (ft_strncmp(scene[i], "L ", 2) == 0)
+			count += set_light(scene[i], parser);
 		// else if(ft_strncmp(scene[i], "sp ", 3) == 0)
 		// 	count += set_sphere(scene[i], parser);
 		// else if (ft_strncmp(scene[i], "pl ", 3) == 0)

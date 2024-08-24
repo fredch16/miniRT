@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/08/15 15:32:42 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/24 16:27:16 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ typedef struct s_C
 {
 	t_tuple		view_point;
 	t_tuple		orientation_vector;
-	t_colour	col;
+	double		fov;
 }	t_C;
 
 typedef struct s_L

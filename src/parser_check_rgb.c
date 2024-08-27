@@ -6,19 +6,19 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:59:37 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/22 19:51:46 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:42:38 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-bool	set_rgb(char *line, int i, int j, t_colour *col)
+bool	set_rgb(char *line, int e, int s, t_colour *col)
 {
 	char	**a;
 	char	*rgb;
 
-	rgb = (char *)malloc((i - j + 1) * sizeof(char));
-	ft_strlcpy(rgb, line + j, i - j + 1);
+	rgb = (char *)malloc((e - s + 1) * sizeof(char));
+	ft_strlcpy(rgb, line + s, e - s + 1);
 	if (!is_rgb(rgb))
 	{
 		free(rgb);

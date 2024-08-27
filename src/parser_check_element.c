@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:37:12 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/15 12:44:28 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:42:15 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,6 @@ bool	file_check_capital(char **text)
 	}
 	else
 		return (true);
-}
-
-bool	file_check_line(char **line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] != NULL)
-	{
-        /**
-         * functions for each line format check
-        */
-		i++;
-	}
-	return (true);
 }
 
 int	is_space(int c)

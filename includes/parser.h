@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:44:14 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/24 16:51:37 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:42:09 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_message_error(char *str);
 bool	file_check_rt(char *file);
 int		times_met(char **text, char a);
 bool	file_check_capital(char **text);
-bool	file_check_line(char **line);
 int		is_space(int c);
 
 //parser_check
@@ -34,15 +33,21 @@ void	free_text(char **text);
 
 //parser_set_data
 bool	set_data(char **scene, t_parser *parser);
-void	set_next_null(t_parser *parser);
+void	set_zeros_obj(t_parser *parser);
 int		set_ambient(char *line, t_parser *parser);
 int		set_camera(char *line, t_parser *parser);
 int		set_light(char *line, t_parser *parser);
 
-//parset_set_obj
-int		set_sphere(char **scene, t_parser *parser);
-int		set_plane(char **scene, t_parser *parser);
-int		set_cylinder(char **scene, t_parser *parser);
+//parser_set_obj
+int		set_sphere(char *scene, t_parser *parser);
+int		set_plane(char *scene, t_parser *parser);
+int		set_cylinder(char *scene, t_parser *parser);
+
+//parser_fill_obj
+int	fill_sphere(char *line, t_sp *sphere);
+int	fill_plane(char *line, t_pl	*plane);
+int	fill_cylinder(char *line, t_cy	*cylinder);
+
 //parser_check_dbl
 
 bool	is_dbl(const char *dbl);
@@ -63,5 +68,10 @@ bool	in_range(double d);
 //parser_get_idx
 int	get_start(char *line, int i);
 int	get_end(char *line, int start);
+
+//parser_set_vec
+bool	set_vec(const char *line, int i, int j, t_tuple *tuple);
+bool	in_range(double d);
+bool	is_vec(char *line);
 
 #endif

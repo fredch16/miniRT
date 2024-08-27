@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 17:02:41 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/23 17:27:28 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:43:20 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ bool	set_coord(const char *line, int i, int j, t_tuple *point)
 bool	is_coord(char *line)
 {
 	char	**coord;
-	int		num;
 	int		i;
 	bool	ret;
 
+	i = 0;
 	ret = true;
 	coord = ft_split(line, ',');
 	while (coord[i])

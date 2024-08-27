@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:39:53 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/22 19:51:50 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:45:21 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,13 @@ char	**file_read(char *file)
 	char	**spt;
 
 	if (file_check_rt(file) == true)
-		ft_message_error("Error\nYou just need to pass a file with .rt extension.\n");
+		ft_message_error("Error\nNeed to pass a file with .rt extension.\n");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_message_error("Error while opening fd\nIt either doesn't exist or permission is denied.\n");
+	{
+		ft_putstr_fd("Error while opening fd\n", 2);
+		ft_message_error("It either doesn't exist or permission is denied.\n");
+	}
 	all_lines = read_file_contents(fd);
 	close(fd);
 	check_file_empty(all_lines);

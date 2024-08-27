@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/08/24 16:27:16 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:41:21 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,9 @@ typedef struct s_parser
 	t_sp	*sphere;
 	t_pl	*plane;
 	t_cy	*cylinder;
+	int		sphere_nbr;
+	int		plane_nbr;
+	int		cylinder_nbr;
 }	t_parser;
 
 #endif

@@ -1,4 +1,14 @@
-/*insert header*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_check_vec.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/27 14:42:46 by atyurina          #+#    #+#             */
+/*   Updated: 2024/08/27 14:43:05 by atyurina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
@@ -28,12 +38,12 @@ bool	set_vec(const char *line, int i, int j, t_tuple *tuple)
 //in range [-1,1] for each x,y,z axis:
 bool	in_range(double d)
 {
-    if (d < -1 || d > 1)
-    {
-        ft_putstr_fd("Vector coordinates are out of range\n", 2);
+	if (d < -1 || d > 1)
+	{
+		ft_putstr_fd("Vector coordinates are out of range\n", 2);
 		ft_putstr_fd("Please, set in range [-1,1] for each x,y,z axis\n", 2);
 		return (false);
-    }
+	}
 	return (true);
 }
 
@@ -41,11 +51,11 @@ bool	in_range(double d)
 bool	is_vec(char *line)
 {
 	char	**coord;
-	int		num;
 	int		i;
 	bool	ret;
 
 	ret = true;
+	i = 0;
 	coord = ft_split(line, ',');
 	while (coord[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:35:21 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/06 19:35:54 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:30:49 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ t_obj	*obj_create(enum e_obj_type ot)
 	if (!new)
 		return (NULL);
 	new->type = ot;
+	if (ot == OT_CYLINDER)
+	{
+		new->max = DBL_MAX;
+		new->min = DBL_MIN;
+		new->capped = true;
+	}
 	matrix_set_4(&new->transform);
 	new->material = material_set_default();
 	return (new);
@@ -69,4 +75,38 @@ void	xadd_back(t_xsn	**xslist, t_xsn *n)
 			tmp = tmp -> next;
 		tmp -> next = n;
 	}
+}
+
+void	free_xs(t_xsn **xslist)
+{
+	t_xsn	*to_free;
+	t_xsn	*tmp;
+
+	if (!xslist || !*xslist)
+		return ;
+	tmp = *xslist;
+	while (tmp)
+	{
+		to_free = tmp;
+		tmp = tmp -> next;
+		free(to_free);
+	}
+	*xslist = NULL;
+}
+
+void	free_obj(t_obj **objlist)
+{
+	t_obj	*to_free;
+	t_obj	*tmp;
+
+	if (!objlist || !*objlist)
+		return ;
+	tmp = *objlist;
+	while (tmp)
+	{
+		to_free = tmp;
+		tmp = tmp -> next;
+		free(to_free);
+	}
+	*objlist = NULL;
 }

@@ -6,11 +6,12 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/08/27 14:59:10 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:50:39 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
+#include <stdbool.h>
 
 void	free_objects_memory(t_parser *parser)
 {

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ray_intersect_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/18 18:03:48 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:02:13 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
+#include <stdbool.h>
 
 void	ray_create(t_ray *ray, t_tuple origin, t_tuple direction)
 {
@@ -67,6 +68,54 @@ t_xsn	*intersect_sp(t_ray ray, t_obj *o)
 	return (xs);
 }
 
+t_xsn	*intersect_pl(t_ray ray, t_obj *o)
+{
+	double	t;
+
+	ray = ray_transform(&ray, &o->transform);
+	if (fabs(ray.direction.y) < EPSILON)
+		return (NULL);
+	t = -ray.origin.y / ray.direction.y;
+	if (t >= EPSILON)
+		return (x_new(o, t));
+	return (NULL);
+}
+
+t_xsn	*intersect_cy(t_ray ray, t_obj *cy)
+{
+	t_quadratic	quad;
+	t_xsn		*xs;
+	double		t;
+	double		y;
+
+	xs = NULL;
+	ray = ray_transform(&ray, &cy->transform);
+	quad.a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);
+
+	if (quad.a < EPSILON)
+		return (add_caps_cy(cy, ray, &xs));
+
+	quad.b = 2 * ray.origin.x * ray.direction.x + 2 * ray.origin.z * ray.direction.z;
+	quad.c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1;
+	quad.d = pow(quad.b, 2) - (4 * quad.a * quad.c);
+
+	if (quad.d >= 0)
+	{
+		t = (-quad.b + sqrt(quad.d)) / (2 * quad.a);
+		y = ray.origin.y + t * ray.direction.y;
+		if ((cy->min < y) && (y < cy->max))
+			xs = x_new(cy, t);
+		if (quad.d > 0)
+		{
+			t = (-quad.b - sqrt(quad.d)) / (2 * quad.a);
+			y = ray.origin.y + t * ray.direction.y;
+			if ((cy->min < y) && (y < cy->max))
+				xadd_back(&xs, x_new(cy, t));
+		}
+	}
+	return (add_caps_cy(cy, ray, &xs));
+}
+
 t_xsn	*intersect_world(t_world *w, t_ray r)
 {
 	t_obj	*tmp_o;
@@ -76,7 +125,12 @@ t_xsn	*intersect_world(t_world *w, t_ray r)
 	tmp_o = *w->obj_list;
 	while (tmp_o)
 	{
-		xadd_back(&xs, intersect_sp(r, tmp_o));
+		if (tmp_o->type == OT_PLANE)
+			xadd_back(&xs, intersect_pl(r, tmp_o));
+		else if (tmp_o->type == OT_CYLINDER)
+			xadd_back(&xs, intersect_cy(r, tmp_o));
+		else
+			xadd_back(&xs, intersect_sp(r, tmp_o));
 		tmp_o = tmp_o->next;
 	}
 	return (xs);
@@ -103,46 +157,58 @@ t_xsn	*intersect_hit(t_xsn **xslist)
 	return (hit);
 }
 
-t_comps	prep_comps(t_xsn *x, t_ray ray)
+t_comps	prep_comps(t_xsn *x, t_ray ray, t_world *w)
 {
 	t_comps	comps;
+	t_tuple	shadow_offset;
 
 	comps.inside = 0;
 	comps.t = x->x;
 	comps.obj = x->xs_obj;
 	comps.point = position_on_ray(&ray, comps.t);
 	comps.eyev = tuple_neg(ray.direction);
-	comps.normalv = sphere_normal_at(comps.obj, &comps.point);
-	if (tuple_dot(comps.normalv, comps.eyev) < 0)
+	comps.normalv = world_normal_at(comps.obj, &comps.point, comps.eyev, w);
+	if ((tuple_dot(comps.normalv, comps.eyev) < -1) && comps.obj->type != OT_PLANE)
 	{
+		printf("       YO WE INSIDE");
 		comps.inside = 1;
 		comps.normalv = tuple_neg(comps.normalv);
 	}
+	shadow_offset = comps.normalv;
+	tuple_mul(EPSILON, &shadow_offset);
+	comps.point = tuple_add(comps.point, shadow_offset);
 	return (comps);
 }
 
 t_colour shade_hit(t_world *w, t_comps comps)
 {
+
 	t_lighting_atr	latr;
+	bool			shadow;
+
+	shadow = in_shadow(w, comps.point, comps.obj);
+	w->point_light.latr = &latr;
 	latr.point = comps.point;
 	latr.normalv = comps.normalv;
 	latr.eyev = comps.eyev;
-	return (lighting(&comps.obj->material, &w->point_light, &latr));
+	return (lighting(&comps.obj->material, &w->point_light, shadow));
 }
 
 t_colour colour_at(t_world *w, t_ray r)
 {
 	t_xsn		*x;	
+	t_xsn		*xhit;	
 	t_comps		comps;
 	t_colour	col;
 
 	x = intersect_world(w, r);
 	if (!x)
-		return (colour_set(0, 0, 0));
-	x = intersect_hit(&x);
-	comps = prep_comps(x, r);
+		return (free_xs(&x), colour_set(0, 0, 0));
+	xhit = intersect_hit(&x);
+	if (xhit)
+		comps = prep_comps(xhit, r, w);
 	col = shade_hit(w, comps);
-	return (col);
+	return (free_xs(&x), col);
 }
 
 t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
@@ -157,7 +223,6 @@ t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
 
 	forward = tuple_norm(tuple_sub(to, from));
 	upn = tuple_norm(up);
-	tuple_print(upn);
 	left = tuple_cro(forward, upn);
 	true_up = tuple_cro(left, forward);
 	matrix_set_4(&orientation);

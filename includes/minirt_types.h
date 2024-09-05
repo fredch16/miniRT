@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/08/27 11:41:21 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:52:00 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ enum e_obj_type
 at a single point in space*/
 typedef struct s_point_light
 {
-	t_tuple		position;
-	t_colour	intensity;
+	t_tuple			position;
+	t_colour		intensity;
+	t_lighting_atr	*latr;
 }	t_point_light;
 
 /* material is a property of the sphere
@@ -110,6 +111,9 @@ typedef struct s_obj
 	enum			e_obj_type type;
 	t_matrix		transform;
 	t_material		material;
+	double			min;
+	double			max;
+	bool			capped;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -121,6 +125,25 @@ typedef struct s_xsn
 	t_obj	*xs_obj;
 	struct s_xsn	*next;
 }	t_xsn;
+
+typedef struct s_camera
+{
+	double	hsize;
+	double	vsize;
+	double	field_of_view;
+	t_matrix	transform; //how the world should be oriented relative to the camera.
+	t_matrix	trans_inverse;
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
+}	t_camera;
+
+typedef struct s_world
+{
+	t_obj			**obj_list;
+	t_point_light	point_light;
+	t_camera		c;
+}	t_world;
 
 typedef struct s_data
 {
@@ -134,13 +157,8 @@ typedef struct s_data
 	int		endian;
 	int		line_len;
 	t_tuple velocity;
+	t_world	*w;
 }	t_data;
-
-typedef struct s_world
-{
-	t_obj		**obj_list;
-	t_point_light	point_light;
-}	t_world;
 
 typedef struct s_comps
 {

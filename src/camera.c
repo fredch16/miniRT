@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
+/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:33:10 by atyurina          #+#    #+#             */
-/*   Updated: 2024/07/24 12:44:12 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:57:56 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	pixel_size(t_camera *c)
 	}
 	else
 	{
-		c->half_width = half_view * aspect; c->half_height = half_view;
+		c->half_width = half_view * aspect;
+		c->half_height = half_view;
 	}
 	c->pixel_size = (c->half_width * 2) / c->hsize;
 }
@@ -51,45 +52,39 @@ t_ray	ray_for_pixel(t_camera c, double px, double py)
 	double		world_y;
 	t_tuple		pixel;
 	t_tuple		point;
-//	t_matrix	inversed;
-	t_ray	ray;
+	t_ray		ray;
 
 	xoffset = (px + 0.5) * c.pixel_size;
 	yoffset = (py + 0.5) * c.pixel_size;
-
 	world_x = c.half_width - xoffset;
 	world_y = c.half_height - yoffset;
-
 	point = tuple_poi(world_x, world_y, -1);
-	//inversed = matrix_inverse(&c.transform);
 	pixel = matrix_multiply_tuple(&c.trans_inverse, &point);
-
 	point = tuple_poi(0, 0, 0);
 	ray.origin = matrix_multiply_tuple(&c.trans_inverse, &point);
 	ray.direction = tuple_norm(tuple_sub(pixel, ray.origin));
 	return (ray);
 }
 
-void render(t_camera c, t_world *w, t_data *data)
+void	render(t_camera c, t_world *w, t_data *data)
 {
 	int			x;
 	int			y;
 	t_ray		ray;
 	t_colour	col;
+	u_int32_t	col_code;
 
 	x = 0;
 	y = 0;
-	while (x++ < c.vsize - 1)
+	while (y++ < c.vsize - 1)
 	{
-		while (y++ < c.hsize - 1)
+		while (x++ < c.hsize - 1)
 		{
 			ray = ray_for_pixel(c, x, y);
 			col = colour_at(w, ray);
-			// printf("colour at (%d, %d) is %.3f, %.3f, %.3f\n", x, y, col.r, col.g, col.b);
-			u_int32_t col_code;
 			col_code = col_to_rgb(col);
-			put_pixel_img(data,  x, y, col_code);
+			put_pixel_img(data, x, y, col_code);
 		}
-		y = 0;
+		x = 0;
 	}
 }

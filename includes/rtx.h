@@ -6,15 +6,16 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 15:46:46 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:52:13 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-#include <stdint.h>
-# define WIN_WIDTH 800 
-# define WIN_HEIGHT	800 
+# include <stdint.h>
+# include <stdbool.h>
+# define WIN_WIDTH 1800
+# define WIN_HEIGHT	800
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
 # include "../includes/libft/libft.h"

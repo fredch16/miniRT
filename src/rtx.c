@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/10 18:06:21 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:42:33 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int argc, char **argv)
 		// if (set_data(scene, &parser) == true)
 		// 	execute_rt(parser);
 		free_text(scene);
-		free_objects_memory(&parser);
 	}
 
 	//ok here we start to move things from parser to useable info 
@@ -91,11 +90,12 @@ int	main(int argc, char **argv)
 	w.point_light.intensity = colour_set(1, 1, 1);
 
 	data.w = &w;
-	//obj_create
 	data_for_obj(&parser, &data);
 
 	init_mlx(&data, c, &w);
+	//hello pls fix the leak by putting it in the close functions wihth all the other frees pls and thank you!
 	return (1);
+	free_objects_memory(&parser);
 }
 
 void	sphere_init(t_sp *sp, t_data *data, t_obj *obj_list)
@@ -105,6 +105,7 @@ void	sphere_init(t_sp *sp, t_data *data, t_obj *obj_list)
 	t_matrix	endlime;
 	t_obj		*obj;
 
+	(void)data;
 	obj = obj_create(OT_SPHERE);
 	obj_add_back(&obj_list, obj);
 	obj->material.colour = sp->col;
@@ -112,8 +113,7 @@ void	sphere_init(t_sp *sp, t_data *data, t_obj *obj_list)
 	obj->material.diffuse = 0.7;
 	obj->material.specular = 0.3;
 	matrix_set_translation(&translate, sp->center.x, sp->center.y, sp->center.z);
-	matrix_set_scaling(&scale, sp->diameter / 2, sp->diameter / 2, 1);
-	/*scaling: is it 1 for z?*/
+	matrix_set_scaling(&scale, sp->diameter / 2, sp->diameter / 2, sp->diameter / 2);
 	matrix_multiply_matrix(&translate, &scale, &endlime);
 	sphere_set_transform(obj, &endlime);
 }
@@ -125,13 +125,14 @@ void	plane_init(t_pl *pl, t_data *data, t_obj *obj_list)
 	t_matrix	endlime;
 	t_obj		*obj;
 
+	(void)data;
 	obj = obj_create(OT_PLANE);
 	obj_add_back(&obj_list, obj);
 	obj->material.colour = pl->col;
-	//what values do we put for diffuse and specular?
 	obj->material.diffuse = 0.7;
 	obj->material.specular = 0.3;
 	matrix_set_translation(&translate, pl->point.x, pl->point.y, pl->point.z);
+	matrix_set_4(&rotate);
 	/*  FORMULA FOR ROTATION... 
 	matrix_set_rotation_x
 	matrix_set_rotation_y
@@ -145,10 +146,11 @@ void	cylinder_init(t_cy *cy, t_data *data, t_obj *obj_list)
 {
 	t_obj		*obj;
 	t_matrix	translate;
-	t_matrix	rotate;
+	// t_matrix	rotate;
 	t_matrix	scale;
 	t_matrix	endlime;
 
+	(void)data;
 	obj = obj_create(OT_CYLINDER);
 	obj_add_back(&obj_list, obj);
 	obj->material.colour = cy->col;
@@ -156,8 +158,8 @@ void	cylinder_init(t_cy *cy, t_data *data, t_obj *obj_list)
 	obj->material.diffuse = 0.7;
 	obj->material.specular = 0.3;
 	/* how to calculate min and max? */
-	obj->min = cy->center - cy->height / 2;
-	obj->max = cy->center + cy->height / 2;
+	obj->min = 0;
+	obj->max = cy->height;
 	matrix_set_scaling(&scale, cy->diameter / 2, cy->diameter / 2, 1);
 	/*scaling: is it 1 for z?*/
 	matrix_set_translation(&translate, cy->center.x, cy->center.y, cy->center.z);

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/05 17:56:22 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:36:23 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ typedef struct s_sp
 typedef struct s_pl
 {
 	t_tuple		point;
-	t_tuple		normal_vec;
+	t_tuple		norm_axis_vec;
 	t_colour	col;
 	t_pl		*next;
 }	t_pl;
@@ -215,7 +215,7 @@ typedef struct s_pl
 typedef struct s_cy
 {
 	t_tuple		center;
-	t_tuple		normal_vec;
+	t_tuple		norm_axis_vec;
 	double		diameter;
 	double		height;
 	t_colour	col;

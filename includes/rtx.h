@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/11 15:48:22 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/11 22:06:09 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ t_ray		ray_for_pixel(t_camera c, double px, double py);
 void		render(t_camera c, t_world *w, t_data *data);
 
 //main
-void	data_for_obj(t_parser *parser, t_data *data);
-void	add_obj_sp(t_sp *sp, t_data *data, t_obj *obj_list);
-void	add_obj_pl(t_pl *pl, t_data *data, t_obj *obj_list);
-void	add_obj_cy(t_cy *cy, t_data *data, t_obj *obj_list);
-void	free_objects_memory(t_parser *parser);
+void		data_for_obj(t_parser *parser, t_data *data);
+void		add_obj_sp(t_sp *sp, t_data *data);
+void		add_obj_pl(t_pl *pl, t_data *data);
+void		add_obj_cy(t_cy *cy, t_data *data);
+void		free_objects_memory(t_parser *parser);
+t_matrix	get_rotator(t_tuple defa, t_tuple na);
+t_matrix	get_final_trans(t_matrix *translate, t_matrix *scale, t_matrix *rotate);
 
 #endif

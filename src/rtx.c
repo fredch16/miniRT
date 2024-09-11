@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/11 15:44:25 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/11 22:06:38 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	main(int argc, char **argv)
 	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, (parser.camera.fov * (PI / 180)));
 	t_tuple	from = parser.camera.view_point;
 	t_tuple	to = tuple_add(from, parser.camera.orientation_vector);
+	// t_tuple	from = tuple_poi(-5, 20.5, -17);
+	// t_tuple	to = tuple_poi(0, 2, 0);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	pixel_size(&c);
 	c.transform = view_transform(from, to, up);
@@ -64,11 +66,20 @@ int	main(int argc, char **argv)
 	w.point_light.intensity = colour_set(1, 1, 1);
 
 	data.w = &w;
+	t_obj	*obj_list;
+	obj_list = NULL;
+	data.w->obj_list = &obj_list;
 	data_for_obj(&parser, &data);
+	t_obj	*testobj;
+	testobj = *w.obj_list;
+	while (testobj->next)
+	{
+		printf("2\n");
+		testobj = testobj->next;
+	}
 
-	// init_mlx(&data, c, &w);
-	//hello pls fix the leak by putting it in the close functions wihth all the other frees pls and thank you!
-	return (1);
 	free_objects_memory(&parser);
+	init_mlx(&data, c, &w);
+	return (1);
 }
 

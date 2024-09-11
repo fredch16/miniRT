@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:28:54 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/11 14:37:13 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:36:55 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	fill_plane(char *line, t_pl	*plane)
 		return (0);
 	s = get_start(line, e);
 	e = get_end(line, s);
-	if (s == e || !set_vec(line, s, e, &plane->normal_vec))
+	if (s == e || !set_vec(line, s, e, &plane->norm_axis_vec))
 		return (0);
 	s = get_start(line, e);
 	e = get_end(line, s);
@@ -63,7 +63,7 @@ int	fill_cylinder(char *line, t_cy	*cylinder)
 		return (0);
 	s = get_start(line, e);
 	e = get_end(line, s);
-	if (s == e || !set_vec(line, s, e, &cylinder->normal_vec))
+	if (s == e || !set_vec(line, s, e, &cylinder->norm_axis_vec))
 		return (0);
 	s = get_start(line, e);
 	e = get_end(line, s);

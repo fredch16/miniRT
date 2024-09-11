@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/10 18:42:33 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:39:11 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,12 @@ void	sphere_init(t_sp *sp, t_data *data, t_obj *obj_list)
 	obj = obj_create(OT_SPHERE);
 	obj_add_back(&obj_list, obj);
 	obj->material.colour = sp->col;
+	printf("Colour: r: %f, g: %f, b: %f\n", sp->col.r, sp->col.g, sp->col.b);
 	//what values do we put for diffuse and specular?
 	obj->material.diffuse = 0.7;
 	obj->material.specular = 0.3;
+	tuple_print(sp->center);
+	printf("diam = %f\n", sp->diameter);
 	matrix_set_translation(&translate, sp->center.x, sp->center.y, sp->center.z);
 	matrix_set_scaling(&scale, sp->diameter / 2, sp->diameter / 2, sp->diameter / 2);
 	matrix_multiply_matrix(&translate, &scale, &endlime);

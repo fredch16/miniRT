@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:00:47 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/27 14:47:32 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:55:34 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ void	set_zeros_obj(t_parser *parser)
 	parser->sphere_nbr = 0;
 	parser->plane_nbr = 0;
 	parser->cylinder_nbr = 0;
+	parser->sphere = NULL;
+	parser->plane = NULL;
+	parser->cylinder = NULL;
 }
 
 bool	set_data(char **scene, t_parser *parser)

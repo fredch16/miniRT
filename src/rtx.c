@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/11 14:39:11 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:48:47 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,14 @@ int	main(int argc, char **argv)
 
 	//ok here we start to move things from parser to useable info 
 	
+	//ambient lighting
+	// printf("ambient lighting: Colour: r: %f, g: %f, b: %f\n", parser.ambient.col.r, parser.ambient.col.g, parser.ambient.col.b);
+	// printf("ambient ratio: %f\n", parser.ambient.val);
 	//camera related
+
+	// tuple_print(parser.camera.view_point);
+	// tuple_print(parser.camera.orientation_vector);
+	// printf("camera fov = %f", parser.camera.fov);
 	t_camera	c = camera_construct(WIN_WIDTH, WIN_HEIGHT, (parser.camera.fov * (PI / 180)));
 	t_tuple	from = parser.camera.view_point;
 	t_tuple	to = tuple_add(from, parser.camera.orientation_vector);
@@ -85,6 +92,9 @@ int	main(int argc, char **argv)
 	w.c = c;
 
 	//lighting
+
+	// tuple_print(parser.light.light_point);
+	// printf("light brightness = %f\n", parser.light.brightness);
 	w.point_light.position = parser.light.light_point;
 	//remember to include brightness
 	w.point_light.intensity = colour_set(1, 1, 1);

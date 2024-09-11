@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/10 17:58:32 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:48:22 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ void		render(t_camera c, t_world *w, t_data *data);
 
 //main
 void	data_for_obj(t_parser *parser, t_data *data);
-void	sphere_init(t_sp *sp, t_data *data, t_obj *obj_list);
-void	plane_init(t_pl *pl, t_data *data, t_obj *obj_list);
-void	cylinder_init(t_cy *cy, t_data *data, t_obj *obj_list);
+void	add_obj_sp(t_sp *sp, t_data *data, t_obj *obj_list);
+void	add_obj_pl(t_pl *pl, t_data *data, t_obj *obj_list);
+void	add_obj_cy(t_cy *cy, t_data *data, t_obj *obj_list);
+void	free_objects_memory(t_parser *parser);
 
 #endif

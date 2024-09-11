@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:59:37 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/11 14:37:03 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:10:59 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	set_rgb(char *line, int e, int s, t_colour *col)
 		return (false);
 	}
 	a = ft_split(rgb, ',');
-	*col = colour_set(ft_atof(a[0]), ft_atof(a[1]), ft_atof(a[2]));
+	*col = colour_set(ft_atof(a[0]) / 255, ft_atof(a[1]) / 255, ft_atof(a[2]) / 255);
 	free_double_array(a);
 	free(rgb);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:42:46 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/27 14:43:05 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:49:13 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ bool	set_vec(const char *line, int i, int j, t_tuple *tuple)
 	*tuple = tuple_vec(ft_atof(a[0]), ft_atof(a[1]), ft_atof(a[2]));
 	if (!in_range(tuple->x) || !in_range(tuple->y) || !in_range(tuple->z))
 		ret = false;
+	if (fabs(tuple_abs(*tuple) - 1.0) > EPSILON)
+	{
+		ft_putstr_fd("Incorrect vector coordinates\nThe vector ", 2);
+		ft_putstr_fd("is not normalized (magnitude is not 1)\n\n", 2);
+		ret = false;
+	}
 	free_double_array(a);
 	free(vec);
 	return (ret);

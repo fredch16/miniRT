@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/11 22:06:38 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:49:27 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,14 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		file_check_error(scene);
-		set_data(scene, &parser);
-		// if (set_data(scene, &parser) == true)
-		// 	execute_rt(parser);
+		//set_data(scene, &parser);
+		if (set_data(scene, &parser) == false)
+		{
+			printf("THERE WAS AN ERROR ON PARSER STAGE\n");
+			free_text(scene);
+			free_objects_memory(&parser);
+			exit (2);
+		}
 		free_text(scene);
 	}
 	//ok here we start to move things from parser to useable info 

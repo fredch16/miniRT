@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:18:43 by atyurina          #+#    #+#             */
-/*   Updated: 2024/06/06 20:31:47 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:48:30 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	matrix_multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *c)
 
 	row = 0;
 	col = 0;
-	c->columns  = 4;
+	c->columns = 4;
 	c->rows = 4;
 	while (row < 4)
 	{

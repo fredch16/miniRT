@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/11 21:36:23 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:27:27 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,23 @@ typedef struct s_matrix
 	int		columns;
 	int		rows;
 }	t_matrix;
+
+typedef struct s_subm_attr
+{
+	t_matrix	s;
+	int			i;
+	int			j;
+	int			si;
+	int			sj;
+}	t_subm_attr;
+
+typedef struct c_normal_cy
+{
+	t_tuple		w_normal;
+	double		dist;
+	t_matrix	t_m;
+	t_tuple		obj_normal;
+}	t_normal_cy;
 
 typedef struct s_rgb
 {
@@ -106,6 +123,21 @@ typedef struct s_lighting
 	t_colour	specular;
 }	t_lighting;
 
+typedef struct s_l_vars
+{
+	t_lighting	l;
+	double		light_dot_normal;
+	t_tuple		lightv;
+	t_colour	effective_colour;
+}	t_l_vars;
+
+typedef struct s_shadow
+{
+	t_tuple	v;
+	t_tuple	direction;
+	double	distance;
+}	t_shadow;
+
 typedef struct s_obj
 {
 	enum			e_obj_type type;
@@ -137,6 +169,12 @@ typedef struct s_camera
 	double	half_height;
 	double	pixel_size;
 }	t_camera;
+
+typedef struct s_xy_dbl
+{
+	double	x;
+	double	y;
+}	t_xy_dbl;
 
 typedef struct s_world
 {

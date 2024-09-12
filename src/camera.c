@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:33:10 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/19 17:57:56 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:09:40 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,17 @@ void	pixel_size(t_camera *c)
 
 t_ray	ray_for_pixel(t_camera c, double px, double py)
 {
-	double		xoffset;
-	double		yoffset;
-	double		world_x;
-	double		world_y;
+	t_xy_dbl	offset;
+	t_xy_dbl	world;
 	t_tuple		pixel;
 	t_tuple		point;
 	t_ray		ray;
 
-	xoffset = (px + 0.5) * c.pixel_size;
-	yoffset = (py + 0.5) * c.pixel_size;
-	world_x = c.half_width - xoffset;
-	world_y = c.half_height - yoffset;
-	point = tuple_poi(world_x, world_y, -1);
+	offset.x = (px + 0.5) * c.pixel_size;
+	offset.y = (py + 0.5) * c.pixel_size;
+	world.x = c.half_width - offset.x;
+	world.y = c.half_height - offset.y;
+	point = tuple_poi(world.x, world.y, -1);
 	pixel = matrix_multiply_tuple(&c.trans_inverse, &point);
 	point = tuple_poi(0, 0, 0);
 	ray.origin = matrix_multiply_tuple(&c.trans_inverse, &point);

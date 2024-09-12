@@ -6,7 +6,7 @@
 #    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/09/11 18:16:51 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/09/12 13:47:51 by atyurina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS := src/rtx.c \
 		src/parser_check_vec.c \
 		src/parser_check_xyz.c src/parser_set_obj.c src/parser_fill_obj.c \
 		src/parser_obj_conversion.c \
+		src/memory_free.c
 
 OBJ_DIR := obj/
 OBJ := $(SRCS:src/%.c=$(OBJ_DIR)%.o)

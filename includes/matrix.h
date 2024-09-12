@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:51:54 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/06/18 23:58:09 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:02:20 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		matrix_det_4(t_matrix *m);
 //matrix submatrix:
 t_matrix	matrix_sub_of4(t_matrix *m, int row, int col);
 t_matrix	matrix_sub_of3(t_matrix *m, int row, int col);
+t_matrix	matrix_insert_vals(double values[4][4], int i, int j);
 
 //matrix_utils_2
 void		matrix_print(t_matrix *mat);

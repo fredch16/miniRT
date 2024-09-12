@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:35:21 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/07/24 16:30:49 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:47:28 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,38 +75,4 @@ void	xadd_back(t_xsn	**xslist, t_xsn *n)
 			tmp = tmp -> next;
 		tmp -> next = n;
 	}
-}
-
-void	free_xs(t_xsn **xslist)
-{
-	t_xsn	*to_free;
-	t_xsn	*tmp;
-
-	if (!xslist || !*xslist)
-		return ;
-	tmp = *xslist;
-	while (tmp)
-	{
-		to_free = tmp;
-		tmp = tmp -> next;
-		free(to_free);
-	}
-	*xslist = NULL;
-}
-
-void	free_obj(t_obj **objlist)
-{
-	t_obj	*to_free;
-	t_obj	*tmp;
-
-	if (!objlist || !*objlist)
-		return ;
-	tmp = *objlist;
-	while (tmp)
-	{
-		to_free = tmp;
-		tmp = tmp -> next;
-		free(to_free);
-	}
-	*objlist = NULL;
 }

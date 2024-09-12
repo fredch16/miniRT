@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_normals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:38 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/19 20:10:05 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:27:15 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,34 +53,31 @@ t_tuple	normal_at_pl(t_obj *pl, t_tuple *o_point, t_tuple eyev, t_tuple lightv)
 
 t_tuple	normal_at_cy(t_obj *cy, t_tuple *o_point)
 {
-	t_tuple		w_normal;
-	double		dist;
-	t_matrix	t_m;
-	t_tuple		obj_normal;
+	t_normal_cy	ncy;
 
-	obj_normal = tuple_vec(0, 1, 0);
-	t_m = matrix_transpose(&cy->transform);
-	w_normal = matrix_multiply_tuple(&t_m, &obj_normal);
-	w_normal.w = 0;
-	dist = pow(o_point->x, 2) + pow(o_point->z, 2);
-	if ((dist < 1) && (o_point->y >= cy->max - EPSILON))
+	ncy.obj_normal = tuple_vec(0, 1, 0);
+	ncy.t_m = matrix_transpose(&cy->transform);
+	ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &obj_normal);
+	ncy.w_normal.w = 0;
+	ncy.dist = pow(o_point->x, 2) + pow(o_point->z, 2);
+	if ((ncy.dist < 1) && (o_point->y >= cy->max - EPSILON))
 	{
-		obj_normal = tuple_vec(0, 1, 0);
-		t_m = matrix_transpose(&cy->transform);
-		w_normal = matrix_multiply_tuple(&t_m, &obj_normal);
-		w_normal.w = 0;
-		return (tuple_norm(w_normal));
+		ncy.obj_normal = tuple_vec(0, 1, 0);
+		ncy.t_m = matrix_transpose(&cy->transform);
+		ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &obj_normal);
+		ncy.w_normal.w = 0;
+		return (tuple_norm(ncy.w_normal));
 	}
-	if ((dist < 1) && (o_point->y <= cy->min + EPSILON))
+	if ((ncy.dist < 1) && (o_point->y <= cy->min + EPSILON))
 	{
-		obj_normal = tuple_vec(0, -1, 0);
-		t_m = matrix_transpose(&cy->transform);
-		w_normal = matrix_multiply_tuple(&t_m, &obj_normal);
-		w_normal.w = 0;
-		return (tuple_norm(w_normal));
+		ncy.obj_normal = tuple_vec(0, -1, 0);
+		ncy.t_m = matrix_transpose(&cy->transform);
+		ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &obj_normal);
+		ncy.w_normal.w = 0;
+		return (tuple_norm(ncy.w_normal));
 	}
-	w_normal = tuple_vec(o_point->x, 0, o_point->z);
-	return (tuple_norm(w_normal));
+	ncy.w_normal = tuple_vec(o_point->x, 0, o_point->z);
+	return (tuple_norm(ncy.w_normal));
 }
 
 t_tuple	obj_normal(t_obj *o, t_tuple *w_point, t_tuple eyev, t_world *w)

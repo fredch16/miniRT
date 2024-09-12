@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tuple_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
+/*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 20:25:11 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/08/19 20:59:31 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:02:55 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ t_tuple	tuple_cro(t_tuple a, t_tuple b)
 	result.w = 0;
 	return (result);
 }
-

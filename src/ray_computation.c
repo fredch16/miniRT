@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:05:06 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/13 13:13:31 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:14:41 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
 
 	forward = tuple_norm(tuple_sub(to, from));
 	upn = tuple_norm(up);
+	// if (upn.x == 0 && upn.y == -1 && upn.z == 0)
+	// {
+	// 	upn = tuple_vec(0, 0, -1);
+	// 	printf("blackblackaowjhdijhodaijodawiojwdaijowdajiowdaijodwaijodwajio\n");
+	// }
 	left = tuple_cro(forward, upn);
 	true_up = tuple_cro(left, forward);
 	matrix_set_4(&tr.orientation);

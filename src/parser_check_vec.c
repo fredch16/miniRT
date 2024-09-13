@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:42:46 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/13 17:35:40 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:54:01 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool	is_vec(char *line)
 	}
 	if (i != 3)
 	{
-					printf("HEFJESILG\n");
+		printf("HEFJESILG\n");
 		ret = false;
 	}
 	free_double_array(coord);

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:02:57 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/23 17:20:36 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:05:52 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	is_dbl(const char *dbl)
 	i = 0;
 	if (dbl[i] == '-')
 		i++;
-	while (dbl[i] >= '0' && dbl[i] <= '9' && dbl[i])
+	while (dbl[i] && dbl[i] >= '0' && dbl[i] <= '9')
 		i++;
 	if (dbl[i] == '.' && dbl[i])
 		i++;
@@ -46,7 +46,7 @@ bool	is_dbl(const char *dbl)
 		return (true);
 	else
 		return (false);
-	while (dbl[i] >= '0' && dbl[i] <= '9' && dbl[i])
+	while (dbl[i] && dbl[i] >= '0' && dbl[i] <= '9')
 		i++;
 	if (dbl[i] == '\0')
 		return (true);

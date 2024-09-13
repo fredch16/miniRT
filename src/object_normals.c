@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:38 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/12 14:27:15 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:59:20 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ t_tuple	normal_at_cy(t_obj *cy, t_tuple *o_point)
 
 	ncy.obj_normal = tuple_vec(0, 1, 0);
 	ncy.t_m = matrix_transpose(&cy->transform);
-	ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &obj_normal);
+	ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &ncy.obj_normal);
 	ncy.w_normal.w = 0;
 	ncy.dist = pow(o_point->x, 2) + pow(o_point->z, 2);
 	if ((ncy.dist < 1) && (o_point->y >= cy->max - EPSILON))
 	{
 		ncy.obj_normal = tuple_vec(0, 1, 0);
 		ncy.t_m = matrix_transpose(&cy->transform);
-		ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &obj_normal);
+		ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &ncy.obj_normal);
 		ncy.w_normal.w = 0;
 		return (tuple_norm(ncy.w_normal));
 	}
@@ -72,7 +72,7 @@ t_tuple	normal_at_cy(t_obj *cy, t_tuple *o_point)
 	{
 		ncy.obj_normal = tuple_vec(0, -1, 0);
 		ncy.t_m = matrix_transpose(&cy->transform);
-		ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &obj_normal);
+		ncy.w_normal = matrix_multiply_tuple(&ncy.t_m, &ncy.obj_normal);
 		ncy.w_normal.w = 0;
 		return (tuple_norm(ncy.w_normal));
 	}
@@ -102,39 +102,4 @@ t_tuple	world_normal_at(t_obj *o, t_tuple *w_point, t_tuple eyev, t_world *w)
 
 	w_normal = obj_normal(o, w_point, eyev, w);
 	return (tuple_norm(w_normal));
-}
-
-t_tuple	reflect(t_tuple *in, t_tuple *normal)
-{
-	double	dot;
-	t_tuple	res;
-
-	dot = tuple_dot(*in, *normal);
-	tuple_mul(2, normal);
-	tuple_mul(dot, normal);
-	res = tuple_sub(*in, *normal);
-	return (res);
-}
-
-t_point_light	point_light_set(t_colour *intensity, t_tuple	*position)
-{
-	t_point_light	pl;
-
-	pl.intensity = *intensity;
-	pl.position = *position;
-	return (pl);
-}
-
-t_material	material_set_default(void)
-{
-	t_material	m;
-
-	m.colour.r = 1;
-	m.colour.g = 1;
-	m.colour.b = 1;
-	m.ambient = 0.1;
-	m.diffuse = 0.9;
-	m.specular = 0.9;
-	m.shininess = 200.0;
-	return (m);
 }

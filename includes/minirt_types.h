@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/12 14:27:27 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:24:43 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ typedef struct s_colour
 
 typedef struct s_quadratic
 {
-	double	a; double	b;
+	double	a; 
+	double	b;
 	double	c;
 	double	t1;
 	double	t2;
@@ -272,5 +273,12 @@ typedef struct s_parser
 	int		plane_nbr;
 	int		cylinder_nbr;
 }	t_parser;
+
+typedef struct s_transform
+{
+	t_matrix	orientation;
+	t_matrix	translation;
+	t_matrix	result;
+}	t_transform;
 
 #endif

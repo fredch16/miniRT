@@ -6,7 +6,7 @@
 #    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/09/12 13:47:51 by atyurina         ###   ########.fr        #
+#    Updated: 2024/09/13 13:07:22 by atyurina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRCS := src/rtx.c \
 		src/ray_intersect_utils.c \
 		src/lists.c \
 		src/ray_transform.c \
+		src/ray_operations.c src/ray_computation.c \
 		src/object_normals.c \
+		src/rendering_utils.c \
 		src/lighting.c \
 		src/camera.c \
 		src/intersect_cy.c \

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/13 18:21:19 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:55:44 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int	main(int argc, char **argv)
 	t_tuple	to = tuple_add(from, parser.camera.orientation_vector);
 	t_tuple	up = tuple_vec(0, 1, 0);
 	if (parser.camera.orientation_vector.y == -1)
-		up = tuple_vec(0, 0, -1);
+		up = tuple_vec(0, 0, 1);
+	if (parser.camera.orientation_vector.y == 1)
+		up = tuple_vec(0, 0, 1);
 	pixel_size(&c);
 	c.transform = view_transform(from, to, up);
 	matrix_det_4(&c.transform);

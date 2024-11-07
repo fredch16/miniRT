@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:05:06 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/06 20:25:19 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:20:06 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,32 @@ t_colour	colour_at(t_world *w, t_ray r)
 	t_comps		comps;
 	t_colour	col;
 
+	x = NULL;
+	xhit = NULL;
+	ft_bzero(&comps, sizeof(comps));
 	x = intersect_world(w, r);
 	if (!x)
 	{
+		printf("1\n");
 		return (free_xs(&x), colour_set(0, 0, 0));
-		printf("sigma\n");
 	}
 	printf("something %f, ", x->x);
 	xhit = intersect_hit(&x);
+	printf("2\n");
+	if (!x->xs_obj)
+		printf("3\n");
+	printf("4\n");
 	if (xhit)
+	{
 		comps = prep_comps(xhit, r, w);
-	if (comps.obj->type == OT_SPHERE)
-		printf("die\n");
+		printf("5\n");
+	}
+	if (1)
+	{
+		ray_print(&r);
+		if (comps.obj->type == OT_SPHERE)
+			printf("7\n");
+	}
 	col = shade_hit(w, comps);
 	return (free_xs(&x), col);
 }

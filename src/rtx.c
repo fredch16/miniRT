@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/10/24 16:55:44 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:40:51 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ int	main(int argc, char **argv)
 	obj_list = NULL;
 	data.w->obj_list = &obj_list;
 	data_for_obj(&parser, &data);
-	t_obj	*testobj;
-	testobj = *w.obj_list;
-	while (testobj->next)
-	{
-		printf("2\n");
-		testobj = testobj->next;
-	}
+	// t_obj	*testobj;
+	// testobj = *w.obj_list;
+	// while (testobj->next)
+	// {
+	// 	printf("2\n");
+	// 	testobj = testobj->next;
+	// }
 
 	free_objects_memory(&parser);
 	init_mlx(&data, c, &w);

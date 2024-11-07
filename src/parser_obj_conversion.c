@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:35:50 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/11 22:43:10 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:35:18 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	add_obj_sp(t_sp *sp, t_data *data)
 	obj = obj_create(OT_SPHERE);
 	obj_add_back(data->w->obj_list, obj);
 	obj->material.colour = sp->col;
-	printf("Colour: r: %f, g: %f, b: %f\n", sp->col.r, sp->col.g, sp->col.b);
+	// printf("Colour: r: %f, g: %f, b: %f\n", sp->col.r, sp->col.g, sp->col.b);
 	//what values do we put for diffuse and specular?
 	obj->material.diffuse = 0.7;
 	obj->material.specular = 0.3;
-	tuple_print(sp->center);
-	printf("diam = %f\n", sp->diameter);
+	// tuple_print(sp->center);
+	// printf("diam = %f\n", sp->diameter);
 	matrix_set_translation(&translate, sp->center.x, sp->center.y, sp->center.z);
 	matrix_set_scaling(&scale, sp->diameter / 2, sp->diameter / 2, sp->diameter / 2);
 	matrix_multiply_matrix(&translate, &scale, &endlime);
@@ -120,7 +120,6 @@ void	data_for_obj(t_parser *parser, t_data *data)
 	{
 		add_obj_sp(sp_ptr, data);
 		sp_ptr = sp_ptr->next;
-		printf("1\n");
 	}
 	pl_ptr = parser->plane;
 	while (pl_ptr != NULL)

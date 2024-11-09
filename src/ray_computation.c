@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:05:06 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/07 19:20:06 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:25:33 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ t_comps	prep_comps(t_xsn *x, t_ray ray, t_world *w)
 	comps.point = position_on_ray(&ray, comps.t);
 	comps.eyev = tuple_neg(ray.direction);
 	comps.normalv = world_normal_at(comps.obj, &comps.point, comps.eyev, w);
-	if ((tuple_dot(comps.normalv, comps.eyev) < -1) \
+	if ((tuple_dot(comps.normalv, comps.eyev) < 0) \
 		&& comps.obj->type != OT_PLANE)
 	{
-		printf("       YO WE INSIDE");
+		// DEBUG - add if you want to see which pixels are considered 
+		// "inside" a cylinder or sphere
+		// printf("INSIDE AT ^^^^ / 6400  --------------------------------\n");
 		comps.inside = 1;
 		comps.normalv = tuple_neg(comps.normalv);
 	}
@@ -61,29 +63,15 @@ t_colour	colour_at(t_world *w, t_ray r)
 	ft_bzero(&comps, sizeof(comps));
 	x = intersect_world(w, r);
 	if (!x)
-	{
-		printf("1\n");
 		return (free_xs(&x), colour_set(0, 0, 0));
-	}
-	printf("something %f, ", x->x);
 	xhit = intersect_hit(&x);
-	printf("2\n");
-	if (!x->xs_obj)
-		printf("3\n");
-	printf("4\n");
 	if (xhit)
 	{
 		comps = prep_comps(xhit, r, w);
-		printf("5\n");
+		col = shade_hit(w, comps);
+		return (free_xs(&x), col);
 	}
-	if (1)
-	{
-		ray_print(&r);
-		if (comps.obj->type == OT_SPHERE)
-			printf("7\n");
-	}
-	col = shade_hit(w, comps);
-	return (free_xs(&x), col);
+	return (free_xs(&x), colour_set(0, 0, 0));
 }
 
 t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
@@ -96,11 +84,6 @@ t_matrix	view_transform(t_tuple from, t_tuple to, t_tuple up)
 
 	forward = tuple_norm(tuple_sub(to, from));
 	upn = tuple_norm(up);
-	// if (upn.x == 0 && upn.y == -1 && upn.z == 0)
-	// {
-	// 	upn = tuple_vec(0, 0, -1);
-	// 	printf("blackblackaowjhdijhodaijodawiojwdaijowdajiowdaijodwaijodwajio\n");
-	// }
 	left = tuple_cro(forward, upn);
 	true_up = tuple_cro(left, forward);
 	matrix_set_4(&tr.orientation);

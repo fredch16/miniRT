@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/06 19:40:51 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/09 16:12:01 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	char		**scene;
 	t_parser	parser;
 
+	w.px_count = 0;
 	if (argc > 2 || argc < 2)
 	{
 		ft_message_error("Error\nYou need to pass file with .rt extension.\n");

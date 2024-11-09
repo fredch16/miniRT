@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/13 13:24:43 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:54:50 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ typedef struct s_world
 	t_obj			**obj_list;
 	t_point_light	point_light;
 	t_camera		c;
+	int				px_count;
 }	t_world;
 
 typedef struct s_data

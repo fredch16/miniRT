@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:21:56 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/09 18:52:38 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:27:06 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,25 +103,4 @@ t_xsn	*intersect_world(t_world *w, t_ray r)
 		tmp_o = tmp_o->next;
 	}
 	return (xs);
-}
-
-t_xsn	*intersect_hit(t_xsn **xslist)
-{
-	t_xsn	*tmp;
-	t_xsn	*hit;
-	double	lowestnn;
-
-	lowestnn = DBL_MAX;
-	tmp = *xslist;
-	hit = NULL;
-	while (tmp)
-	{
-		if (tmp->x >= 0 && tmp->x < lowestnn)
-		{
-			lowestnn = tmp->x;
-			hit = tmp;
-		}
-		tmp = tmp -> next;
-	}
-	return (hit);
 }

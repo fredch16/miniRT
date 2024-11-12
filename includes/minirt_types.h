@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/09 15:54:50 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:32:43 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct s_ray
 	t_tuple	origin;
 	t_tuple direction;
 }	t_ray;
+
+typedef struct s_view_params
+{
+	t_tuple from;
+	t_tuple to;
+	t_tuple up;
+}	t_view_params;
 
 typedef struct s_matrix
 {
@@ -74,6 +81,14 @@ typedef struct s_colour
 	double	g;
 	double	b;
 }	t_colour;
+
+typedef struct s_trigon
+{
+	double		angle;
+	double		c;
+	double		s;
+	double		t;
+}	t_trigon;
 
 typedef struct s_quadratic
 {

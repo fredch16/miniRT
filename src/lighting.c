@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:05:00 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/09 15:49:15 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:18:30 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ t_colour	lighting(t_material *material, t_point_light *light, bool shadow)
 {
 	t_colour	res;
 	t_l_vars	v;
-	double		eye_dot_normal = tuple_dot(light->latr->eyev, light->latr->normalv);
+	double		eye_dot_normal;
 
+	eye_dot_normal = tuple_dot(light->latr->eyev, light->latr->normalv);
 	v.effective_colour = colour_mul(material->colour, light->intensity);
 	v.lightv = tuple_norm(tuple_sub(light->position, light->latr->point));
 	v.l.ambient = colour_sca_mul(material->ambient, v.effective_colour);

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:06:30 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/13 13:21:23 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:08:50 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	ray_create(t_ray *ray, t_tuple origin, t_tuple direction)
 	ray->direction = direction;
 }
 
-void	ray_print(t_ray *ray)
-{
-	printf("ray origin:\n");
-	tuple_print(ray->origin);
-	printf("ray direction:\n");
-	tuple_print(ray->direction);
-}
+/*printing tay data*/
+// void	ray_print(t_ray *ray)
+// {
+// 	printf("ray origin:\n");
+// 	tuple_print(ray->origin);
+// 	printf("ray direction:\n");
+// 	tuple_print(ray->direction);
+// }
 
 t_tuple	ray_position(t_ray *ray, double scalar)
 {
@@ -43,4 +44,25 @@ void	solve_quadratic(t_quadratic *quad)
 	quad->t1 = quad->t1 / (2 * quad->a);
 	quad->t2 = -quad->b + sqrt(quad->d);
 	quad->t2 = quad->t2 / (2 * quad->a);
+}
+
+t_xsn	*intersect_hit(t_xsn **xslist)
+{
+	t_xsn	*tmp;
+	t_xsn	*hit;
+	double	lowestnn;
+
+	lowestnn = DBL_MAX;
+	tmp = *xslist;
+	hit = NULL;
+	while (tmp)
+	{
+		if (tmp->x >= 0 && tmp->x < lowestnn)
+		{
+			lowestnn = tmp->x;
+			hit = tmp;
+		}
+		tmp = tmp -> next;
+	}
+	return (hit);
 }

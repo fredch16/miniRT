@@ -6,21 +6,16 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:42:46 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/13 17:54:01 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:24:14 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-bool	set_vec(const char *line, int i, int j, t_tuple *tuple)
+bool	check_vec(char *vec, bool	ret, t_tuple *tuple)
 {
-	char	*vec;
 	char	**a;
-	bool	ret;
 
-	ret = true;
-	vec = (char *)malloc((j - i + 1) * sizeof(char));
-	ft_strlcpy(vec, line + i, j - i + 1);
 	if (!is_vec(vec))
 	{
 		ft_putstr_fd("Incorrect vector coordinates\n It is not a vector\n", 2);
@@ -41,6 +36,18 @@ bool	set_vec(const char *line, int i, int j, t_tuple *tuple)
 		}
 		free_double_array(a);
 	}
+	return (ret);
+}
+
+bool	set_vec(const char *line, int i, int j, t_tuple *tuple)
+{
+	char	*vec;
+	bool	ret;
+
+	ret = true;
+	vec = (char *)malloc((j - i + 1) * sizeof(char));
+	ft_strlcpy(vec, line + i, j - i + 1);
+	ret = check_vec(vec, ret, tuple);
 	free(vec);
 	return (ret);
 }

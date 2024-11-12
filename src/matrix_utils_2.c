@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 21:40:35 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/12 14:22:58 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:58:03 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ t_matrix	matrix_inverse(t_matrix *m)
 {
 	t_matrix	im;
 
-	// matrix_det_4(m);
 	if (m->determinant == 0)
 		return (*m);
 	im = matrix_cofactor_matrix(m);

@@ -6,27 +6,21 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:02:57 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/13 17:12:51 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:54:33 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-bool	set_dbl(const char *line, int i, int j, double *dbl_ptr)
+bool	set_dbl(const char *dbl, double *dbl_ptr)
 {
-	char	*dbl;
-
-	dbl = (char *)malloc((j - i + 1) * sizeof(char));
-	ft_strlcpy(dbl, line + i, j - i + 1);
 	if (is_dbl(dbl) == true)
 		*dbl_ptr = ft_atof(dbl);
 	else
 	{
-		free(dbl);
 		ft_message_error("Incorrect ambient lighting ratio\n");
 		return (false);
 	}
-	free(dbl);
 	return (true);
 }
 

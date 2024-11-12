@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:44:14 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/27 14:42:09 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:05:43 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,22 @@ int		set_cylinder(char *scene, t_parser *parser);
 int	fill_sphere(char *line, t_sp *sphere);
 int	fill_plane(char *line, t_pl	*plane);
 int	fill_cylinder(char *line, t_cy	*cylinder);
+void free_tokens(char **tokens);
 
 //parser_check_dbl
 
 bool	is_dbl(const char *dbl);
 double	ft_atof(const char *str);
-bool	set_dbl(const char *line, int i, int j, double *dbl_ptr);
+bool	set_dbl(const char *line, double *dbl_ptr);
 
 //parser_check_rgb
-bool	set_rgb(char *line, int e, int s, t_colour *col);
+bool	set_rgb(char *line, t_colour *col);
 void	free_double_array(char **array);
 bool	is_rgb(char *line);
 bool	check_rbg_format(char *line);
 
 //parser_check_coord
-bool	set_coord(const char *line, int i, int j, t_tuple *point);
+bool	set_coord(char *line, t_tuple *point);
 bool	is_coord(char *line);
 bool	in_range(double d);
 
@@ -70,7 +71,7 @@ int	get_start(char *line, int i);
 int	get_end(char *line, int start);
 
 //parser_set_vec
-bool	set_vec(const char *line, int i, int j, t_tuple *tuple);
+bool	set_vec(char *line, t_tuple *tuple);
 bool	in_range(double d);
 bool	is_vec(char *line);
 

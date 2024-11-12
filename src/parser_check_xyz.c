@@ -6,29 +6,24 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 17:02:41 by atyurina          #+#    #+#             */
-/*   Updated: 2024/08/27 14:43:20 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:34:54 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-bool	set_coord(const char *line, int i, int j, t_tuple *point)
+bool	set_coord(char *coord, t_tuple *point)
 {
-	char	*coord;
 	char	**a;
 
-	coord = (char *)malloc((j - i + 1) * sizeof(char));
-	ft_strlcpy(coord, line + i, j - i + 1);
 	if (!is_coord(coord))
 	{
-		free(coord);
 		ft_putstr_fd("Incorrect x,y,z coordinates\n", 2);
 		return (false);
 	}
 	a = ft_split(coord, ',');
 	*point = tuple_poi(ft_atof(a[0]), ft_atof(a[1]), ft_atof(a[2]));
 	free_double_array(a);
-	free(coord);
 	return (true);
 }
 

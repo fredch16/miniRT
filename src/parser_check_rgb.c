@@ -6,22 +6,18 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:59:37 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/12 12:51:17 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:55:11 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-bool	set_rgb(char *line, int e, int s, t_colour *col)
+bool	set_rgb(char *rgb, t_colour *col)
 {
 	char	**a;
-	char	*rgb;
 
-	rgb = (char *)malloc((e - s + 1) * sizeof(char));
-	ft_strlcpy(rgb, line + s, e - s + 1);
 	if (!is_rgb(rgb))
 	{
-		free(rgb);
 		ft_putstr_fd("Incorrect ambient lighting RGB\n", 2);
 		return (false);
 	}
@@ -29,7 +25,6 @@ bool	set_rgb(char *line, int e, int s, t_colour *col)
 	*col = colour_set(ft_atof(a[0]) / 255, \
 	ft_atof(a[1]) / 255, ft_atof(a[2]) / 255);
 	free_double_array(a);
-	free(rgb);
 	return (true);
 }
 

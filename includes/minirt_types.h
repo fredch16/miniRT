@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:51:38 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/12 12:32:43 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:15:03 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,7 @@ typedef struct s_cy
 	double		height;
 	t_colour	col;
 	t_cy		*next;
+	int			cap;
 }	t_cy;
 
 typedef struct s_parser

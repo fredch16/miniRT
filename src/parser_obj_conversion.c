@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:35:50 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/12 12:12:42 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:25:04 by atyurina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ void	add_obj_cy(t_cy *cy, t_data *data)
 	obj->material.specular = 0.3;
 	obj->min = 0;
 	obj->max = cy->height;
+	printf("cy->cap = %i", cy->cap);
+	if (cy->cap == 0)
+		obj->capped = false;
 	printf("printing cy vec\n");
 	tuple_print(cy->norm_axis_vec);
 	matrix_set_scaling(&scale, cy->diameter / 2, \

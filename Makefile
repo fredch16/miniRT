@@ -6,11 +6,11 @@
 #    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/11/13 15:02:16 by fcharbon         ###   ########.fr        #
+#    Updated: 2024/11/13 20:59:51 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := rtx4090
+NAME := miniRT
 CC := gcc
 CFLAGS := -Wall -Werror -Wextra -g
 SRCS := src/rtx.c \

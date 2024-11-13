@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:44:14 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/12 15:05:43 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:51:37 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	get_end(char *line, int start);
 
 //parser_set_vec
 bool	set_vec(char *line, t_tuple *tuple);
+bool	set_norm_vec(char *line, t_tuple *tuple);
+bool	check_norm_vec(char *vec, bool	ret, t_tuple *tuple);
 bool	in_range(double d);
 bool	is_vec(char *line);
 

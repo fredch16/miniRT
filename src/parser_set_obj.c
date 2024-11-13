@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:26:05 by atyurina          #+#    #+#             */
-/*   Updated: 2024/09/11 16:53:54 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:51:42 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,31 @@ int	set_cylinder(char *line, t_parser *parser)
 	}
 	parser->cylinder_nbr++;
 	return (1);
+}
+
+bool	check_norm_vec(char *vec, bool	ret, t_tuple *tuple)
+{
+	char	**a;
+
+	if (!is_vec(vec))
+	{
+		ft_putstr_fd("Wrong n-vector coordinates\n It is not a vector\n", 2);
+		ft_putstr_fd("Wrong formatting\n", 2);
+		ret = false;
+	}
+	else
+	{
+		a = ft_split(vec, ',');
+		*tuple = tuple_vec(ft_atof(a[2]), ft_atof(a[1]), ft_atof(a[0]));
+		if (!in_range(tuple->x) || !in_range(tuple->y) || !in_range(tuple->z))
+			ret = false;
+		if ((!equal(tuple_abs(*tuple), 1)))
+		{
+			ft_putstr_fd("Incorrect vector coordinates\nThe vector ", 2);
+			ft_putstr_fd("is not normalized (magnitude is not 1)\n\n", 2);
+			ret = false;
+		}
+		free_double_array(a);
+	}
+	return (ret);
 }

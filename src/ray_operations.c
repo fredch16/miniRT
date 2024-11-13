@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:06:30 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/12 13:08:50 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:03:45 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ void	ray_create(t_ray *ray, t_tuple origin, t_tuple direction)
 	ray->origin = origin;
 	ray->direction = direction;
 }
-
-/*printing tay data*/
-// void	ray_print(t_ray *ray)
-// {
-// 	printf("ray origin:\n");
-// 	tuple_print(ray->origin);
-// 	printf("ray direction:\n");
-// 	tuple_print(ray->direction);
-// }
 
 t_tuple	ray_position(t_ray *ray, double scalar)
 {

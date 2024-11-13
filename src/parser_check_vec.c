@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:42:46 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/12 15:04:48 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:49:17 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ bool	set_vec(char *vec, t_tuple *tuple)
 	return (ret);
 }
 
+bool	set_norm_vec(char *vec, t_tuple *tuple)
+{
+	bool	ret;
+
+	ret = true;
+	ret = check_norm_vec(vec, ret, tuple);
+	return (ret);
+}
+
 //in range [-1,1] for each x,y,z axis:
 bool	in_range(double d)
 {
@@ -80,7 +89,6 @@ bool	is_vec(char *line)
 	}
 	if (i != 3)
 	{
-		printf("HEFJESILG\n");
 		ret = false;
 	}
 	free_double_array(coord);

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:28:54 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/13 14:58:12 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:14:11 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	fill_plane(char *line, t_pl *plane)
 	if (!tokens)
 		return (0);
 	success = tokens[0] && set_coord(tokens[0], &plane->point) \
-				&& tokens[1] && set_vec(tokens[1], &plane->norm_axis_vec) \
+				&& tokens[1] && set_norm_vec(tokens[1], &plane->norm_axis_vec) \
 				&& tokens[2] && set_rgb(tokens[2], &plane->col);
 	free_tokens(tokens);
 	return (success);
@@ -64,7 +64,7 @@ int	fill_cylinder(char *line, t_cy *cylinder)
 	if (!tokens)
 		return (0);
 	success = tokens[0] && set_coord(tokens[0], &cylinder->center) \
-			&& tokens[1] && set_vec(tokens[1], &cylinder->norm_axis_vec) \
+			&& tokens[1] && set_norm_vec(tokens[1], &cylinder->norm_axis_vec) \
 			&& tokens[2] && set_dbl(tokens[2], &cylinder->diameter) \
 			&& tokens[3] && set_dbl(tokens[3], &cylinder->height) \
 			&& tokens[4] && set_rgb(tokens[4], &cylinder->col);

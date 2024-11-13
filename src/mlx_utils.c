@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:49:13 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/12 12:42:01 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:48:13 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	keyboard_inputs(int keysym, t_data *data)
 void	init_mlx(t_data *data, t_camera c, t_world *w)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, W_WIDTH, W_HEIGHT, "GTX");
+	data->win = mlx_new_window(data->mlx, W_WIDTH, W_HEIGHT, "RTX4090");
 	new_img(W_WIDTH, W_HEIGHT, data);
 	render(c, w, data);
 	mlx_hook(data->win, 17, 0, close_and_destroy, data);

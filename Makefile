@@ -6,11 +6,11 @@
 #    By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 12:10:35 by atyurina          #+#    #+#              #
-#    Updated: 2024/11/12 12:16:13 by atyurina         ###   ########.fr        #
+#    Updated: 2024/11/13 15:02:16 by fcharbon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := rtx2050
+NAME := rtx4090
 CC := gcc
 CFLAGS := -Wall -Werror -Wextra -g
 SRCS := src/rtx.c \

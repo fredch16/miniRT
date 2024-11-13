@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:16:31 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/12 13:05:06 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:59:05 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,3 @@ int	main(int argc, char **argv)
 	obj_list = NULL;
 	set_objs(parser, w, obj_list);
 }
-
-		/* output scene: */
-		// int i = 0;
-		// while (scene[i] != NULL)
-		// {
-		// 	ft_putstr_fd(scene[i], 1);
-		// 	ft_putchar_fd('\n', 1);
-		// 	i++;
-		// }

@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:33:10 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/09 17:25:47 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:57:03 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	render(t_camera c, t_world *w, t_data *data)
 		{
 			ray = ray_for_pixel(c, x, y);
 			w->px_count++;
-			// DEBUG - add if you want to see which pixel breaks
-			// printf("px number %d / 6400\n", w->px_count);
 			col = colour_at(w, ray);
 			col_code = col_to_rgb(col);
 			put_pixel_img(data, x, y, col_code);

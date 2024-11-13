@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:05:52 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/11/12 12:41:42 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:31:22 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 # define W_WIDTH 1800
-# define W_HEIGHT	800
+# define W_HEIGHT 800
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
 # include "../includes/libft/libft.h"

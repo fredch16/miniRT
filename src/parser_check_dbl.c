@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:02:57 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/12 14:54:33 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:53:19 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,27 @@ bool	is_dbl(const char *dbl)
 }
 
 //converts the beginning of string to double
+//
 double	ft_atof(const char *str)
 {
-	double	res;
-	double	res2;
-	char	*c;
-	int		len;
+	double	int_part;
+	double	dec_part;
+	double	sign;
+	int		i;
 
-	c = (char *)str;
-	res = (double)ft_atoi(c);
-	while (*c && *c != '.')
-		c++;
-	if (*c == '.')
-		c++;
-	res2 = (double)ft_atoi(c);
-	len = ft_strlen(c);
-	res2 /= pow(10, len);
-	if (res >= 0)
-		return (res + res2);
-	else
-		return (res + -res2);
+	int_part = 0.0;
+	dec_part = 0.0;
+	sign = 1.0;
+	if (*str == '+' || *str == '-')
+		if (*str++ == '-')
+			sign = -1.0;
+	while (ft_isdigit(*str))
+		int_part = int_part * 10 + (*str++ - '0');
+	i = -1;
+	if (*str == '.' && *str++)
+	{
+		while (ft_isdigit(*str))
+			dec_part += (pow(10, i--) * (*str++ - '0'));
+	}
+	return (sign * (int_part + dec_part));
 }

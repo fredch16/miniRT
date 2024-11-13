@@ -6,26 +6,12 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:22:07 by fcharbon          #+#    #+#             */
-/*   Updated: 2024/09/13 12:53:15 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:57:50 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtx.h"
 
-//this function to e removed:
-//printinf a matrix values:
-void	matrix_print(t_matrix *m)
-{
-	for (int i = 0; i < m->rows; i++) {
-		for (int j = 0; j < m->columns; j++) {
-			printf("%.5f ", m->matrix[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-//transpose a matrix
-//it turns its rows into columns and its columns into rows
 t_matrix	matrix_transpose(t_matrix *m)
 {
 	t_matrix	copy1;

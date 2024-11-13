@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:28:54 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/12 16:28:03 by atyurina         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:58:12 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	fill_cylinder(char *line, t_cy *cylinder)
 	if (success && tokens[5] && strlen(tokens[5]) == 1)
 		cylinder->cap = tokens[5][0] - '0';
 	else
-		cylinder->cap = -1; /*no info about cap*/
+		cylinder->cap = -1;
 	free_tokens(tokens);
 	return (success);
 }

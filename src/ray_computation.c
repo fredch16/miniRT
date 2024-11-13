@@ -6,7 +6,7 @@
 /*   By: atyurina <atyurina@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:05:06 by atyurina          #+#    #+#             */
-/*   Updated: 2024/11/09 17:25:33 by fcharbon         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:56:54 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ t_comps	prep_comps(t_xsn *x, t_ray ray, t_world *w)
 	if ((tuple_dot(comps.normalv, comps.eyev) < 0) \
 		&& comps.obj->type != OT_PLANE)
 	{
-		// DEBUG - add if you want to see which pixels are considered 
-		// "inside" a cylinder or sphere
-		// printf("INSIDE AT ^^^^ / 6400  --------------------------------\n");
 		comps.inside = 1;
 		comps.normalv = tuple_neg(comps.normalv);
 	}

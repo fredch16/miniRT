@@ -10,13 +10,19 @@
 
 ## Images of the Project
 
-![Mars FDF](imgs/marsfdf)
+![miniRT](imgs/example0)
 
-![Mars GIF](imgs/marsgif)
+![miniRT](imgs/example1)
 
-![Mars Topo FDF](imgs/marstopofdf)
+![miniRT](imgs/example2)
 
-![Mountains FDF](imgs/mountainsfdf)
+![miniRT](imgs/example3)
+
+![miniRT](imgs/example4)
+
+![miniRT](imgs/example5)
+
+![miniRT](imgs/example6)
 
 To pull files ↙️
 ```bash

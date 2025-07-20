@@ -14,7 +14,7 @@
 # define FDF_H
 # include <stdint.h>
 # include <stdbool.h>
-# define W_WIDTH 1800
+# define W_WIDTH 1000
 # define W_HEIGHT 800
 # define EPSILON 0.00001
 # define PI 3.14159265358979323846
